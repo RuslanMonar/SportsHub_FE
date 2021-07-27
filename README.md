@@ -1,6 +1,6 @@
-# Getting Started 
+## After cloning the repository type  
 
-After cloning the repository type  `npm install`
+### `npm start``npm install`
 
 
 ## Available Scripts
