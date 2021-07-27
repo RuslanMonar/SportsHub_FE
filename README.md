@@ -1,6 +1,6 @@
 ## After cloning the repository type  
 
-### `npm start``npm install`
+### `npm install`
 
 
 ## Available Scripts
