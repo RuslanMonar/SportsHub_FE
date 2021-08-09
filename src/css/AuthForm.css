@@ -19,15 +19,15 @@
   align-items: center;
   width: 60%;
 }
-.alert-danger{
+.alert-danger {
   color: red;
   font-size: 15px;
   color: red;
-    font-size: 11px;
-    margin-top: -7px;
-    display: flex;
-    justify-content: flex-end;
-    font-weight: 500;
+  font-size: 11px;
+  line-height: 16px;
+  display: flex;
+  justify-content: flex-end;
+  font-weight: 500;
 }
 .googleSvg {
   margin-left: 15px;
@@ -125,7 +125,7 @@
 }
 .form-inputs-name {
   display: block;
-  height: 37px;
+  /* height: 37px; */
   width: 40%;
 }
 .form-inputs-name p {
@@ -171,7 +171,6 @@
   display: flex;
   flex-direction: row;
   flex-shrink: 0;
-  margin-bottom: 50px;
   width: 97%;
   justify-content: space-between;
 }
