@@ -1,12 +1,13 @@
 import AuthService from "../Services/AuthService"
-import { LoginFailAction, LoginSuccessAction, RegisterFailAction, RegisterSuccessAction } from "../ActionsCreator/AuthActions";
+import { RegisterFailAction, RegisterSuccessAction } from "../ActionsCreator/AuthActions";
 import jwt_decode from "jwt-decode";
 
 const SignUp = (FirstName, LastName, Email , Password) => (dispatch) => {
   return AuthService.SignUp(FirstName, LastName, Email , Password).then(
     (response) => {
-      console.log(response.data);
-      dispatch(RegisterSuccessAction(jwt_decode(response.data.token)));
+      var user = jwt_decode(response.data.token);
+      user = {"name":user.unique_name,"id":user.nameid,"email":user.email}
+      dispatch(RegisterSuccessAction(user));
       return Promise.resolve();
     },
     (error) => {

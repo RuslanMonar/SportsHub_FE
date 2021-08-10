@@ -1,4 +1,4 @@
-
+import jwt_decode from "jwt-decode";
 
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAIL = "REGISTER_FAIL";
@@ -6,9 +6,16 @@ export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
 export const LOGOUT = "LOGOUT";
 
-const user = JSON.parse(localStorage.getItem("user"));
+var user = JSON.parse(localStorage.getItem("user"));
+var initialState = { isLoggedIn: false, user: null };
 
-const initialState = user ? { isLoggedIn: true, user }: { isLoggedIn: false, user: null };
+if(user){
+  user = jwt_decode(user);
+  user = {"name":user.unique_name,"id":user.nameid,"email":user.email}
+  initialState = {isLoggedIn: true,user};
+}
+
+
 
 export const AuthReducer = (state = initialState , action) => {
     const { type, payload } = action;

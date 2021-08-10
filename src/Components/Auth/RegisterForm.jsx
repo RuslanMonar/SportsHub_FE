@@ -7,7 +7,6 @@ import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
 
 import AuthAction from "../../ActionsController/AuthActionController";
-import { useSelector } from "react-redux";
 import { Fade } from "react-awesome-reveal";
 
 import '../../css/AuthForm.css'
@@ -29,6 +28,7 @@ export const RegisterForm = () => {
   const [loading , setLoading] = useState(false);
 
   const dispatch = useDispatch();
+
 
   // ----------------- Валідатори -----------------
   const required = (value) => {
@@ -108,7 +108,7 @@ export const RegisterForm = () => {
             setLoading(false);
           }, 2000)
           setSuccessful(true);
-          setMessage("Congratulations, you have registered successfully 🥳");
+          setMessage("Congratulations "+FirstName+", you have registered successfully 🥳");
         })
         .catch((e) => {
           setTimeout(() => {
@@ -120,7 +120,7 @@ export const RegisterForm = () => {
     }
   };
 
-  const user = useSelector((state) => state.AuthReducer.user);
+ 
 
   return (
     <div className={"forms-container"}>
@@ -173,7 +173,6 @@ export const RegisterForm = () => {
                 <label htmlFor="username" className="form-label" >LAST NAME</label>
                 <Input
                   type="text"
-                  className="form-control"
                   name="lasttName"
                   className="form-input"
                   placeholder="Doe"
@@ -188,7 +187,6 @@ export const RegisterForm = () => {
               <label  className="form-label" htmlFor="email">EMAIL</label>
                 <Input
                   type="text"
-                  className="form-control"
                   name="email"
                   className="form-input"
                   placeholder="johndoe@gmail.com"
@@ -203,7 +201,6 @@ export const RegisterForm = () => {
               <label className="form-label" htmlFor="password">PASSWORD</label>
                 <Input
                   type="text"
-                  className="form-control"
                   name="password"
                   value={password}
                   onChange={onChangePassword}
@@ -222,7 +219,7 @@ export const RegisterForm = () => {
         {message  && (
           <div className="form-group">
             <Fade duration={2000}>
-              <img src="img/auth/success.png"></img>
+              <img alt="success" src="img/auth/success.png"></img>
               <div className="success-message">
                 {message}
               </div>
