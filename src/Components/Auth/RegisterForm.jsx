@@ -8,8 +8,10 @@ import { isEmail } from "validator";
 
 import AuthAction from "../../ActionsController/AuthActionController";
 import { useSelector } from "react-redux";
+import { Fade } from "react-awesome-reveal";
 
 import '../../css/AuthForm.css'
+import { Loader } from './../Additional/Loader';
 
 export const RegisterForm = () => {
   // ----------------- Хуки -----------------
@@ -22,7 +24,9 @@ export const RegisterForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [successful, setSuccessful] = useState(false);
+  const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
+  const [loading , setLoading] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -36,6 +40,8 @@ export const RegisterForm = () => {
       );
     }
   };
+
+  
 
   const vname = (value) => {
     if (value.length < 3 || value.length > 20) {
@@ -60,6 +66,7 @@ export const RegisterForm = () => {
   const validEmail = (value) => {
     if (!isEmail(value)) {
       return (
+        
         <div className="alert alert-danger" role="alert">
           This is not a valid email.
         </div>
@@ -94,12 +101,20 @@ export const RegisterForm = () => {
     setSuccessful(false);
     form.current.validateAll();
     if (checkBtn.current.context._errors.length === 0) {
+      setLoading(true);
       dispatch(AuthAction.SignUp(FirstName, LastName, email, password))
         .then(() => {
+          setTimeout(() => {
+            setLoading(false);
+          }, 2000)
           setSuccessful(true);
-          setMessage("ok");
+          setMessage("Congratulations, you have registered successfully 🥳");
         })
-        .catch(() => {
+        .catch((e) => {
+          setTimeout(() => {
+            setLoading(false);
+          }, 2000)
+          setError(e);
           setSuccessful(false);
         });
     }
@@ -109,6 +124,7 @@ export const RegisterForm = () => {
 
   return (
     <div className={"forms-container"}>
+    { !loading? 
       <Form className={"Authform"} onSubmit={SingUp} ref={form}>
         {!successful && (
           <div className="form-content-right">
@@ -132,6 +148,13 @@ export const RegisterForm = () => {
               <div className="text-reg">
                 <p>Or use your email for registration:</p>
               </div>
+              {error?
+                <div className={"fail"}>
+                {error+" !"}
+                </div>
+                :
+                null
+              }
               <div className="names-form">
                 <div className="form-inputs-name">
 
@@ -196,22 +219,22 @@ export const RegisterForm = () => {
           </div>
         )}
 
-        {message && (
+        {message  && (
           <div className="form-group">
-            <div
-              className={
-                successful ? "alert alert-success" : "alert alert-danger"
-              }
-              role="alert"
-            >
-              {message}
-              {user.token}
-            </div>
+            <Fade duration={2000}>
+              <img src="img/auth/success.png"></img>
+              <div className="success-message">
+                {message}
+              </div>
+              </Fade>
           </div>
         )}
 
         <CheckButton style={{ display: "none" }} ref={checkBtn} />
       </Form>
+    :
+    <Loader/>
+    }
     </div>
   );
 };

@@ -13,7 +13,6 @@ function api() {
 const SignUp = (firstName, lastName, email , password) => {
     let data = { firstName, lastName, email , password}
     return api().post("Auth/register", data)
-    
 };
 
 

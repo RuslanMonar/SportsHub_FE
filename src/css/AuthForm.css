@@ -219,31 +219,53 @@
   color: #27cdff;
   font-weight: 600;
 }
-
-
+.fail {
+  color: rgb(235, 3, 3);
+  font-size: 17px;
+  font-weight: 300;
+  border: 1px solid rgb(235, 3, 3);
+  padding: 3px;
+  padding: 0px 15px;
+  width: fit-content;
+}
+.form-group {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.success-message {
+  font-family: "Open Sans";
+  font-size: 25px;
+  margin-top: 20px;
+  text-align: center;
+}
 @media only screen and (max-width: 768px) {
-  .form-content-left{
+  .form-content-left {
     width: 100%;
     position: absolute;
   }
-  .forms-container{
+  .forms-container {
     width: 100%;
     z-index: 2;
     color: white !important;
   }
-  .text-reg p{
+  .text-reg p {
     color: white;
   }
-  .form-label{
+  .form-label {
     color: white;
   }
-  .pictures-form>svg{
+  .pictures-form > svg {
     fill: white;
   }
-  .Authform{
+  .Authform {
     width: 75%;
   }
-  .alert-danger{
+  .alert-danger {
+    background-color: wheat;
+  }
+  .fail {
     background-color: wheat;
   }
 }
