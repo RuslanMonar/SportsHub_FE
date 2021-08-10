@@ -219,3 +219,31 @@
   color: #27cdff;
   font-weight: 600;
 }
+
+
+@media only screen and (max-width: 768px) {
+  .form-content-left{
+    width: 100%;
+    position: absolute;
+  }
+  .forms-container{
+    width: 100%;
+    z-index: 2;
+    color: white !important;
+  }
+  .text-reg p{
+    color: white;
+  }
+  .form-label{
+    color: white;
+  }
+  .pictures-form>svg{
+    fill: white;
+  }
+  .Authform{
+    width: 75%;
+  }
+  .alert-danger{
+    background-color: wheat;
+  }
+}
