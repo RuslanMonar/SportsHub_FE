@@ -7,7 +7,7 @@ import { isEmail } from "validator";
 
 import AuthAction from "../../ActionsController/AuthActionController";
 
-import { Fade } from "react-awesome-reveal";
+
 import { Link, Redirect } from 'react-router-dom';
 
 import "../../css/AuthForm.css";
@@ -102,9 +102,6 @@ export const LoginForm = () => {
                     <path className={"googleSvgElem"} fill-rule="evenodd" clip-rule="evenodd" d="M24.8293 16.9994C24.8293 16.5267 24.7564 16.0175 24.6471 15.5449H17.1821V18.6358H21.4791C21.2643 19.6897 20.6795 20.4998 19.8426 21.027L22.4019 23.0055C23.8726 21.6405 24.8293 19.607 24.8293 16.9994Z" fill="black"/>
                     </svg>
               </div>
-              <div className="text-reg">
-                <p>Or use your email for registration:</p>
-              </div>
               {error ? 
               <div className={"fail"}>
                 <span className={"close-icon"}></span>
@@ -113,7 +110,7 @@ export const LoginForm = () => {
                  : null}
               <div className="form-inputs">
                 <label className="form-label" htmlFor="email">
-                  EMAIL
+                  EMAIL ADDRESS
                 </label>
                 <Input
                   type="text"
@@ -139,7 +136,7 @@ export const LoginForm = () => {
                   validations={[required]}
                 />
               </div>
-              <button className="form-input-btn">SIGN UP</button>
+              <button className="form-input-btn">LOG IN</button>
             </div>
           <CheckButton style={{ display: "none" }} ref={checkBtn} />
           <Link to="/register"> Register </Link>
