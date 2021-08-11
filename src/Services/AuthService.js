@@ -1,25 +1,29 @@
-import axios from "axios";
-import { API_URL } from "./../Config/GlobalVariables";
+import { api } from './../Config/Axios';
 
-function api() {
-  const api = axios.create({
-    baseURL: API_URL,
-    //withCredentials: true,
-  });
-  return api;
-}
 
 const SignUp = (firstName, lastName, email, password) => {
   let data = { firstName, lastName, email, password };
   return api().post("Auth/register", data)
     .then((response) => {
-      if (response.data.token) {
-        localStorage.setItem("user", JSON.stringify(response.data.token));
-      }
+      if (response.data.token) AddToStorage(response.data.token);     
       return response;
     });
 };
 
+const SignIn = (email, password) => {
+  let data = {email, password };
+  return api().post("Auth/login", data)
+    .then((response) => {
+      if (response.data.token) AddToStorage(response.data.token);   
+      return response;
+    });
+};
+
+const AddToStorage = (token) => {
+  localStorage.setItem("user", JSON.stringify(token));
+}
+
 export default {
   SignUp,
+  SignIn
 };

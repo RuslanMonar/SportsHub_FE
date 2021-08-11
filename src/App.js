@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import { RegisterPage } from "./Pages/Auth/Register";
+import { AuthPage } from "./Pages/Auth/Auth";
 import { MainPage } from "./Pages/Main/Main";
 
 function App() {
@@ -8,9 +8,8 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route path="/" exact component={MainPage} />
-        <Route path="/register" exact component={RegisterPage} /> 
-
-        
+        <Route path="/login" exact component={AuthPage} /> 
+        <Route path="/register" exact component={AuthPage} /> 
       </Switch>
     </BrowserRouter>
   );
