@@ -155,13 +155,14 @@ export const RegisterForm = () => {
   };
 
  const FbAuth = (data) => {
-   console.log(data.accessToken);
     setLoading(true);
     dispatch(AuthAction.FbAuth(data.accessToken)).then(() => {
       setLoading(false);
     })
     .catch((e) => {
-
+      setLoading(false);
+      setError(e);
+      setSuccessful(false);
     })
  }
 
