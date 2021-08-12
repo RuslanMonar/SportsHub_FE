@@ -19,11 +19,21 @@ const SignIn = (email, password) => {
     });
 };
 
+const FbAuth = (AccessToken) => {
+  let data = {AccessToken}
+  return api().post("Auth/FBlogin", data)
+    .then((response) => {
+      if (response.data.token) AddToStorage(response.data.token);   
+      return response;
+    });
+}
+
 const AddToStorage = (token) => {
   localStorage.setItem("user", JSON.stringify(token));
 }
 
 export default {
   SignUp,
-  SignIn
+  SignIn,
+  FbAuth
 };

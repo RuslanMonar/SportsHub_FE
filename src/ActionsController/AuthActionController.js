@@ -27,6 +27,18 @@ const SignIn = (Email , Password) => (dispatch) => {
   );
 }
 
+const FbAuth = (token) => (dispatch) => {
+    return AuthService.FbAuth(token).then((response) => {
+      var user = GetUserInfoFromToken(response.data.token);
+      dispatch(SaveUserAction({user}));
+      return Promise.resolve();
+    },
+    (error)=> {
+
+    });
+}
+
+
 const GetUserInfoFromToken = (token) => {
   var user = jwt_decode(token);
   user = {"name":user.unique_name,"id":user.nameid,"email":user.email}
@@ -39,6 +51,7 @@ const ErrorBuilder = (error) => {
 
 export default {
     SignUp,
-    SignIn
+    SignIn,
+    FbAuth
   };
   
