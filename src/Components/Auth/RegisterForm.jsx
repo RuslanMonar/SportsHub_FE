@@ -174,7 +174,7 @@ export const RegisterForm = () => {
               <h1>Create Account</h1>
               <div className="pictures-form">
               <FacebookLogin
-                    appId="183494546770953"
+                    appId="229197485777809"
                     autoLoad={false}
                     fields="name,email,picture"
                     callback={response => FbAuth(response)}
