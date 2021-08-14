@@ -34,7 +34,7 @@ const FbAuth = (token) => (dispatch) => {
       return Promise.resolve();
     },
     (error)=> {
-
+      return Promise.reject(ErrorBuilder(error));
     });
 }
 
