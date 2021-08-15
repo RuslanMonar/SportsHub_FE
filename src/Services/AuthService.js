@@ -28,6 +28,15 @@ const FbAuth = (AccessToken) => {
     });
 }
 
+const GoogleAuth = (data) => {
+  return api().post("Auth/GoogleLogin" , data)
+  .then((response) => {
+    if (response.data.token) AddToStorage(response.data.token);   
+      return response;
+  })
+  
+}
+
 const AddToStorage = (token) => {
   localStorage.setItem("user", JSON.stringify(token));
 }
@@ -35,5 +44,6 @@ const AddToStorage = (token) => {
 export default {
   SignUp,
   SignIn,
-  FbAuth
+  FbAuth,
+  GoogleAuth
 };

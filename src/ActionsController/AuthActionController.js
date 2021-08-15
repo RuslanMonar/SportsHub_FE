@@ -43,11 +43,26 @@ const FbAuth = (token) => (dispatch) => {
   );
 };
 
+const GoogleAuth = (data) => (dispatch) => {
+  return AuthService.GoogleAuth(data)
+  .then((response) => {
+    var user = GetUserInfoFromToken(response.data.token);
+    dispatch(SaveUserAction({ user }));
+    return Promise.resolve();
+  },
+  (error) => {
+    return Promise.reject(ErrorBuilder(error));
+  }
+  );
+};
+
+// ----- Additional functions
 const GetUserInfoFromToken = (token) => {
   var user = jwt_decode(token);
   user = { name: user.unique_name, id: user.nameid, email: user.email };
   return user;
 };
+
 const ErrorBuilder = (error) => {
   const message =
     (error.response && error.response.data && error.response.data.errors) ||
@@ -60,4 +75,5 @@ export default {
   SignUp,
   SignIn,
   FbAuth,
+  GoogleAuth
 };
