@@ -1,4 +1,6 @@
 import { useState, useRef } from "react";
+import { useDispatch } from 'react-redux';
+import "../../css/AuthForm.css";
 
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
@@ -7,12 +9,10 @@ import { isEmail } from "validator";
 
 import AuthAction from "../../ActionsController/AuthActionController";
 
-
 import { Link, Redirect } from 'react-router-dom';
-
-import "../../css/AuthForm.css";
 import { Loader } from "./../Additional/Loader";
-import { useDispatch } from 'react-redux';
+
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 
 export const LoginForm = () => {
   const form = useRef();
@@ -81,6 +81,20 @@ export const LoginForm = () => {
     }
   };
 
+  const FbAuth = (data) => {
+    setLoading(true);
+    dispatch(AuthAction.FbAuth(data.accessToken)).then(() => {
+      setTimeout(() => {
+        setLoading(false);
+        setSuccessful(true);
+      }, 2000)
+    })
+    .catch((e) => {
+      setLoading(false);
+      setError(e);
+      setSuccessful(false);
+    })
+ }
   return (
     <div className={"forms-container"}>
       {!loading ? (
@@ -89,10 +103,18 @@ export const LoginForm = () => {
             <div className="form-content-right">
               <h1>Log in to Sports Hub</h1>
               <div className="pictures-form">
-              <svg className="facebookIconCircle" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <FacebookLogin
+                    appId="229197485777809"
+                    autoLoad={false}
+                    fields="name,email,picture"
+                    callback={response => FbAuth(response)}
+                    render={renderProps => (
+                      <svg onClick={renderProps.onClick} className="facebookIconCircle" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path  fill-rule="evenodd" clip-rule="evenodd" d="M17 33C25.8366 33 33 25.8366 33 17C33 8.16344 25.8366 1 17 1C8.16344 1 1 8.16344 1 17C1 25.8366 8.16344 33 17 33Z" stroke="black"/>
                   <path className="facebookIconLetter" d="M21 14.9962H18.2755V13.3247C18.2755 12.6969 18.7202 12.5506 19.0335 12.5506C19.346 12.5506 20.9562 12.5506 20.9562 12.5506V9.79092L18.3083 9.78125C15.3689 9.78125 14.6999 11.8395 14.6999 13.1567V14.9962H13V17.8399H14.6999C14.6999 21.4893 14.6999 25.8865 14.6999 25.8865H18.2755C18.2755 25.8865 18.2755 21.446 18.2755 17.8399H20.6882L21 14.9962Z" fill="black"/>
                   </svg>
+                    )}
+                />
 
                   <svg  className={"googleSvg"} width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path  fill-rule="evenodd" clip-rule="evenodd" d="M16.7988 33C25.6354 33 32.7988 25.8366 32.7988 17C32.7988 8.16344 25.6354 1 16.7988 1C7.96227 1 0.798828 8.16344 0.798828 17C0.798828 25.8366 7.96227 33 16.7988 33Z" stroke="black"/>

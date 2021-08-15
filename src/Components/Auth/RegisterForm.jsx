@@ -157,7 +157,10 @@ export const RegisterForm = () => {
  const FbAuth = (data) => {
     setLoading(true);
     dispatch(AuthAction.FbAuth(data.accessToken)).then(() => {
-      setLoading(false);
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000)
+      setMessage("Congratulations, you have registered successfully 🥳");
     })
     .catch((e) => {
       setLoading(false);
