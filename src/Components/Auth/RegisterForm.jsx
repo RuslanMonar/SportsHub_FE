@@ -156,6 +156,7 @@ export const RegisterForm = () => {
         setTimeout(() => {
           setLoading(false);
         }, 2000);
+        setSuccessful(true);
         setMessage("Congratulations, you have registered successfully 🥳");
       })
       .catch((e) => {
