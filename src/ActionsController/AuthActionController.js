@@ -68,7 +68,8 @@ const ErrorBuilder = (error) => {
     (error.response && error.response.data && error.response.data.errors) ||
     error.message ||
     error.toString();
-  return message;
+    const code = error.response.status;
+  return {message,code};
 };
 
 export default {

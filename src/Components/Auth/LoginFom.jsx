@@ -14,7 +14,8 @@ import { Loader } from "./../Additional/Loader";
 
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import { FacebookApiId, GoogleApiId } from "./../../Config/GlobalVariables";
-import { GoogleLogin } from 'react-google-login';
+import { GoogleLogin } from "react-google-login";
+import {useToasts } from 'react-toast-notifications';
 
 export const LoginForm = () => {
   const form = useRef();
@@ -25,6 +26,7 @@ export const LoginForm = () => {
   const [successful, setSuccessful] = useState(false);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
+  const { addToast } = useToasts()
 
   const dispatch = useDispatch();
 
@@ -73,9 +75,17 @@ export const LoginForm = () => {
         .catch((e) => {
           setTimeout(() => {
             setLoading(false);
+            if (e.code === 400) {
+              setError(e.message);
+              setSuccessful(false);
+            }
+            else{
+              addToast({error:"Something went wrong", message: "Please try again later"}, {
+                appearance: 'warning',
+                autoDismiss: true ,
+              })
+            }
           }, 2000);
-          setError(e);
-          setSuccessful(false);
         });
     }
   };
@@ -90,22 +100,34 @@ export const LoginForm = () => {
         }, 2000);
       })
       .catch((e) => {
-        setLoading(false);
-        setError(e);
-        setSuccessful(false);
+        setTimeout(() => {
+          setLoading(false);
+          if (e.code === 400) {
+            setError(e.message);
+            setSuccessful(false);
+          }
+          else{
+            addToast({error:"Something went wrong", message: "Please try again later"}, {
+              appearance: 'warning',
+              autoDismiss: true ,
+            })
+          }
+        }, 2000);
       });
   };
 
   const GoogleAuth = (data) => {
-      setLoading(true)
-      
-      var ParsedData = {"Email":data.email , 
-      "FirstName":data.givenName , 
-      "LastName":data.familyName , 
-      "Id":data.googleId , 
-      "ImageUrl":data.imageUrl}
+    setLoading(true);
 
-      dispatch(AuthAction.GoogleAuth(ParsedData))
+    var ParsedData = {
+      Email: data.email,
+      FirstName: data.givenName,
+      LastName: data.familyName,
+      Id: data.googleId,
+      ImageUrl: data.imageUrl,
+    };
+
+    dispatch(AuthAction.GoogleAuth(ParsedData))
       .then(() => {
         setTimeout(() => {
           setLoading(false);
@@ -113,11 +135,21 @@ export const LoginForm = () => {
         }, 2000);
       })
       .catch((e) => {
-        setLoading(false);
-        setError(e);
-        setSuccessful(false);
-      })
-  }
+        setTimeout(() => {
+          setLoading(false);
+          if (e.code === 400) {
+            setError(e.message);
+            setSuccessful(false);
+          }
+          else{
+            addToast({error:"Something went wrong", message: "Please try again later"}, {
+              appearance: 'warning',
+              autoDismiss: true ,
+            })
+          }
+        }, 2000);
+      });
+  };
   return (
     <div className={"forms-container"}>
       {!loading ? (
@@ -154,7 +186,7 @@ export const LoginForm = () => {
                   </svg>
                 )}
               />
-  
+
               <GoogleLogin
                 clientId={GoogleApiId}
                 render={(renderProps) => (
@@ -205,7 +237,7 @@ export const LoginForm = () => {
                   </svg>
                 )}
                 buttonText="Login"
-                onSuccess={response => GoogleAuth(response.profileObj)}
+                onSuccess={(response) => GoogleAuth(response.profileObj)}
               />
             </div>
             {error ? (
