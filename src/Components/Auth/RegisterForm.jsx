@@ -15,8 +15,8 @@ import { Link } from "react-router-dom";
 import { Fade } from "react-awesome-reveal";
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import { FacebookApiId, GoogleApiId } from "./../../Config/GlobalVariables";
-import { GoogleLogin } from 'react-google-login';
-import {useToasts } from 'react-toast-notifications';
+import { GoogleLogin } from "react-google-login";
+import { useToasts } from "react-toast-notifications";
 
 export const RegisterForm = () => {
   // ----------------- Хуки -----------------
@@ -32,7 +32,7 @@ export const RegisterForm = () => {
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
-  const { addToast } = useToasts()
+  const { addToast } = useToasts();
 
   const dispatch = useDispatch();
 
@@ -123,6 +123,24 @@ export const RegisterForm = () => {
     setPassword(password);
   };
 
+  const catchError = (e) => {
+    setTimeout(() => {
+      setLoading(false);
+      if (e.code === 400) {
+        setError(e.message);
+        setSuccessful(false);
+      } else {
+        addToast(
+          { error: "Something went wrong", message: "Please try again later" },
+          {
+            appearance: "warning",
+            autoDismiss: true,
+          }
+        );
+      }
+    }, 2000);
+  };
+
   const SingUp = (e) => {
     e.preventDefault();
     setSuccessful(false);
@@ -142,19 +160,7 @@ export const RegisterForm = () => {
           );
         })
         .catch((e) => {
-          setTimeout(() => {
-            setLoading(false);
-            if (e.code === 400) {
-              setError(e.message);
-              setSuccessful(false);
-            }
-            else{
-              addToast({error:"Something went wrong", message: "Please try again later"}, {
-                appearance: 'warning',
-                autoDismiss: true ,
-              })
-            }
-          }, 2000);
+          catchError(e)
         });
     }
   };
@@ -170,55 +176,32 @@ export const RegisterForm = () => {
         setMessage("Congratulations, you have registered successfully 🥳");
       })
       .catch((e) => {
-        setTimeout(() => {
-          setLoading(false);
-          if (e.code === 400) {
-            setError(e.message);
-            setSuccessful(false);
-          }
-          else{
-            addToast({error:"Something went wrong", message: "Please try again later"}, {
-              appearance: 'warning',
-              autoDismiss: true ,
-            })
-          }
-        }, 2000);
+        catchError(e)
       });
   };
 
-
   const GoogleAuth = (data) => {
-    setLoading(true)
-    var ParsedData = {"Email":data.email , 
-    "FirstName":data.givenName , 
-    "LastName":data.familyName , 
-    "Id":data.googleId , 
-    "ImageUrl":data.imageUrl}
+    setLoading(true);
+    var ParsedData = {
+      Email: data.email,
+      FirstName: data.givenName,
+      LastName: data.familyName,
+      Id: data.googleId,
+      ImageUrl: data.imageUrl,
+    };
 
     dispatch(AuthAction.GoogleAuth(ParsedData))
-    .then(() => {
-      setTimeout(() => {
-        setLoading(false);
-        setSuccessful(true);
-        setMessage("Congratulations, you have registered successfully 🥳");
-      }, 2000);
-    })
-    .catch((e) => {
-      setTimeout(() => {
-        setLoading(false);
-        if (e.code === 400) {
-          setError(e.message);
-          setSuccessful(false);
-        }
-        else{
-          addToast({error:"Something went wrong", message: "Please try again later"}, {
-            appearance: 'warning',
-            autoDismiss: true ,
-          })
-        }
-      }, 2000);
-    })
-}
+      .then(() => {
+        setTimeout(() => {
+          setLoading(false);
+          setSuccessful(true);
+          setMessage("Congratulations, you have registered successfully 🥳");
+        }, 2000);
+      })
+      .catch((e) => {
+        catchError(e)
+      });
+  };
 
   return (
     <div className={"forms-container"}>

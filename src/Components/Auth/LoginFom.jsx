@@ -15,7 +15,7 @@ import { Loader } from "./../Additional/Loader";
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import { FacebookApiId, GoogleApiId } from "./../../Config/GlobalVariables";
 import { GoogleLogin } from "react-google-login";
-import {useToasts } from 'react-toast-notifications';
+import { useToasts } from "react-toast-notifications";
 
 export const LoginForm = () => {
   const form = useRef();
@@ -26,7 +26,7 @@ export const LoginForm = () => {
   const [successful, setSuccessful] = useState(false);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { addToast } = useToasts()
+  const { addToast } = useToasts();
 
   const dispatch = useDispatch();
 
@@ -60,6 +60,24 @@ export const LoginForm = () => {
     setPassword(password);
   };
 
+  const catchError = (e) => {
+    setTimeout(() => {
+      setLoading(false);
+      if (e.code === 400) {
+        setError(e.message);
+        setSuccessful(false);
+      } else {
+        addToast(
+          { error: "Something went wrong", message: "Please try again later" },
+          {
+            appearance: "warning",
+            autoDismiss: true,
+          }
+        );
+      }
+    }, 2000);
+  };
+
   const SignIn = (e) => {
     e.preventDefault();
     form.current.validateAll();
@@ -73,19 +91,7 @@ export const LoginForm = () => {
           }, 2000);
         })
         .catch((e) => {
-          setTimeout(() => {
-            setLoading(false);
-            if (e.code === 400) {
-              setError(e.message);
-              setSuccessful(false);
-            }
-            else{
-              addToast({error:"Something went wrong", message: "Please try again later"}, {
-                appearance: 'warning',
-                autoDismiss: true ,
-              })
-            }
-          }, 2000);
+          catchError(e);
         });
     }
   };
@@ -100,19 +106,7 @@ export const LoginForm = () => {
         }, 2000);
       })
       .catch((e) => {
-        setTimeout(() => {
-          setLoading(false);
-          if (e.code === 400) {
-            setError(e.message);
-            setSuccessful(false);
-          }
-          else{
-            addToast({error:"Something went wrong", message: "Please try again later"}, {
-              appearance: 'warning',
-              autoDismiss: true ,
-            })
-          }
-        }, 2000);
+        catchError(e);
       });
   };
 
@@ -135,19 +129,7 @@ export const LoginForm = () => {
         }, 2000);
       })
       .catch((e) => {
-        setTimeout(() => {
-          setLoading(false);
-          if (e.code === 400) {
-            setError(e.message);
-            setSuccessful(false);
-          }
-          else{
-            addToast({error:"Something went wrong", message: "Please try again later"}, {
-              appearance: 'warning',
-              autoDismiss: true ,
-            })
-          }
-        }, 2000);
+        catchError(e);
       });
   };
   return (
