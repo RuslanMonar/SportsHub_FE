@@ -16,6 +16,7 @@ import { Fade } from "react-awesome-reveal";
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import { FacebookApiId, GoogleApiId } from "./../../Config/GlobalVariables";
 import { GoogleLogin } from 'react-google-login';
+import {useToasts } from 'react-toast-notifications';
 
 export const RegisterForm = () => {
   // ----------------- Хуки -----------------
@@ -31,6 +32,7 @@ export const RegisterForm = () => {
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const { addToast } = useToasts()
 
   const dispatch = useDispatch();
 
@@ -142,9 +144,17 @@ export const RegisterForm = () => {
         .catch((e) => {
           setTimeout(() => {
             setLoading(false);
+            if (e.code === 400) {
+              setError(e.message);
+              setSuccessful(false);
+            }
+            else{
+              addToast({error:"Something went wrong", message: "Please try again later"}, {
+                appearance: 'warning',
+                autoDismiss: true ,
+              })
+            }
           }, 2000);
-          setError(e);
-          setSuccessful(false);
         });
     }
   };
@@ -160,9 +170,19 @@ export const RegisterForm = () => {
         setMessage("Congratulations, you have registered successfully 🥳");
       })
       .catch((e) => {
-        setLoading(false);
-        setError(e);
-        setSuccessful(false);
+        setTimeout(() => {
+          setLoading(false);
+          if (e.code === 400) {
+            setError(e.message);
+            setSuccessful(false);
+          }
+          else{
+            addToast({error:"Something went wrong", message: "Please try again later"}, {
+              appearance: 'warning',
+              autoDismiss: true ,
+            })
+          }
+        }, 2000);
       });
   };
 
@@ -184,9 +204,19 @@ export const RegisterForm = () => {
       }, 2000);
     })
     .catch((e) => {
-      setLoading(false);
-      setError(e);
-      setSuccessful(false);
+      setTimeout(() => {
+        setLoading(false);
+        if (e.code === 400) {
+          setError(e.message);
+          setSuccessful(false);
+        }
+        else{
+          addToast({error:"Something went wrong", message: "Please try again later"}, {
+            appearance: 'warning',
+            autoDismiss: true ,
+          })
+        }
+      }, 2000);
     })
 }
 
