@@ -1,4 +1,4 @@
-import { useState, useRef} from "react";
+import { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import "../../../css/AuthForm.css";
 import Form from "react-validation/build/form";
@@ -39,20 +39,28 @@ export const RecoveryForm = () => {
     }
   };
 
-  const isSamePassword = (value) => {
-      if (value != password){
-          console.log(value);
-        return (
-            <div className="alert alert-danger" role="alert">
-              Please make sure your passwords match.
-            </div>
-          );
-      }
+  const isEqual = (value, props, components) => {
+    const bothUsed =
+      components.password[0].isUsed && components.confirm[0].isUsed;
+    const bothChanged =
+      components.password[0].isChanged && components.confirm[0].isChanged;
+
+    if (
+      bothChanged &&
+      bothUsed &&
+      components.password[0].value !== components.confirm[0].value
+    ) {
+      return (
+        <div className="alert alert-danger" role="alert">
+          Please make sure your passwords match.
+        </div>
+      );
+    }
   };
 
   const onChangePassword = (e) => {
     const password = e.target.value;
-     setPassword(password);
+    setPassword(password);
   };
 
   const onChangeConfirmPassword = (e) => {
@@ -78,14 +86,16 @@ export const RecoveryForm = () => {
     }, 2000);
   };
 
-  const SetNewPassword = (e) =>{
-      e.preventDefault();
-      form.current.validateAll();
-      if (checkBtn.current.context._errors.length === 0) {
-        setLoading(true);
-        console.log("done");
-      }
-  }
+
+
+  const SetNewPassword = (e) => {
+    e.preventDefault();
+    form.current.validateAll();
+    if (checkBtn.current.context._errors.length === 0) {
+      setLoading(true);
+      console.log("done");
+    }
+  };
 
   return (
     <div className={"forms-container"}>
@@ -110,7 +120,7 @@ export const RecoveryForm = () => {
                 onChange={onChangePassword}
                 className="form-input"
                 placeholder="6 + characters (letters and numbers)"
-                validations={[required]}
+                validations={[required, isEqual]}
               />
             </div>
             <div className="form-inputs">
@@ -120,16 +130,18 @@ export const RecoveryForm = () => {
 
               <Input
                 type="password"
-                name="confirmPassword"
+                name="confirm"
                 value={confirmPassword}
                 onChange={onChangeConfirmPassword}
                 className="form-input"
                 placeholder="confirm password"
-                validations={[required, isSamePassword]}
+                validations={[required, isEqual]}
               />
             </div>
             <button className="form-input-btn">SET NEW PASSWORD</button>
-            <a id = "back-to-login" href= "/login">Back to Log In </a>
+            <a id="back-to-login" href="/login">
+              Back to Log In{" "}
+            </a>
           </div>
           <CheckButton style={{ display: "none" }} ref={checkBtn} />
         </Form>
