@@ -56,6 +56,16 @@ const GoogleAuth = (data) => (dispatch) => {
   );
 };
 
+const SendForgotPasswordEmail = (email) => (dispatch) =>{
+  return AuthService.SendForgotPasswordEmail(email)
+  .then((response) => {
+    return Promise.resolve();
+  },
+  (error) => {
+    return Promise.reject(ErrorBuilder(error));
+  });
+};
+
 // ----- Additional functions
 const GetUserInfoFromToken = (token) => {
   var user = jwt_decode(token);
@@ -76,5 +86,6 @@ export default {
   SignUp,
   SignIn,
   FbAuth,
-  GoogleAuth
+  GoogleAuth,
+  SendForgotPasswordEmail
 };

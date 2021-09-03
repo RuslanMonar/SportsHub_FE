@@ -10,6 +10,8 @@ function App() {
         <Route path="/" exact component={MainPage} />
         <Route path="/login" exact component={AuthPage} />
         <Route path="/register" exact component={AuthPage} />
+        <Route path="/resetPassword" exact component={AuthPage} />
+        <Route path="/resetPasswordAnswer" exact render={props => <AuthPage {...props}/>} />
       </Switch>
     </BrowserRouter>
   );

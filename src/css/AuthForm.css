@@ -13,6 +13,24 @@
 .Authform {
   width: 45%;
 }
+.ResetPasswordEmailForm{
+  width: 60%;
+}
+
+.ResetPasswordAnswer{
+  width: 70%;
+}
+
+.ResetPasswordAnswer .form-content-right h1{
+  width: 100%;
+  text-align: center;
+}
+
+.ResetPasswordAnswer .form-content-right  h2{
+  width: 100%;
+  text-align: center;
+}
+
 .forms-container {
   display: flex;
   justify-content: center;
@@ -109,12 +127,23 @@
   align-items: center;
 }
 
-.form h1 {
+.forms-container h1 {
   font-size: 1.5rem;
   text-align: start;
   width: 80%;
   margin-bottom: 1rem;
   color: rgb(5, 0, 0);
+}
+
+.forms-container h2 {
+  font-size: 1rem;
+  text-align: start;
+
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+
+  color: #596377;
 }
 
 .form-inputs {
@@ -154,6 +183,21 @@
   font-size: 0.7rem;
   margin-bottom: 4px;
   color: rgba(67, 76, 93, 1);
+  float: left;
+  width: 50%;
+}
+
+.forgot-password {
+  font-family: Open Sans;
+  font-style: normal;
+  display: inline-block;
+  margin-bottom: 4px;
+  font-weight: 600;
+  font-size: 0.7rem;
+  line-height: 33px;
+  text-align: right;
+  color: #4A90E2;
+  width: 50%;
 }
 
 .form-input {
@@ -193,6 +237,14 @@
   border: none;
   color: #fff;
   font-size: 1rem;
+}
+
+#back-to-login{
+  align-self: center;
+}
+
+#back-to-login:visited{
+  color: black;
 }
 
 .form-input-btn:hover {
@@ -269,6 +321,23 @@
 .go-home-button{
   margin-top: 20px;
 }
+
+#mail-logo{
+  display: block;
+  width: 80px;
+  height: auto;
+  align-self: center;
+  visibility: visible;
+}
+
+#white-mail-logo{
+  display: block;
+  width: 80px;
+  height: auto;
+  align-self: center;
+  visibility: hidden;
+}
+
 @media only screen and (max-width: 768px) {
   .form-content-left {
     width: 100%;
@@ -291,10 +360,44 @@
   .Authform {
     width: 75%;
   }
+  .ResetPasswordEmailForm{
+    width: 70%;
+  }
   .alert-danger {
     background-color: wheat;
   }
   .fail {
     background-color: wheat;
   }
+
+  .forms-container h1 {
+    color: white;
+  }
+  
+  .forms-container h2 {
+  
+    color: #dae8f3;
+  }
+
+  .forgot-password {
+    color: white;
+  }
+  #back-to-login{
+    align-self:center;
+    color: white;
+    margin-top: 20%;
+  }
+  
+  #back-to-login:visited{
+    color: white;
+  }
+  #mail-logo{
+    visibility: hidden;
+  }
+
+  #white-mail-logo{
+    
+    visibility: visible;
+  }
 }
+

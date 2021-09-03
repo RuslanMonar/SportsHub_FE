@@ -10,10 +10,10 @@ import { isEmail } from "validator";
 import AuthAction from "../../ActionsController/AuthActionController";
 
 import { Link, Redirect } from "react-router-dom";
-import { Loader } from "./../Additional/Loader";
+import { Loader } from "../Additional/Loader";
 
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
-import { FacebookApiId, GoogleApiId } from "./../../Config/GlobalVariables";
+import { FacebookApiId, GoogleApiId } from "../../Config/GlobalVariables";
 import { GoogleLogin } from "react-google-login";
 import { useToasts } from "react-toast-notifications";
 
@@ -112,7 +112,6 @@ export const LoginForm = () => {
 
   const GoogleAuth = (data) => {
     setLoading(true);
-
     var ParsedData = {
       Email: data.email,
       FirstName: data.givenName,
@@ -246,6 +245,10 @@ export const LoginForm = () => {
               <label className="form-label" htmlFor="password">
                 PASSWORD
               </label>
+
+              <a className="forgot-password" href="/resetPassword">
+                Forgot Password?
+              </a>
               <Input
                 type="text"
                 name="password"
