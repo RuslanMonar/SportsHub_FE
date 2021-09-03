@@ -250,7 +250,7 @@ export const LoginForm = () => {
                 Forgot Password?
               </a>
               <Input
-                type="text"
+                type="password"
                 name="password"
                 value={password}
                 onChange={onChangePassword}

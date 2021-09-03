@@ -352,7 +352,7 @@ export const RegisterForm = () => {
                   PASSWORD
                 </label>
                 <Input
-                  type="text"
+                  type="password"
                   name="password"
                   value={password}
                   onChange={onChangePassword}

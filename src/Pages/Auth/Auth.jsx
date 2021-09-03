@@ -3,6 +3,7 @@ import "../../css/AuthForm.css";
 import { LoginForm } from "./../../Components/Auth/LoginForm";
 import { ResetPasswordEmailForm } from "../../Components/Auth/ResetPasswordForms/ResetPasswordEmailForm";
 import { ResetPasswordAnswer } from "../../Components/Auth/ResetPasswordForms/ResetPasswordAnswer";
+import { RecoveryForm } from "../../Components/Auth/ResetPasswordForms/RecoveryForm";
 import { ToastProvider } from "react-toast-notifications";
 import { ErrorNotification } from "../../Components/Additional/ToastNotification";
 
@@ -18,6 +19,10 @@ export const AuthPage = () => {
     return window.location.pathname === "/resetPasswordAnswer" ? true : false;
   }
 
+  const isRecovery = () => {
+    return window.location.pathname === "/recoveryPassword" ? true : false;
+  }
+
   const getComponent = () => {
     if (isLogin()){
       return <LoginForm />;
@@ -27,7 +32,9 @@ export const AuthPage = () => {
     
     } else if (isResetPasswordAnswer()) {
       return <ResetPasswordAnswer />;
-
+    
+    } else if (isRecovery()){
+      return <RecoveryForm />;
     } else {
       return <RegisterForm />;
     }
