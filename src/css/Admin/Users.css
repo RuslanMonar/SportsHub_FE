@@ -58,6 +58,7 @@
   margin-bottom: 10px;
 }
 
+
 .users-list-container {
   width: 50%;
   height: auto;
@@ -184,4 +185,5 @@
 }
 .Dropdown-option {
   border-bottom: 0.5px solid rgb(207, 207, 207) !important;
+
 }

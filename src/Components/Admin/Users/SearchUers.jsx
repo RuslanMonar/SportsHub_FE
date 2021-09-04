@@ -1,14 +1,17 @@
 import "../../../css/Admin/Users.css";
 import { useState, useEffect } from "react";
+
 import UsersService from "../../../Services/UsersService";
 
 export const SearchUsers = ({ setLoader, setUsers }) => {
+
   const [name, setName] = useState("");
 
   //Таймер 1 секунда після якого спрацьовує автоматичне надсилання ім'я
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       if (name) {
+
         setLoader(true);
         UsersService.SearchUser(name).then((response) => {
           setUsers(response.data.users);
@@ -24,6 +27,7 @@ export const SearchUsers = ({ setLoader, setUsers }) => {
             setLoader(false);
           }, 500);
         });
+
       }
     }, 1000);
     return () => clearTimeout(delayDebounceFn);
