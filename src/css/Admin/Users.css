@@ -1,3 +1,4 @@
+
 .search-box {
   width: fit-content;
   height: fit-content;
@@ -55,4 +56,131 @@
   display: flex;
   justify-content: flex-end;
   width: 50%;
+
+.users-list-container {
+  width: 40%;
+  height: auto;
+  font-family: "Open Sans";
+  font-size: 13px;
+  flex-direction: column;
+}
+.list-header {
+  background-color: #f2f2f2;
+  height: 25px !important;
+  padding:10px 0px 10px 0px;
+}
+.list-header-font {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #4b4b4b;
+}
+.users-list-item {
+  width: 100%;
+  height: 50px;
+  border: 1.5px solid #dbdfe7;
+  border-top: none;
+}
+.flex {
+  display: flex;
+}
+.user {
+  width: 50%;
+  font-weight: 600;
+  position: relative;
+}
+.user > img {
+  margin-left: 20px;
+}
+.user > span {
+  margin-left: 20px;
+}
+.user-avatar {
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+.connection-status {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgb(11, 214, 4);
+  top: 22px;
+  left: 42px;
+  border: 2px solid white;
+}
+.Active{
+  color: #6bbe69;
+}
+.Blocked{
+  color: #565a6a;
+}
+.align-center {
+  align-items: center;
+}
+.justify-center {
+  justify-content: center;
+}
+.status {
+  width: 20%;
+  justify-content: center;
+}
+.dropdown {
+  width: 30%;
+}
+.deleteUser,
+.deleteUser > .Dropdown-control {
+  background-color: #fdeaeb !important;
+  color: #e87c84 !important;
+}
+.blockUser,
+.blockUser > .Dropdown-control {
+  background-color: #d4d9e2 !important;
+  color: #131313 !important;
+}
+.makeAsAdmin,
+.makeAsAdmin > .Dropdown-control {
+  background-color: #d4e7f1;
+  color: #3991c0;
+}
+.activateUser,
+.activateUser > .Dropdown-control {
+  background-color: #dfecdd;
+  color: #59b457;
+}
+.remove-from-admin,
+.remove-from-admin > .Dropdown-control{
+  background-color: #fdeaeb;
+  color: #e87c84 ;
+}
+.Dropdown-root {
+  text-align: center;
+  min-width: 80%;
+  width: max-content;
+}
+.Dropdown-control {
+  padding: 5px 10px 5px 10px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+}
+.Dropdown-placeholder,.Dropdown-arrow-wrapper {
+  margin-left: auto;
+}
+.Dropdown-arrow {
+  top: 12px !important;
+  border-color: black transparent transparent;
+  border-width: 4px 4px 0;
+  position: unset;
+}
+.is-open .Dropdown-arrow {
+  border-color: transparent transparent black;
+  border-width: 0 4px 4px;
+}
+.Dropdown-option{
+  border-bottom: 0.5px solid rgb(207, 207, 207) !important;
+
 }
