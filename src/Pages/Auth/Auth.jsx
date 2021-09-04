@@ -43,6 +43,7 @@ export const AuthPage = () => {
   return (
     <div className="form-container">
       <div className="form-content-left">
+        <a href="/" className="main-logo">Sports Hub</a>
         <div className="form-img"></div>
       </div>
       <ToastProvider components={{ Toast: ErrorNotification }}>
