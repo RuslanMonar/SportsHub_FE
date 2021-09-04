@@ -3,16 +3,53 @@ import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import "../../css/UserList.css";
 
-export default function UsersList() {
+export default function UsersList({
+  id,
+  firstName,
+  lastName,
+  image,
+  isBlocked,
+  role,
+}) {
+  var status = isBlocked ? "Blocked" : "Active";
+  if (!image) {
+    image = "img/users/defaultUserImage.png";
+  }
+  if (role && role.length > 0) {
+    role = role[0];
+  } else {
+    role = "User";
+  }
+
+  status = isBlocked ? "Blocked" : "Active";
+
   const options = [
-    { value: "Block", label: "Block", className: "blockUser" },
-    { value: "Delete", label: "Delete", className: "deleteUser" },
     {
-      value: "Make as Admin",
-      label: "Make as Admin",
-      className: "makeAsAdmin",
+      value: isBlocked ? "Activate" : "Block",
+      label: isBlocked ? "Activate" : "Block",
+      className: isBlocked ? "activateUser" : "blockUser",
+    },
+    {
+      value: "Delete",
+      label: "Delete",
+      className: "deleteUser",
+    },
+    {
+      value: role == "User" ? "Make as Admin" : "Remove from Admin",
+      label: role == "User" ? "Make as Admin" : "Remove from Admin",
+      className: role == "User" ? "makeAsAdmin" : "remove-from-admin",
     },
   ];
+
+  // const options = [
+  //   { value: "Block", label: "Block", className: "blockUser" },
+  //   { value: "Delete", label: "Delete", className: "deleteUser" },
+  //   {
+  //     value: "Make as Admin",
+  //     label: "Make as Admin",
+  //     className: "makeAsAdmin",
+  //   },
+  // ];
 
   const [defaultOption, setDefaultOption] = useState(options[0]);
 
@@ -28,16 +65,14 @@ export default function UsersList() {
   return (
     <div className="flex users-list-item align-center">
       <div className="flex user align-center  ">
-        <img
-          src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80"
-          alt=""
-          className={"user-avatar"}
-        />
+        <img src={image} alt="" className={"user-avatar"} />
         <div className="connection-status"></div>
-        <span>Wayd Flores</span>
+        <span>
+          {firstName} {lastName}
+        </span>
       </div>
       <div className="status flex">
-        <span className="Active">Active</span>
+        <span className={status}>{status}</span>
       </div>
       <div className="dropdown flex justify-center">
         <Dropdown

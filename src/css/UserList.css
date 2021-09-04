@@ -86,6 +86,16 @@
   background-color: #d4e7f1;
   color: #3991c0;
 }
+.activateUser,
+.activateUser > .Dropdown-control {
+  background-color: #dfecdd;
+  color: #59b457;
+}
+.remove-from-admin,
+.remove-from-admin > .Dropdown-control{
+  background-color: #fdeaeb;
+  color: #e87c84 ;
+}
 .Dropdown-root {
   text-align: center;
   min-width: 80%;

@@ -1,7 +1,18 @@
-import React from "react";
 import UsersList from "./../../Components/Admin/UsersList";
-import "../../css/UserList.css"
+import "../../css/UserList.css";
+import { useEffect } from "react";
+import UsersService from "../../Services/UsersService";
+import { useState } from "react";
 export default function Users() {
+  const [users, setUsers] = useState([{}]);
+
+  useEffect(() => {
+    UsersService.GetAllUsers().then((response) => {
+      setUsers(response.data.users);
+      
+    });
+  }, []);
+
   return (
     <div className={"flex users-list-container"}>
       <div className="flex users-list-item align-center list-header">
@@ -17,7 +28,9 @@ export default function Users() {
           </div>
         </div>
       </div>
-      <UsersList />
+      {users
+        ? users.map((user) => <UsersList key={user.id} {...user} />)
+        : null}
     </div>
   );
 }
