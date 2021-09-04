@@ -56,8 +56,18 @@ const GoogleAuth = (data) => (dispatch) => {
   );
 };
 
-const SendForgotPasswordEmail = (email) => (dispatch) =>{
+const SendForgotPasswordEmail = (email)  => (dispatch) => {
   return AuthService.SendForgotPasswordEmail(email)
+  .then((response) => {
+    return Promise.resolve();
+  },
+  (error) => {
+    return Promise.reject(ErrorBuilder(error));
+  });
+};
+
+const ResetPassword = (email, resetToken, newPassword) => (dispatch) => {
+  return AuthService.ResetPassword(email, resetToken, newPassword)
   .then((response) => {
     return Promise.resolve();
   },
@@ -87,5 +97,6 @@ export default {
   SignIn,
   FbAuth,
   GoogleAuth,
-  SendForgotPasswordEmail
+  SendForgotPasswordEmail,
+  ResetPassword
 };

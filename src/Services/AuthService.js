@@ -48,10 +48,22 @@ const SendForgotPasswordEmail = (email) => {
   });
 };
 
+const ResetPassword = (email, resetToken, newPassword) => {
+  return api().post("Auth/reset", {
+    "email": email,
+    "token": resetToken,
+    "newPassword": newPassword
+  })
+  .then((response) => {
+    return response;
+  });
+}
+
 export default {
   SignUp,
   SignIn,
   FbAuth,
   GoogleAuth,
-  SendForgotPasswordEmail
+  SendForgotPasswordEmail,
+  ResetPassword
 };

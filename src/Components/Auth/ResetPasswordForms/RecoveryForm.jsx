@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import "../../../css/AuthForm.css";
 import Form from "react-validation/build/form";
@@ -26,6 +26,15 @@ export const RecoveryForm = () => {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const { addToast } = useToasts();
+
+
+  const [email, setEmail] = useState("");
+  const [token, setToken] = useState("");
+  useEffect(() => {
+    let emailAndToken = window.location.search.split("email=")[1].split("?token=");
+    setEmail(emailAndToken[0]);
+    setToken(emailAndToken[1]);
+  }, [])
 
   const dispatch = useDispatch();
 
@@ -92,8 +101,16 @@ export const RecoveryForm = () => {
     e.preventDefault();
     form.current.validateAll();
     if (checkBtn.current.context._errors.length === 0) {
-      setLoading(true);
-      console.log("done");
+        dispatch(AuthAction.ResetPassword(email, token, password))
+        .then(() => {
+          setTimeout(() => {
+            setLoading(false);
+          }, 2000);
+          setSuccessful(true);
+        })
+        .catch((e) => {
+          catchError(e)
+        });
     }
   };
 
