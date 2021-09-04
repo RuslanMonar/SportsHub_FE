@@ -1,9 +1,9 @@
 import { React, useState } from "react";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
-import "../../css/UserList.css";
+import "../../../css/Admin/Users.css";
 
-export default function UsersList({
+export default function UserItem({
   id,
   firstName,
   lastName,
@@ -40,16 +40,6 @@ export default function UsersList({
       className: role == "User" ? "makeAsAdmin" : "remove-from-admin",
     },
   ];
-
-  // const options = [
-  //   { value: "Block", label: "Block", className: "blockUser" },
-  //   { value: "Delete", label: "Delete", className: "deleteUser" },
-  //   {
-  //     value: "Make as Admin",
-  //     label: "Make as Admin",
-  //     className: "makeAsAdmin",
-  //   },
-  // ];
 
   const [defaultOption, setDefaultOption] = useState(options[0]);
 

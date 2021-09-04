@@ -121,3 +121,6 @@
   border-color: transparent transparent black;
   border-width: 0 4px 4px;
 }
+.Dropdown-option{
+  border-bottom: 0.5px solid rgb(207, 207, 207) !important;
+}
