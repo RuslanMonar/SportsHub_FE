@@ -1,5 +1,65 @@
+.search-box {
+  width: fit-content;
+  height: fit-content;
+  position: relative;
+}
+.input-search {
+  height: 30px;
+  width: 0px;
+  font-size: 13px;
+  border-radius: 25px;
+  transition: all 0.5s ease-in-out;
+  color: #000000;
+  border: none;
+  padding: 3px 8px;
+}
+.input-search::placeholder {
+  color: rgba(127, 136, 153, 1);
+  font-size: 13px;
+  font-weight: 100;
+}
+.btn-search {
+  border-style: none;
+  font-size: 20px;
+  font-weight: bold;
+  outline: none;
+  cursor: pointer;
+  border-radius: 50%;
+  position: absolute;
+  left: 2px;
+  top: 10px;
+  color: #dfdfdf;
+  background-color: transparent;
+  pointer-events: painted;
+  background-color: white;
+}
+.btn-search:focus ~ .input-search {
+  width: 300px;
+  border-radius: 0px;
+  background-color: transparent;
+  border: 2px solid #e9e9e9;
+  transition: width 0.5s;
+  padding-left: 40px;
+}
+
+.input-search:focus {
+  width: 300px;
+  border-radius: 0px;
+  background-color: transparent;
+  border: 2px solid #e9e9e9;
+  transition: width 0.5s;
+  padding-left: 40px;
+}
+
+.search-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 97%;
+  margin-bottom: 10px;
+}
+
 .users-list-container {
-  width: 40%;
+  width: 50%;
   height: auto;
   font-family: "Open Sans";
   font-size: 13px;
@@ -8,7 +68,7 @@
 .list-header {
   background-color: #f2f2f2;
   height: 25px !important;
-  padding:10px 0px 10px 0px;
+  padding: 10px 0px 10px 0px;
 }
 .list-header-font {
   font-size: 12px;
@@ -52,10 +112,10 @@
   left: 42px;
   border: 2px solid white;
 }
-.Active{
+.Active {
   color: #6bbe69;
 }
-.Blocked{
+.Blocked {
   color: #565a6a;
 }
 .align-center {
@@ -92,9 +152,9 @@
   color: #59b457;
 }
 .remove-from-admin,
-.remove-from-admin > .Dropdown-control{
+.remove-from-admin > .Dropdown-control {
   background-color: #fdeaeb;
-  color: #e87c84 ;
+  color: #e87c84;
 }
 .Dropdown-root {
   text-align: center;
@@ -108,7 +168,8 @@
   align-items: center;
   font-size: 12px;
 }
-.Dropdown-placeholder,.Dropdown-arrow-wrapper {
+.Dropdown-placeholder,
+.Dropdown-arrow-wrapper {
   margin-left: auto;
 }
 .Dropdown-arrow {
@@ -121,6 +182,6 @@
   border-color: transparent transparent black;
   border-width: 0 4px 4px;
 }
-.Dropdown-option{
+.Dropdown-option {
   border-bottom: 0.5px solid rgb(207, 207, 207) !important;
 }
