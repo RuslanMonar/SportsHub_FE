@@ -1,4 +1,3 @@
-
 .search-box {
   width: fit-content;
   height: fit-content;
@@ -52,13 +51,16 @@
   padding-left: 40px;
 }
 
-.father {
+.search-container {
   display: flex;
   justify-content: flex-end;
-  width: 50%;
+  width: 97%;
+  margin-bottom: 10px;
+}
+
 
 .users-list-container {
-  width: 40%;
+  width: 50%;
   height: auto;
   font-family: "Open Sans";
   font-size: 13px;
@@ -67,7 +69,7 @@
 .list-header {
   background-color: #f2f2f2;
   height: 25px !important;
-  padding:10px 0px 10px 0px;
+  padding: 10px 0px 10px 0px;
 }
 .list-header-font {
   font-size: 12px;
@@ -111,10 +113,10 @@
   left: 42px;
   border: 2px solid white;
 }
-.Active{
+.Active {
   color: #6bbe69;
 }
-.Blocked{
+.Blocked {
   color: #565a6a;
 }
 .align-center {
@@ -151,9 +153,9 @@
   color: #59b457;
 }
 .remove-from-admin,
-.remove-from-admin > .Dropdown-control{
+.remove-from-admin > .Dropdown-control {
   background-color: #fdeaeb;
-  color: #e87c84 ;
+  color: #e87c84;
 }
 .Dropdown-root {
   text-align: center;
@@ -167,7 +169,8 @@
   align-items: center;
   font-size: 12px;
 }
-.Dropdown-placeholder,.Dropdown-arrow-wrapper {
+.Dropdown-placeholder,
+.Dropdown-arrow-wrapper {
   margin-left: auto;
 }
 .Dropdown-arrow {
@@ -180,7 +183,7 @@
   border-color: transparent transparent black;
   border-width: 0 4px 4px;
 }
-.Dropdown-option{
+.Dropdown-option {
   border-bottom: 0.5px solid rgb(207, 207, 207) !important;
 
 }

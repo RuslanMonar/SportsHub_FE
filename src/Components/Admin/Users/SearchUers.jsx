@@ -1,26 +1,40 @@
 import "../../../css/Admin/Users.css";
 import { useState, useEffect } from "react";
-import { api } from "./../../../Config/Axios";
 
-export const SearchUsers = () => {
+import UsersService from "../../../Services/UsersService";
+
+export const SearchUsers = ({ setLoader, setUsers }) => {
+
   const [name, setName] = useState("");
 
   //Таймер 1 секунда після якого спрацьовує автоматичне надсилання ім'я
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       if (name) {
-        api()
-          .get(`/Users/SearchUser?name=${name}`)
-          .then((response) => {
-            console.log(response.data?.users);
-          });
+
+        setLoader(true);
+        UsersService.SearchUser(name).then((response) => {
+          setUsers(response.data.users);
+          setTimeout(() => {
+            setLoader(false);
+          }, 500);
+        });
+      } else {
+        setLoader(true);
+        UsersService.GetAllUsers().then((response) => {
+          setUsers(response.data.users);
+          setTimeout(() => {
+            setLoader(false);
+          }, 500);
+        });
+
       }
     }, 1000);
     return () => clearTimeout(delayDebounceFn);
   }, [name]);
 
   return (
-    <div className={"father"}>
+    <div className={"search-container "}>
       <div class="search-box">
         <button onClick={() => console.log("search button")} class="btn-search">
           <svg

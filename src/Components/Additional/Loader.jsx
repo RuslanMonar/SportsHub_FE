@@ -5,8 +5,10 @@ export const Loader = ({ ...settings }) => {
   var height = settings.height ? settings.height : 75;
   var width = settings.width ? settings.width : 13;
   var margin = settings.margin ? settings.margin : 8;
+  var textAlign = settings.textAlign ? settings.textAlign :"unset";
+  var indentation = settings.indentation ? settings.indentation : "0px"
   return (
-    <div className="">
+    <div style={{"textAlign":textAlign , "margin":indentation}}>
       <ScaleLoader
         color={"#f2003c"}
         loading={loading}
