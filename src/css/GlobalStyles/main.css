@@ -16,6 +16,7 @@ a.main-logo{
   top: 0%;
   bottom: 0%;
   width: 30%;
+  min-width: 130px;
   height: 10%;
   background: #D72130;
   color:white;

@@ -4,16 +4,11 @@ import "../../../css/AuthForm.css";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
-import { isEmail } from "validator";
 
 import AuthAction from "../../../ActionsController/AuthActionController";
 
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { Loader } from "../../Additional/Loader";
-
-import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
-import { FacebookApiId, GoogleApiId } from "../../../Config/GlobalVariables";
-import { GoogleLogin } from "react-google-login";
 import { useToasts } from "react-toast-notifications";
 
 export const RecoveryForm = () => {
@@ -116,6 +111,10 @@ export const RecoveryForm = () => {
 
   return (
     <div className={"forms-container"}>
+        <div className="auth-header">
+          <label className="header-label">Don't have an account?</label>
+          <a className="header-link" href="/register">Get Started</a>
+        </div>
       {!loading ? (
         <Form className={"RecoveryForm"} onSubmit={SetNewPassword} ref={form}>
           <div className="form-content-right">

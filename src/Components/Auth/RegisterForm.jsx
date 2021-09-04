@@ -205,6 +205,10 @@ export const RegisterForm = () => {
 
   return (
     <div className={"forms-container"}>
+        <div className="auth-header">
+          <label className="header-label">Already have an account?</label>
+          <a className="header-link" href="/login">Log In</a>
+        </div>
       {!loading ? (
         <Form className={"Authform"} onSubmit={SingUp} ref={form}>
           {!successful && (
@@ -362,7 +366,6 @@ export const RegisterForm = () => {
                 />
               </div>
               <button className="form-input-btn">SIGN UP</button>
-              <Link to="/login"> Login</Link>
             </div>
           )}
 

@@ -86,6 +86,10 @@ export const ResetPasswordEmailForm = () => {
 
     return (
       <div className={"forms-container"}>
+        <div className="auth-header">
+          <label className="header-label">Don't have an account?</label>
+          <a className="header-link" href="/register">Get Started</a>
+        </div>
         {!loading ? (
           <Form className={"ResetPasswordEmailForm"}  onSubmit={sendEmail} ref={form}>
             <div className="form-content-right">

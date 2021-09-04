@@ -133,6 +133,10 @@ export const LoginForm = () => {
   };
   return (
     <div className={"forms-container"}>
+        <div className="auth-header">
+          <label className="header-label">Don't have an account?</label>
+          <a className="header-link" href="/register">Get Started</a>
+        </div>
       {!loading ? (
         <Form className={"Authform"} onSubmit={SignIn} ref={form}>
           <div className="form-content-right">
@@ -262,7 +266,6 @@ export const LoginForm = () => {
             <button className="form-input-btn">LOG IN</button>
           </div>
           <CheckButton style={{ display: "none" }} ref={checkBtn} />
-          <Link to="/register"> Register </Link>
         </Form>
       ) : (
         <Loader />
