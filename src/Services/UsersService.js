@@ -1,5 +1,5 @@
 import { api } from "./../Config/Axios";
 const GetSortedUsers = (data) => {
-    return api().get(`/Users/GetSortedUsers`)
+    return api().post(`Users/GetSortedUsers?data=`+ data)
 }
 export default {GetSortedUsers};
