@@ -8,12 +8,12 @@ const SearchUser = (name) => {
   return api().get(`/Users/SearchUser?name=${name}`)
 };
 const GetSortedUsers = (data) => {
-  return api().get(`/Users/GetSortedUsers`)
+    return api().post(`Users/GetSortedUsers?data=`+ data)
 }
-export default {GetSortedUsers};
 
 export default {
   GetAllUsers,
   SearchUser,
+  GetSortedUsers
 };
 
