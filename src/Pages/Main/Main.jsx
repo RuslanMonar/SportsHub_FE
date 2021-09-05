@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { SortUsers } from '../../Components/Admin/Users/SortUsers';
 import { SearchUsers } from './../../Components/Admin/Users/SearchUers';
 
 
@@ -16,6 +17,7 @@ export const MainPage = () => {
             <br/>
             <Link to="/register"> Register </Link>
             <SearchUsers/>
+            <SortUsers/>
         </div>
     );
 }
