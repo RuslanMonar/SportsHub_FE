@@ -4,15 +4,7 @@ import "../../../css/Admin/Users.css";
 import UsersService from "../../../Services/UsersService";
 
 
-export const  SortUsers = () => {
-
-    const options = [ 
-        {value: 0, label: 'Active'},
-        {value: 1, label: 'Blocked'},
-        {value: 2, label: 'Online'},
-        {value: 3, label: 'Offline'},
-    ];
-    const[data, setData] = useState();
+export const  SortUsers = ({setUsers}) => {
     function myFunction1() {
         var x = document.getElementById("myDIV");
         if (x.style.display === "none") {
@@ -23,11 +15,12 @@ export const  SortUsers = () => {
     }
 
     function myFunction2(data) {
-            if (data) {
-                UsersService.GetSortedUsers(data).then((response) => {
+        if (data) {
+            UsersService.GetSortedUsers(data).then((response) => {
                 console.log(response.data.users);
             });
         }
+        return;
     }
     
     return(
@@ -47,28 +40,28 @@ export const  SortUsers = () => {
                             </div>
                                 <ul className="dropdown__quick-links dropdown__segment">
                                         <li className="dropdown__link">
-                                            <button onClick={myFunction1, myFunction2("Active")}                                            
+                                            <button onClick={() => myFunction2("Active")}                                            
                                                      class="option-btn" 
                                                     >
                                                 Active
                                             </button>    
                                         </li>
                                         <li className="dropdown__link">
-                                            <button onClick={myFunction1, myFunction2("Blocked")}  
+                                            <button onClick={() => myFunction2("Blocked")}  
                                                     class="option-btn" 
                                                     >
                                                 Blocked
                                             </button>
                                         </li>
                                         <li className="dropdown__link">
-                                            <button onClick={myFunction1, myFunction2("Online")} 
+                                            <button onClick={() => myFunction2("Online")} 
                                                      class="option-btn"
                                                       >
                                                 Online
                                             </button>
                                         </li>
                                         <li className="dropdown__link">
-                                            <button onClick={myFunction1, myFunction2("Offline")}
+                                            <button onClick={() => myFunction2("Offline")}
                                                       class="option-btn"
                                                     >
                                                 Offline
