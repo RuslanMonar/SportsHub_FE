@@ -1,0 +1,185 @@
+
+
+.icon:hover {
+  color: #d72130;
+}
+
+.filterit:hover {
+  filter: invert(24%) sepia(54%) saturate(4209%) hue-rotate(341deg) brightness(84%) contrast(100%);
+}
+
+.footerRectangle {
+  border: 1.78769px solid #b2b2b2;
+}
+
+.footerRectangle:hover {
+  border: 1.78769px solid #d72130;
+}
+
+.smallfooterRectangle{
+  border: 1.78769px solid #B2B2B2;
+  box-sizing: border-box;
+  top: 100%;
+}
+
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.container {
+  width: inherit;
+}
+
+.container h2 {
+  margin: 100px 0 50px;
+}
+
+.container > * {
+  width: 100%;
+  margin-left: 0.3em;
+}
+
+.container > *:first-child() {
+  margin-left: 0;
+}
+
+.container > div {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 22%);
+  justify-content: space-between;
+  grid-gap: 30px;
+  width: 800px;
+  min-height: 220px;
+  margin: auto;
+  min-height: 220px;
+  outline: 2px dashed lightblue;
+}
+
+.card-file {
+  padding: 1rem;
+  border-radius: 8px;
+  height: 180px;
+  background: rgb(238, 238, 238);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.card-file h4 {
+  margin-top: 0;
+}
+
+.MuiButtonBase-root {
+  color: inherit;
+  border: 0;
+  cursor: pointer;
+  margin: 0;
+  display: inline-flex;
+  outline: 0;
+  padding: 0;
+  position: relative;
+  align-items: center;
+  user-select: none;
+  border-radius: 0;
+  vertical-align: middle;
+  -moz-appearance: none;
+  justify-content: center;
+  text-decoration: none;
+  background-color: #FFFFFF;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.SortableItem {
+  font-size: 1rem;
+  padding: 15px 20px;
+  list-style: none;
+  background-color: #007bff;
+  color: #fff;
+  margin: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  cursor: move;
+}
+
+.SortableList {
+  display: flex;
+}
+
+.tabitemstyle{
+  
+font-family: Open Sans;
+font-style: normal;
+font-weight: bold;
+font-size: 14px;
+line-height: 19px;
+/* identical to box height, or 136% */
+
+
+color: #B2B2B2;
+}
+
+.tab{
+  display:flex;
+  justify-content:space-around;
+}
+.menu-item {
+  padding: 0 40px;
+  margin: 5px 10px;
+  user-select: none;
+  cursor: pointer;
+  border: none;
+}
+.menu-item-wrapper.active {
+  border: 1px blue solid;
+}
+.menu-item.active {
+  border: 1px green solid;
+}
+ 
+.scroll-menu-arrow {
+  padding: 20px;
+  cursor: pointer;
+}
+
+.titlestyle{
+font-family: Open Sans;
+font-style: normal;
+font-weight: bold;
+font-size: 30px;
+line-height: 41px;
+/* identical to box height */
+
+text-transform: capitalize;
+
+color: #000000;
+}
+
+.line{
+  position: relative;
+  left: 0%;
+  right: 0.07%;
+  height: 7vh;
+  margin: -1px;
+  
+/* Dark/Input field frame */
+
+border: 1px solid #D4D9E2;
+}
+
+.sidebarrect{
+  /* Rectangle */
+flex-direction:column;
+justify-content: flex-start;
+justify-content:space-between;
+
+}
+
+.MuiTabs-root{
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+
+}
