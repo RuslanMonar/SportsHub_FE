@@ -10,15 +10,64 @@
   margin: -8px;
 }
 
-.Authform {
-  width: 45%;
-}
 .forms-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 60%;
+  font-family: Open Sans;
 }
+
+.auth-header{
+  display: flex;
+  width: 100%;
+  align-self: center;
+  justify-content: flex-end;
+  flex-direction: row;
+  margin-top: 3%;
+}
+
+.header-label{
+  align-self: center;
+}
+.header-link{
+  margin: 0px 10% 0px 20px;
+  padding: 10px 20px 10px 20px;
+  border: 2px solid #D72130;
+  color: #D72130;
+  text-decoration: none;
+}
+
+.header-link:hover{
+  background-color: #D72130;
+  color: white;
+}
+
+.Authform {
+  width: 45%;
+  margin: auto;
+}
+.ResetPasswordEmailForm{
+  width: 60%;
+  margin: auto;
+}
+
+.ResetPasswordAnswer{
+  width: 70%;
+  margin: auto;
+}
+
+.ResetPasswordAnswer .form-content-right h1{
+  width: 100%;
+  text-align: center;
+}
+
+.ResetPasswordAnswer .form-content-right  h2{
+  width: 100%;
+  text-align: center;
+}
+
 .alert-danger {
   color: red;
   font-size: 15px;
@@ -109,12 +158,23 @@
   align-items: center;
 }
 
-.form h1 {
+.forms-container h1 {
   font-size: 1.5rem;
   text-align: start;
   width: 80%;
   margin-bottom: 1rem;
   color: rgb(5, 0, 0);
+}
+
+.forms-container h2 {
+  font-size: 1rem;
+  text-align: start;
+
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+
+  color: #596377;
 }
 
 .form-inputs {
@@ -154,6 +214,21 @@
   font-size: 0.7rem;
   margin-bottom: 4px;
   color: rgba(67, 76, 93, 1);
+  float: left;
+  width: 50%;
+}
+
+.forgot-password {
+  font-family: Open Sans;
+  font-style: normal;
+  display: inline-block;
+  margin-bottom: 4px;
+  font-weight: 600;
+  font-size: 0.7rem;
+  line-height: 33px;
+  text-align: right;
+  color: #4A90E2;
+  width: 50%;
 }
 
 .form-input {
@@ -195,15 +270,16 @@
   font-size: 1rem;
 }
 
+#back-to-login{
+  align-self: center;
+}
+
+#back-to-login:visited{
+  color: black;
+}
+
 .form-input-btn:hover {
   cursor: pointer;
-
-  background: linear-gradient(
-    90deg,
-    rgb(39, 143, 255) 0%,
-    rgb(12, 99, 250) 100%
-  );
-  transition: all 0.4s ease-out;
 }
 
 .form-input-login {
@@ -269,6 +345,23 @@
 .go-home-button{
   margin-top: 20px;
 }
+
+#mail-logo{
+  display: block;
+  width: 80px;
+  height: auto;
+  align-self: center;
+  visibility: visible;
+}
+
+#white-mail-logo{
+  display: block;
+  width: 80px;
+  height: auto;
+  align-self: center;
+  visibility: hidden;
+}
+
 @media only screen and (max-width: 768px) {
   .form-content-left {
     width: 100%;
@@ -279,6 +372,15 @@
     z-index: 2;
     color: white !important;
   }
+
+  .header-label{
+    visibility: hidden;
+  }
+
+  .header-link{
+    visibility: hidden;
+  }
+
   .text-reg p {
     color: white;
   }
@@ -291,10 +393,44 @@
   .Authform {
     width: 75%;
   }
+  .ResetPasswordEmailForm{
+    width: 70%;
+  }
   .alert-danger {
     background-color: wheat;
   }
   .fail {
     background-color: wheat;
   }
+
+  .forms-container h1 {
+    color: white;
+  }
+  
+  .forms-container h2 {
+  
+    color: #dae8f3;
+  }
+
+  .forgot-password {
+    color: white;
+  }
+  #back-to-login{
+    align-self:center;
+    color: white;
+    margin-top: 20%;
+  }
+  
+  #back-to-login:visited{
+    color: white;
+  }
+  #mail-logo{
+    visibility: hidden;
+  }
+
+  #white-mail-logo{
+    
+    visibility: visible;
+  }
 }
+
