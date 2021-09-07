@@ -2,6 +2,13 @@
 
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+<<<<<<< HEAD
+=======
+import { SearchUsers } from './../../Components/Admin/Users/SearchUers';
+import { Delete } from './../../Components/Admin/Users/DeleteUser';
+
+
+>>>>>>> Added styles for confirm alert to delete button
 
 export const MainPage = () => {
     var user = useSelector(state => state.AuthReducer)
@@ -12,6 +19,11 @@ export const MainPage = () => {
             <Link to="/login"> Login </Link>
             <br/>
             <Link to="/register"> Register </Link>
+<<<<<<< HEAD
+=======
+            <SearchUsers/>
+            <Delete/>
+>>>>>>> Added styles for confirm alert to delete button
         </div>
     );
 }

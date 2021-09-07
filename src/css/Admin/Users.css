@@ -187,6 +187,7 @@
   border-bottom: 0.5px solid rgb(207, 207, 207) !important;
 
 }
+<<<<<<< HEAD
 #myDIV{
   display: none;
   position: absolute;
@@ -303,3 +304,42 @@ div.dropdown__segment{
 }
 
 
+=======
+.alert{
+  background-color:  white;
+  font-family: Open Sans;
+  box-shadow:#000000;
+  font-size: 14px;
+  text-align: center;
+  width: 450px;
+  height: 200px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  display: flex;
+  padding-top: 40px;
+  align-content: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.alert-btnblock{
+  border-top:  #ededed 1px solid;
+  text-align: right;
+  padding-top: 15px;
+  margin-top: 50px ;
+  margin-right: 32px;
+}
+.alert-cancelbtn{
+  background-color: white;
+  padding: 8px 28px;
+  color: #db0413;
+  border:none;
+  cursor: pointer;
+}
+.alert-deletebtn{
+  background-color:  #db0413;
+  padding: 8px 28px;
+  color: white;
+  border:none;
+  cursor: pointer;
+}
+>>>>>>> Added styles for confirm alert to delete button
