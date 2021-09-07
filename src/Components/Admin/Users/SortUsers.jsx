@@ -17,7 +17,7 @@ export const  SortUsers = ({setUsers}) => {
     function myFunction2(data) {
         if (data) {
             UsersService.GetSortedUsers(data).then((response) => {
-                console.log(response.data.users);
+                setUsers(response.data.users);
             });
         }
         return;
