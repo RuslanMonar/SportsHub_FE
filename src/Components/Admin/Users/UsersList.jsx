@@ -16,7 +16,7 @@ export const UsersList = () => {
   // }, []);
 
   return (
-    <div>
+    <div className="Central-page">
       <div className={"flex users-list-container"}>
         <SearchUsers setUsers={setUsers} setLoader={setLoader} />
         <div className="flex users-list-item align-center list-header">

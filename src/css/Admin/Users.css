@@ -60,7 +60,7 @@
 
 
 .users-list-container {
-  width: 50%;
+  width: 70%;
   height: auto;
   font-family: "Open Sans";
   font-size: 13px;
@@ -187,3 +187,51 @@
   border-bottom: 0.5px solid rgb(207, 207, 207) !important;
 
 }
+
+.SliderStyle{
+  width: 70%;
+  margin-left: 5%;
+}
+.customSliderArrow::before{
+  color: black !important;
+}
+.slick-next:before{
+  color: black !important;
+}
+
+.slick-prev:before{
+  color: black !important;
+}
+.characters {
+  list-style: none;
+  padding-left: 0;
+}
+
+.draggableList li {
+  display: flex;
+  align-items: center;
+  padding: .5em .8em .5em .5em;
+  margin-bottom: 1em;
+  font-family: "Open Sans";
+  color: rgb(199, 199, 199);
+  margin-left: 10px;
+  font-size: 14px;
+  padding:10px ;
+}
+
+.characters p {
+  max-width: none;
+  font-weight: bold;
+  margin: 0;
+}
+.draggableList{
+  display:flex;
+  overflow-x:auto;
+}
+.Central-page{
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+
