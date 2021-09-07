@@ -3,6 +3,11 @@ import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import "../../../css/Admin/Users.css";
 import UsersService from "../../../Services/UsersService";
+<<<<<<< HEAD
+=======
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
+>>>>>>> Added alert window to list of users
 
 export default function UserItem({
   id,
@@ -46,8 +51,12 @@ export default function UserItem({
   // const [status, setStatus] = useState(nowStatus);
 
   const showAction = (e) => {
+    if(e.value ==="Delete"){
+      alertWindow();
+    }
     var result = options.findIndex((x) => x.value === e.value);
     setDefaultOption(options[result]);
+    console.log(e);
   };
 
 
@@ -75,6 +84,30 @@ export default function UserItem({
   var FilteredOptions = options.filter(
     (value) => defaultOption.value != value.value
   );
+
+  const alertWindow = () => {
+    confirmAlert({
+      customUI: ({ onClose }) => {
+          return (
+            <div className='alert' >
+              <b>You are about to delete this user!</b>
+              <div>This user will be deleted from Sports Hub</div>
+              <div>Are you sure? </div>
+              <div className='alert-btnblock'>
+                  <button className='alert-cancelbtn' onClick={onClose}>Cancel</button>
+                  <button className='alert-deletebtn'
+                  onClick={() => {
+                      UsersService.DeleteUser(id).then(() => {onClose();});
+                  }}
+                      >
+                      Delete
+                  </button>
+              </div>            
+            </div>
+          );
+        }
+    });
+  };
 
   return (
     <div className="flex users-list-item align-center">

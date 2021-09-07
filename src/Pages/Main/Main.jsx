@@ -20,8 +20,11 @@ export const MainPage = () => {
             <br/>
             <Link to="/register"> Register </Link>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             <SearchUsers/>
+=======
+>>>>>>> Added alert window to list of users
             <Delete/>
 >>>>>>> Added styles for confirm alert to delete button
         </div>
