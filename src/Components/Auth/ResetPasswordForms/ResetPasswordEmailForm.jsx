@@ -129,17 +129,6 @@ export const ResetPasswordEmailForm = () => {
       ) : (
         <Loader />
       )}
-      {message && (
-        <div className={"ResetPasswordAnswer"} >
-            <div className="form-content-right">
-              <img alt="mail" src="img/auth/mail.png" id="mail-logo"></img>
-              <img alt="mail" src="img/auth/white_mail.png" id="white-mail-logo"></img>
-              <h1>Check your email</h1>
-        
-              <h2>If there's Sports Hub account linked to this email address, we'll send over instructions to reset your password.</h2>
-            </div>
-          </div>
-      )}
     </div>
   );
 };
