@@ -41,9 +41,29 @@ const AddToStorage = (token) => {
   localStorage.setItem("user", JSON.stringify(token));
 }
 
+const SendForgotPasswordEmail = (email) => {
+  return api().post("Auth/forgot", {email})
+  .then((response) => {
+    return response;
+  });
+};
+
+const ResetPassword = (email, resetToken, newPassword) => {
+  return api().post("Auth/reset", {
+    "email": email,
+    "token": resetToken,
+    "newPassword": newPassword
+  })
+  .then((response) => {
+    return response;
+  });
+}
+
 export default {
   SignUp,
   SignIn,
   FbAuth,
-  GoogleAuth
+  GoogleAuth,
+  SendForgotPasswordEmail,
+  ResetPassword
 };

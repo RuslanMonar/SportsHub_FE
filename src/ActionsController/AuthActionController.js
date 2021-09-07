@@ -1,7 +1,5 @@
 import AuthService from "../Services/AuthService";
-import {
-  SaveUserAction,
-} from "../ActionsCreator/AuthActions";
+import { SaveUserAction } from "../ActionsCreator/AuthActions";
 import jwt_decode from "jwt-decode";
 
 const SignUp = (FirstName, LastName, Email, Password) => (dispatch) => {
@@ -44,15 +42,26 @@ const FbAuth = (token) => (dispatch) => {
 };
 
 const GoogleAuth = (data) => (dispatch) => {
-  return AuthService.GoogleAuth(data)
-  .then((response) => {
-    var user = GetUserInfoFromToken(response.data.token);
-    dispatch(SaveUserAction({ user }));
-    return Promise.resolve();
-  },
-  (error) => {
-    return Promise.reject(ErrorBuilder(error));
-  }
+  return AuthService.GoogleAuth(data).then(
+    (response) => {
+      var user = GetUserInfoFromToken(response.data.token);
+      dispatch(SaveUserAction({ user }));
+      return Promise.resolve();
+    },
+    (error) => {
+      return Promise.reject(ErrorBuilder(error));
+    }
+  );
+};
+
+const ResetPassword = (email, resetToken, newPassword) => (dispatch) => {
+  return AuthService.ResetPassword(email, resetToken, newPassword).then(
+    (response) => {
+      return Promise.resolve();
+    },
+    (error) => {
+      return Promise.reject(ErrorBuilder(error));
+    }
   );
 };
 
@@ -68,13 +77,15 @@ const ErrorBuilder = (error) => {
     (error.response && error.response.data && error.response.data.errors) ||
     error.message ||
     error.toString();
-    const code = error.response.status;
-  return {message,code};
+  const code = error.response.status;
+  return { message, code };
 };
 
 export default {
   SignUp,
   SignIn,
   FbAuth,
-  GoogleAuth
+  GoogleAuth,
+
+  ResetPassword,
 };
