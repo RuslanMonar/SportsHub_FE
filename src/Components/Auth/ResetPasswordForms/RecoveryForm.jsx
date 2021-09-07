@@ -4,12 +4,14 @@ import "../../../css/AuthForm.css";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
-
+import { Link } from "react-router-dom";
 import AuthAction from "../../../ActionsController/AuthActionController";
 
 import { Redirect } from "react-router-dom";
 import { Loader } from "../../Additional/Loader";
 import { useToasts } from "react-toast-notifications";
+
+
 
 export const RecoveryForm = () => {
   const form = useRef();
@@ -113,7 +115,7 @@ export const RecoveryForm = () => {
     <div className={"forms-container"}>
         <div className="auth-header">
           <label className="header-label">Don't have an account?</label>
-          <a className="header-link" href="/register">Get Started</a>
+          <Link className="header-link" to="/register">Get Started</Link>
         </div>
       {!loading ? (
         <Form className={"RecoveryForm"} onSubmit={SetNewPassword} ref={form}>
@@ -155,9 +157,9 @@ export const RecoveryForm = () => {
               />
             </div>
             <button className="form-input-btn">SET NEW PASSWORD</button>
-            <a id="back-to-login" href="/login">
+            <Link id="back-to-login" to="/login">
               Back to Log In{" "}
-            </a>
+            </Link>
           </div>
           <CheckButton style={{ display: "none" }} ref={checkBtn} />
         </Form>

@@ -207,7 +207,7 @@ export const RegisterForm = () => {
     <div className={"forms-container"}>
         <div className="auth-header">
           <label className="header-label">Already have an account?</label>
-          <a className="header-link" href="/login">Log In</a>
+          <Link className="header-link" to="/login">Log In</Link>
         </div>
       {!loading ? (
         <Form className={"Authform"} onSubmit={SingUp} ref={form}>

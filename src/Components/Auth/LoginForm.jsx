@@ -133,10 +133,12 @@ export const LoginForm = () => {
   };
   return (
     <div className={"forms-container"}>
-        <div className="auth-header">
-          <label className="header-label">Don't have an account?</label>
-          <a className="header-link" href="/register">Get Started</a>
-        </div>
+      <div className="auth-header">
+        <label className="header-label">Don't have an account?</label>
+        <Link className="header-link" to="/register">
+          Get Started
+        </Link>
+      </div>
       {!loading ? (
         <Form className={"Authform"} onSubmit={SignIn} ref={form}>
           <div className="form-content-right">
@@ -250,9 +252,9 @@ export const LoginForm = () => {
                 PASSWORD
               </label>
 
-              <a className="forgot-password" href="/resetPassword">
+              <Link className="forgot-password" to="/resetPassword">
                 Forgot Password?
-              </a>
+              </Link>
               <Input
                 type="password"
                 name="password"
