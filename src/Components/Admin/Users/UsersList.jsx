@@ -3,6 +3,7 @@ import UsersService from "../../../Services/UsersService";
 import "../../../css/Admin/Users.css";
 import UserItem from "./UserItem";
 import { SearchUsers } from "./SearchUers";
+import { SortUsers } from "./SortUsers";
 import { Loader } from "../../Additional/Loader";
 
 export const UsersList = () => {
@@ -19,6 +20,7 @@ export const UsersList = () => {
     <div>
       <div className={"flex users-list-container"}>
         <SearchUsers setUsers={setUsers} setLoader={setLoader} />
+        <SortUsers setUsers={setUsers} />
         <div className="flex users-list-item align-center list-header">
           <div className="flex user align-center  list-header-font">
             <span>Name</span>

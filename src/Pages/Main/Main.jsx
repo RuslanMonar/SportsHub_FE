@@ -16,7 +16,6 @@ export const MainPage = () => {
             <Link to="/login"> Login </Link>
             <br/>
             <Link to="/register"> Register </Link>
-            <SearchUsers/>
             <SortUsers/>
         </div>
     );
