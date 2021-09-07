@@ -189,11 +189,13 @@
 }
 #myDIV{
   display: none;
+  position: absolute;
+    z-index: 10;
 }
 .sort-box {
   font-family: Open Sans;
-  width: 16%;
   height: fit-content;
+  position: relative;
 }
 .filter-btn{
   border:none;
@@ -226,6 +228,7 @@
   border-top: rgba(0, 0, 0, 0.05) 1px solid;
   background: #ffffff;
   box-shadow: 0 5px 8px rgba(0, 0, 0, 0.15);
+  width: 60px;
 }
 .dropdown__quick-links,
 .dropdown__management-links {
@@ -249,4 +252,6 @@ div.dropdown__segment{
   align-content: center;
   padding-top: 8px;
 }
-
+.users-list-actions{
+  width: 70% !important;
+}

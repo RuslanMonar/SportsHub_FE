@@ -25,13 +25,13 @@ export const  SortUsers = ({setUsers}) => {
     }
     
     return(
-        <div class="sort-box" dropdown= "show">
+        <div class="sort-box" >
             <button class="filter-btn" onClick={myFunction1}>
                     <svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12.5917 0H0.554688L5.3695 5.25556V8.88889L7.77691 10V5.25556L12.5917 0Z" fill="#B2B2B2"/>
                     </svg>
             </button>
-            <div id="myDIV" >
+            <div id="myDIV" style={{"display": "none"}}>
                 <Dropdown className="dropdown" >
                 
                     <DropdownContent>

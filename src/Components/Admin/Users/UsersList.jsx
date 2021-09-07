@@ -20,7 +20,7 @@ export const UsersList = () => {
     <div>
       <div className={"flex users-list-container"}>
         <SearchUsers setUsers={setUsers} setLoader={setLoader} />
-        <SortUsers setUsers={setUsers} />
+        
         <div className="flex users-list-item align-center list-header">
           <div className="flex user align-center  list-header-font">
             <span>Name</span>
@@ -29,10 +29,12 @@ export const UsersList = () => {
             <span>Status</span>
           </div>
           <div className="dropdown flex justify-center list-header-font">
-            <div className="status flex">
+            <div className="status flex users-list-actions">
               <span>Actions</span>
             </div>
+            <SortUsers setUsers={setUsers} />
           </div>
+          
         </div>
         {!loader ? 
         [users.length>0 && users.map((user) => <UserItem key={user.id} {...user} />)]
