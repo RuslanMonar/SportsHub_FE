@@ -5,7 +5,7 @@ const GetAllUsers = () => {
   return api().get("Users/GetAllUsers");
 };
 const SearchUser = (name) => {
-  return api().get(`/Users/SearchUser?name=${name}`)
+  return api().get(`/Users/SearchUser?name=${name}`);
 };
 <<<<<<< HEAD
 const GetSortedUsers = (data) => {
@@ -18,7 +18,12 @@ const ChangeStatus = (id) => {
 }
 =======
 const DeleteUser = (id) => {
-    return api().delete(`Users/DeleteUser?id=${id}`)
+  id = { id };
+  return api().request({
+    url: "Users/DeleteUser",
+    method: "delete",
+    data: id,
+  });
 };
 >>>>>>> Added styles for confirm alert to delete button
 
@@ -26,11 +31,15 @@ export default {
   GetAllUsers,
   SearchUser,
 <<<<<<< HEAD
+<<<<<<< HEAD
   GetSortedUsers,
   ChangeStatus
 =======
   DeleteUser
 >>>>>>> Added styles for confirm alert to delete button
+=======
+  DeleteUser,
+>>>>>>> fix send request error 415
 };
 
 
