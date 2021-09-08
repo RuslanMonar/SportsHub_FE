@@ -1,27 +1,38 @@
 import "../../css/GlobalStyles/main.css"
 import "../../css/GlobalStyles/header.css"
+import store from "../../Redux/store"
 import { useState, useEffect } from "react";
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import { GoogleLogin } from "react-google-login";
+import { Link } from "react-router-dom";
 import AuthAction from  "../../Services/AuthService"
+
 
 export const Header = () => {
 
     const fbShare = (data) => {
         console.log("facebook clicked");
       };
-    const [user, setUser] = useState("");  
+    const [isAdmin, setIsAdmin] = useState("");  
+    const [isTempAdmin, setIsTempAdmin] = useState("");  
     useEffect(() => {
-        AuthAction.GetUser().then(r => GetUser(r.isAdmin));
+        AuthAction.GetUser().then(r => IsUserAdminSetting(r.isAdmin));
     }, [])
 
     
+    
 
-    const GetUser = (user) => {
-        return setUser(user);
+    const IsUserAdminSetting = (isAdmin) => {
+        setIsAdmin(isAdmin);
+        setIsTempAdmin(isAdmin);
     }
 
-    return (<div><a href="/" className="main-logo">Sports Hub</a>
+    const SwitchMode = () => {
+        isTempAdmin ? setIsTempAdmin(false) : setIsTempAdmin(true);
+        
+    }
+
+    return (<div><Link to="/" className="main-logo">Sports Hub</Link>
     <header id= "header">
         <form id="header-search-bar">
             <button
@@ -119,14 +130,15 @@ export const Header = () => {
                 buttonText="GoogleButton"
               />
         </div>
-        
         <div id="header-user-block">
-            {<button 
+            {isAdmin ? <button 
                 id = "switch-button"
-            />}
+                onClick = {SwitchMode}
+            /> :null}
             <label id="test-user-label">{
-                user
-            }</label>
+                isTempAdmin ? "admin" : "user"
+             }</label>
+            
         </div>
         
     </header>

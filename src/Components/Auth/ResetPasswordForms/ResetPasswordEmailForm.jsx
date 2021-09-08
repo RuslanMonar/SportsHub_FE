@@ -8,7 +8,7 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { Fade } from "react-awesome-reveal";
 import { isEmail } from "validator";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Loader } from "../../Additional/Loader";
 
 import AuthService from "../../../Services/AuthService";
