@@ -6,6 +6,7 @@ import "../../../css/AuthForm.css";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
+import { Fade } from "react-awesome-reveal";
 import { isEmail } from "validator";
 import { Link, Redirect } from "react-router-dom";
 import { Loader } from "../../Additional/Loader";
@@ -17,6 +18,7 @@ export const ResetPasswordEmailForm = () => {
   const checkBtn = useRef();
 
   const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
 
   const [successful, setSuccessful] = useState(false);
   const [error, setError] = useState(false);
@@ -77,6 +79,11 @@ export const ResetPasswordEmailForm = () => {
           setTimeout(() => {
             setLoading(false);
             setSuccessful(true);
+            setMessage(
+              "Email was sent on " + email
+                 +
+                ". Please check it."
+            );
           }, 2000);
         })
         .catch((e) => {
@@ -99,6 +106,7 @@ export const ResetPasswordEmailForm = () => {
           onSubmit={sendEmail}
           ref={form}
         >
+          {!successful ?
           <div className="form-content-right">
             <h1>Forgot your password?</h1>
 
@@ -124,6 +132,22 @@ export const ResetPasswordEmailForm = () => {
               Back to Log In{" "}
             </Link>
           </div>
+          : null}
+          {message && (
+            <div className="form-group">
+              <Fade duration={2000}>
+                <img alt="success" src="img/auth/success.png"></img>
+                <div className="success-message">{message}</div>
+
+                <Link to="/">
+                  <button className="default-button go-home-button">
+                    Back to main page
+                  </button>
+                </Link>
+              </Fade>
+            </div>
+          )}
+
           <CheckButton style={{ display: "none" }} ref={checkBtn} />
         </Form>
       ) : (

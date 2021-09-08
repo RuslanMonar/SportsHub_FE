@@ -6,6 +6,9 @@ export function api() {
   const api = axios.create({
     baseURL: API_URL,
     //withCredentials: true,
+    headers: {
+      Authorization: 'Bearer ' + localStorage.getItem("user").replace(/['"]+/g, '')
+    }
   });
   return api;
 }

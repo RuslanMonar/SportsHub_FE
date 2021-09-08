@@ -81,6 +81,8 @@ const ErrorBuilder = (error) => {
   return { message, code };
 };
 
+
+
 export default {
   SignUp,
   SignIn,

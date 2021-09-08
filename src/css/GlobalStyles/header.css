@@ -1,0 +1,119 @@
+#header{
+    position: absolute;
+    width: 100%;
+    height: 82px;
+    top: 1px;
+    left: 15vw;
+    background: #FFFFFF;
+  
+    display: flex;
+    align-content: center;
+  
+    border-bottom: 1px solid #EDEDED;
+  }
+  
+  #header-search-bar{
+    display: inline-flex;
+    margin-left: 5%;
+    margin-right: 5%;
+  
+    width:25%;
+    height: 32px;
+    align-self: center;
+  
+  
+  }
+  
+  #search-button{
+    background: none;
+    background-image: url("../img/search-icon.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  
+  
+    position: absolute;
+    width: 24px;
+    height: 32px;
+  
+    align-self: center;
+  
+    border: 0;
+    
+  }
+  
+  #header-search{
+    display: block;
+    margin-left: 20%;
+  
+    color: #B2B2B2;
+  }
+  
+  #header-share-block{
+      border-left: 1px solid #EDEDED;
+      border-right: 1px solid #EDEDED;
+      display: inline-flex;
+      padding-left: 5%;
+    
+      width:20%;
+      align-content: center;
+  }
+  
+  #header-share-block label{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: #7F8899;
+    line-height: 22px;
+  
+    display: block;
+    align-self: center;
+    margin-right: 10%;
+  }
+  
+  .facebookIconCircle, .googleSvg{
+    align-self: center;
+    min-width: 25%;
+  }
+  
+  #header-user-block{
+    display: inline-flex;
+    padding-left: 3%;
+  
+    width:20%;
+    align-content: center;
+  }
+  
+  #switch-button{
+    background: none;
+    background-image: url("../img/switch-icon.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  
+  
+    width: 40px;
+    height: 40px;
+  
+    align-self: center;
+  
+    border: 0;
+  }
+  
+  #switch-button:hover{
+    border: 1px solid black;
+    border-radius: 100%;
+  }
+  
+  #test-user-label{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 22px;
+  
+    display: block;
+    align-self: center;
+    margin-right: 10%;
+  
+    margin-left: 20px;
+  }
