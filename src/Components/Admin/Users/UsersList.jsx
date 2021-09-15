@@ -3,6 +3,7 @@ import UsersService from "../../../Services/UsersService";
 import "../../../css/Admin/Users.css";
 import UserItem from "./UserItem";
 import { SearchUsers } from "./SearchUers";
+import { SortUsers } from "./SortUsers";
 import { Loader } from "../../Additional/Loader";
 
 export const UsersList = () => {
@@ -13,6 +14,7 @@ export const UsersList = () => {
     <div className="Central-page">
       <div className={"flex users-list-container"}>
         <SearchUsers setUsers={setUsers} setLoader={setLoader} />
+        
         <div className="flex users-list-item align-center list-header">
           <div className="flex user align-center  list-header-font">
             <span>Name</span>
@@ -21,10 +23,12 @@ export const UsersList = () => {
             <span>Status</span>
           </div>
           <div className="dropdown flex justify-center list-header-font">
-            <div className="status flex">
+            <div className="status flex users-list-actions">
               <span>Actions</span>
             </div>
+            <SortUsers setUsers={setUsers} />
           </div>
+          
         </div>
         {!loader ? 
         [users.length>0 && users.map((user) => <UserItem key={user.id} {...user} />)]
