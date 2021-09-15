@@ -11,10 +11,16 @@ const GetSortedUsers = (data) => {
     return api().post(`Users/GetSortedUsers?data=`+ data)
 }
 
+const ChangeStatus = (id) => {
+  var data = {id}
+  return api().put(`/Users/ChangeStatus`,data)
+}
+
 export default {
   GetAllUsers,
   SearchUser,
-  GetSortedUsers
+  GetSortedUsers,
+  ChangeStatus
 };
 
 

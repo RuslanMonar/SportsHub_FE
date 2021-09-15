@@ -1,7 +1,8 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import "../../../css/Admin/Users.css";
+import UsersService from "../../../Services/UsersService";
 
 export default function UserItem({
   id,
@@ -11,7 +12,9 @@ export default function UserItem({
   isBlocked,
   role,
 }) {
-  var status = isBlocked ? "Blocked" : "Active";
+  const [isUserBlocked, setUserBlocked] = useState(isBlocked);
+  var status = isUserBlocked ? "Blocked" : "Active";
+
   if (!image) {
     image = "img/users/defaultUserImage.png";
   }
@@ -21,13 +24,11 @@ export default function UserItem({
     role = "User";
   }
 
-  status = isBlocked ? "Blocked" : "Active";
-
-  const options = [
+  const [options, setOptions] = useState([
     {
-      value: isBlocked ? "Activate" : "Block",
-      label: isBlocked ? "Activate" : "Block",
-      className: isBlocked ? "activateUser" : "blockUser",
+      value: isUserBlocked ? "Activate" : "Block",
+      label: isUserBlocked ? "Activate" : "Block",
+      className: isUserBlocked ? "activateUser" : "blockUser",
     },
     {
       value: "Delete",
@@ -35,18 +36,41 @@ export default function UserItem({
       className: "deleteUser",
     },
     {
-      value: role == "User" ? "Make as Admin" : "Remove from Admin",
-      label: role == "User" ? "Make as Admin" : "Remove from Admin",
-      className: role == "User" ? "makeAsAdmin" : "remove-from-admin",
+      value: role === "User" ? "Make as Admin" : "Remove from Admin",
+      label: role === "User" ? "Make as Admin" : "Remove from Admin",
+      className: role === "User" ? "makeAsAdmin" : "remove-from-admin",
     },
-  ];
+  ]);
 
   const [defaultOption, setDefaultOption] = useState(options[0]);
+  // const [status, setStatus] = useState(nowStatus);
 
   const showAction = (e) => {
     var result = options.findIndex((x) => x.value === e.value);
     setDefaultOption(options[result]);
   };
+
+
+  const ShowClick = (focused, optionType) => {
+    if (focused &&(optionType.value == "Blocked" || optionType.value == "Active")) {
+      UsersService.ChangeStatus(id).then(response => {
+        setUserBlocked(!isUserBlocked);
+      })
+      
+    }
+  };
+  useEffect(() => {
+    var newelement = {
+      value: isUserBlocked ? "Activate" : "Block",
+      label: isUserBlocked ? "Activate" : "Block",
+      className: isUserBlocked ? "activateUser" : "blockUser",
+    };
+    const newOpions = [...options];
+    newOpions[0].value = isUserBlocked ? "Active" : "Blocked";
+    newOpions[0].label = isUserBlocked ? "Activate" : "Block";
+    newOpions[0].className = isUserBlocked ? "activateUser" : "blockUser";
+    setOptions(newOpions);
+  }, [isUserBlocked]);
 
   var FilteredOptions = options.filter(
     (value) => defaultOption.value != value.value
@@ -67,6 +91,7 @@ export default function UserItem({
       <div className="dropdown flex justify-center">
         <Dropdown
           className={defaultOption.className + ""}
+          onFocus={(e) => ShowClick(e, defaultOption)}
           options={FilteredOptions}
           value={defaultOption}
           onChange={(e) => showAction(e)}

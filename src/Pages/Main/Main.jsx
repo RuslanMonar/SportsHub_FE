@@ -1,11 +1,7 @@
 
-import { useEffect } from 'react';
+
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { SortUsers } from '../../Components/Admin/Users/SortUsers';
-import { SearchUsers } from './../../Components/Admin/Users/SearchUers';
-
-
 
 export const MainPage = () => {
     var user = useSelector(state => state.AuthReducer)
@@ -16,7 +12,6 @@ export const MainPage = () => {
             <Link to="/login"> Login </Link>
             <br/>
             <Link to="/register"> Register </Link>
-            <SortUsers/>
         </div>
     );
 }

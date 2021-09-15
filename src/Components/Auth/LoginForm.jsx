@@ -10,10 +10,10 @@ import { isEmail } from "validator";
 import AuthAction from "../../ActionsController/AuthActionController";
 
 import { Link, Redirect } from "react-router-dom";
-import { Loader } from "./../Additional/Loader";
+import { Loader } from "../Additional/Loader";
 
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
-import { FacebookApiId, GoogleApiId } from "./../../Config/GlobalVariables";
+import { FacebookApiId, GoogleApiId } from "../../Config/GlobalVariables";
 import { GoogleLogin } from "react-google-login";
 import { useToasts } from "react-toast-notifications";
 
@@ -112,7 +112,6 @@ export const LoginForm = () => {
 
   const GoogleAuth = (data) => {
     setLoading(true);
-
     var ParsedData = {
       Email: data.email,
       FirstName: data.givenName,
@@ -134,6 +133,12 @@ export const LoginForm = () => {
   };
   return (
     <div className={"forms-container"}>
+      <div className="auth-header">
+        <label className="header-label">Don't have an account?</label>
+        <Link className="header-link" to="/register">
+          Get Started
+        </Link>
+      </div>
       {!loading ? (
         <Form className={"Authform"} onSubmit={SignIn} ref={form}>
           <div className="form-content-right">
@@ -246,8 +251,12 @@ export const LoginForm = () => {
               <label className="form-label" htmlFor="password">
                 PASSWORD
               </label>
+
+              <Link className="forgot-password" to="/resetPassword">
+                Forgot Password?
+              </Link>
               <Input
-                type="text"
+                type="password"
                 name="password"
                 value={password}
                 onChange={onChangePassword}
@@ -259,7 +268,6 @@ export const LoginForm = () => {
             <button className="form-input-btn">LOG IN</button>
           </div>
           <CheckButton style={{ display: "none" }} ref={checkBtn} />
-          <Link to="/register"> Register </Link>
         </Form>
       ) : (
         <Loader />
