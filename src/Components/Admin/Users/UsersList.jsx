@@ -9,12 +9,6 @@ export const UsersList = () => {
   const [users, setUsers] = useState([]);
   const [loader, setLoader] = useState(true);
 
-  // useEffect(() => {
-  //   UsersService.GetAllUsers().then((response) => {
-  //     setUsers(response.data.users);
-  //   });
-  // }, []);
-
   return (
     <div className="Central-page">
       <div className={"flex users-list-container"}>
