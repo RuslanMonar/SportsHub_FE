@@ -26,6 +26,7 @@ export const Header = () => {
         setIsAdmin(isAdmin);
         setIsTempAdmin(isAdmin);
     }
+    console.log(isAdmin);
 
     const SwitchMode = () => {
         isTempAdmin ? setIsTempAdmin(false) : setIsTempAdmin(true);
@@ -131,10 +132,10 @@ export const Header = () => {
               />
         </div>
         <div id="header-user-block">
-            {isAdmin ? <button 
+            <button 
                 id = "switch-button"
                 onClick = {SwitchMode}
-            /> :null}
+            />
             <label id="test-user-label">{
                 isTempAdmin ? "admin" : "user"
              }</label>
