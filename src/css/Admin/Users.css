@@ -310,18 +310,20 @@ div.dropdown__segment {
 }
 .userInfo-container {
   width: 335px;
-  height: 400px;
+  min-height: 400px;
+  height: max-content;
   border: 1px solid rgb(184, 184, 184);
   font-family: "Open Sans";
   margin-top: 50px;
   position: sticky;
   top: 0;
   right: 0;
+  
 }
 .userInfo-buttons {
   width: 100%;
   justify-content: space-around;
-  height: 15%;
+  height: 50px;
 }
 .userInfo-buttons div {
   width: 50%;
@@ -377,4 +379,37 @@ div.dropdown__segment {
   display: flex;
   width: 100%;
   justify-content: space-evenly;
+}
+.teams-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.teams-title{
+  border-bottom: 1px solid rgb(189, 189, 189);
+  margin-top: 15px;
+  margin-bottom: 5px;
+  width: 80%;
+  padding-bottom: 5px;
+}
+.team-item {
+  width: 80%;
+  justify-content: flex-start;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  margin-top: 15px;
+}
+.team-item > img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-top: 10px;
+  object-fit: cover;
+}
+.team-item > span {
+  margin-left: 15px;
+  font-weight: bold;
+  color: #003b5a;
 }
