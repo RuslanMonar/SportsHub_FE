@@ -2,6 +2,12 @@
   font-family: Open Sans;
 }
 
+body {
+  margin:0;
+  width:100%;
+}
+
+
 .default-button {
   width: 200px;
   height: 50px;
@@ -13,12 +19,6 @@
 }
 
 .main-logo{
-  z-index: 10;
-  position: absolute;
-  left: 0%;
-  right: 0%;
-  top: 0%;
-  bottom: 0%;
   width: 15vw;
   min-width: 130px;
   height: 83px;
@@ -27,11 +27,28 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
   font-weight: 600;
   font-size: 22px;
   font-family: Open Sans;
   line-height: 28px;
 
   text-decoration: none;
+}
+
+.auth-logo{
+  width: 15vw;
+  min-width: 130px;
+  height: 83px;
+  background: #D72130;
+  color:white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 22px;
+  font-family: Open Sans;
+  line-height: 28px;
+  position: absolute;
+  text-decoration: none;
+  z-index: 5;
 }
