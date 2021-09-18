@@ -2,6 +2,7 @@ import "../../css/GlobalStyles/main.css"
 import "../../css/GlobalStyles/header.css"
 import store from "../../Redux/store"
 import { useState, useEffect } from "react";
+import { useSelector } from 'react-redux';
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import { GoogleLogin } from "react-google-login";
 import { Link } from "react-router-dom";
@@ -13,24 +14,33 @@ export const Header = () => {
     const fbShare = (data) => {
         console.log("facebook clicked");
       };
+    const [isLogged, setIsLogged] = useState("");
     const [isAdmin, setIsAdmin] = useState("");  
     const [isTempAdmin, setIsTempAdmin] = useState("");  
+    var user = useSelector(state => state.AuthReducer);
+
     useEffect(() => {
+      user.isLoggedIn ? setIsLogged(true) : setIsLogged(false);
+      if (user.isLoggedIn)
         AuthAction.GetUser().then(r => IsUserAdminSetting(r.isAdmin));
     }, [])
 
-    
-    
+   
 
     const IsUserAdminSetting = (isAdmin) => {
         setIsAdmin(isAdmin);
-        setIsTempAdmin(isAdmin);
+        setIsTempAdmin(localStorage.getItem("hasAdminView"));
     }
-    console.log(isAdmin);
 
     const SwitchMode = () => {
-        isTempAdmin ? setIsTempAdmin(false) : setIsTempAdmin(true);
+        isTempAdmin == "true" ? setIsTempAdmin("false") : setIsTempAdmin("true");
         
+        if(isLogged)
+          AuthAction.SwitchRole();
+    }
+
+    const Search = (e) => {
+      e.preventDefault();
     }
 
     return (<div><Link to="/" className="main-logo">Sports Hub</Link>
@@ -39,7 +49,7 @@ export const Header = () => {
             <button
                 type= "submit"
                 id = "search-button"
-
+                onClick = {Search}
             />
 
             <input
@@ -131,17 +141,20 @@ export const Header = () => {
                 buttonText="GoogleButton"
               />
         </div>
+        {isLogged ?
         <div id="header-user-block">
+          {isAdmin ?
             <button 
                 id = "switch-button"
                 onClick = {SwitchMode}
-            />
+            /> : null}
             <label id="test-user-label">{
-                isTempAdmin ? "admin" : "user"
+                isTempAdmin == "true" ? "admin" : "user"
              }</label>
             
         </div>
-        
+        : null
+        }
     </header>
     </div>);
   };

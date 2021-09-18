@@ -47,6 +47,14 @@ const AddToStorage = (token) => {
   localStorage.setItem("user", JSON.stringify(token));
 }
 
+const SwitchRole = () => {
+  if (localStorage.getItem("hasAdminView") == "true"){
+    localStorage.setItem("hasAdminView", false);
+  } else{
+    localStorage.setItem("hasAdminView", true);
+  }
+}
+
 const SendForgotPasswordEmail = (email) => {
   return api().post("Auth/forgot", {email})
   .then((response) => {
@@ -72,5 +80,6 @@ export default {
   GoogleAuth,
   SendForgotPasswordEmail,
   ResetPassword,
-  GetUser
+  GetUser,
+  SwitchRole
 };
