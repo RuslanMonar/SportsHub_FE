@@ -13,6 +13,7 @@ export const MainPage = () => {
             <Header></Header>
             <h1>Main page</h1>
             <h2>{JSON.stringify(user)}</h2>
+            <h2>Is Admin View: {localStorage.getItem("hasAdminView")}</h2>
             <Link to="/login"> Login </Link>
             <br/>
             <Link to="/register"> Register </Link>

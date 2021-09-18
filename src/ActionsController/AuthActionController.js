@@ -88,6 +88,5 @@ export default {
   SignIn,
   FbAuth,
   GoogleAuth,
-
   ResetPassword,
 };

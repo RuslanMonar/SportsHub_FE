@@ -1,12 +1,13 @@
 import "../../css/GlobalStyles/main.css";
 import "../../css/GlobalStyles/header.css";
-import store from "../../Redux/store";
+import Dropdown, {DropdownContent} from 'react-simple-dropdown';
 import { useState, useEffect } from "react";
 import { useSelector } from 'react-redux';
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import { GoogleLogin } from "react-google-login";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import AuthAction from "../../Services/AuthService";
+import { LogOutAction } from "../../ActionsCreator/AuthActions";
 
 export const Header = () => {
     const [isLogged, setIsLogged] = useState("");
@@ -16,13 +17,13 @@ export const Header = () => {
 
     useEffect(() => {
       user.isLoggedIn ? setIsLogged(true) : setIsLogged(false);
-      if (user.isLoggedIn)
-        AuthAction.GetUser().then(r => IsUserAdminSetting(r.isAdmin));
+      AuthAction.GetUser().then(r => IsUserAdminSetting(r.isAdmin));
     }, [])
 
    
 
     const IsUserAdminSetting = (isAdmin) => {
+        console.log(isAdmin);
         setIsAdmin(isAdmin);
         setIsTempAdmin(localStorage.getItem("hasAdminView"));
     }
@@ -37,6 +38,20 @@ export const Header = () => {
     const Search = (e) => {
       e.preventDefault();
     }
+
+    const LogOut = () => {
+      localStorage.clear();
+    }
+
+    const OpenDropdown = () => {
+      var x = document.getElementById("dropdown-menu");
+        if (x.style.display === "none") {
+          x.style.display = "block";
+        } else {
+          x.style.display = "none";
+        }
+    }
+
 
     return (<header id = "header">
       <Link to="/" className="main-logo">Sports Hub</Link>
@@ -140,11 +155,52 @@ export const Header = () => {
                 id = "switch-button"
                 onClick = {SwitchMode}
             /> : null}
-            <label id="test-user-label">{
-                isTempAdmin == "true" ? "admin" : "user"
+            <label id="user-label">{
+                user.user.name
              }</label>
-            
-        </div>
+             
+            <button class="drop-btn" onClick={OpenDropdown}>
+              <i class="arrow-down"></i>
+            </button>
+            <div id="dropdown-menu" style={{"display": "none"}}>
+              
+             <Dropdown className="dropdown">
+                
+                <DropdownContent>
+                        <label id="drp-label">{
+                            user.user.name
+                        }</label>
+                        <label id="drp-email">{
+                            user.user.email
+                        }</label>
+                        <ul className="dropdown__quick-links dropdown__segment">
+                                <li className="dropdown__link">
+                                    <Link to="/profile"                                           
+                                                class="option-btn" 
+                                            >
+                                        Personal
+                                    </Link>    
+                                </li>
+                                <li className="dropdown__link">
+                                    <Link to="/changePassword"  
+                                            class="option-btn"
+                                            >
+                                        Change Password
+                                    </Link>
+                                </li>
+                                <hr/>
+                                <li className="dropdown__link">
+                                    <Link to="/login" onClick={() => {LogOut();}} 
+                                                class="option-btn"
+                                                >
+                                        Log out
+                                    </Link>
+                                </li>
+                        </ul>
+                </DropdownContent>
+              </Dropdown>
+            </div>
+            </div>
         : null
         }
     </header>
