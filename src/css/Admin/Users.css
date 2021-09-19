@@ -188,6 +188,7 @@
 
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 #myDIV{
   display: none;
   position: absolute;
@@ -305,10 +306,14 @@ div.dropdown__segment{
 
 
 =======
+=======
+
+>>>>>>> Finished mock-up of alert-window
 .alert{
   background-color:  white;
   font-family: Open Sans;
-  box-shadow:#000000;
+  font-style: normal;
+  font-weight: bold;
   font-size: 14px;
   text-align: center;
   width: 450px;
@@ -319,14 +324,38 @@ div.dropdown__segment{
   align-content: center;
   flex-direction: column;
   justify-content: center;
+  position: relative;
+}
+.trash-icon{
+  background: no-repeat top center url("../../TrashBin.png");
+  background-size: 81px 81px;
+  transform: translateX(235%) translateY(-175%);
+  position: absolute;
+  width: 81px;
+  height: 81px;
+}
+.dividing-line{
+  margin-top: 10px;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  text-align: center;
+}
+.sure-line{
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  text-align: center;
 }
 
 .alert-btnblock{
   border-top:  #ededed 1px solid;
   text-align: right;
   padding-top: 15px;
-  margin-top: 50px ;
-  margin-right: 32px;
+  margin-top: 30px ;
+  padding-right: 32px;
 }
 .alert-cancelbtn{
   background-color: white;
@@ -336,7 +365,7 @@ div.dropdown__segment{
   cursor: pointer;
 }
 .alert-deletebtn{
-  background-color:  #db0413;
+  background-color:  #D72130;
   padding: 8px 28px;
   color: white;
   border:none;
