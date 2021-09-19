@@ -7,23 +7,24 @@ import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props
 import { GoogleLogin } from "react-google-login";
 import { Link, Redirect } from "react-router-dom";
 import AuthAction from "../../Services/AuthService";
-import { LogOutAction } from "../../ActionsCreator/AuthActions";
+import { LogOut, SwitchRole } from "../../../src/ActionsController/UserController";
 
 export const Header = () => {
     const [isLogged, setIsLogged] = useState("");
     const [isAdmin, setIsAdmin] = useState("");  
     const [isTempAdmin, setIsTempAdmin] = useState("");  
     var user = useSelector(state => state.AuthReducer);
-
+    var view = useSelector(state => state.SwitchViewReducer)["hasView"]
+    console.log(view);
     useEffect(() => {
       user.isLoggedIn ? setIsLogged(true) : setIsLogged(false);
-      AuthAction.GetUser().then(r => IsUserAdminSetting(r.isAdmin));
+      if(user.isLoggedIn)
+        AuthAction.GetUser().then(r => IsUserAdminSetting(r.isAdmin));
     }, [])
 
    
 
     const IsUserAdminSetting = (isAdmin) => {
-        console.log(isAdmin);
         setIsAdmin(isAdmin);
         setIsTempAdmin(localStorage.getItem("hasAdminView"));
     }
@@ -32,18 +33,14 @@ export const Header = () => {
         isTempAdmin == "true" ? setIsTempAdmin("false") : setIsTempAdmin("true");
         
         if(isLogged)
-          AuthAction.SwitchRole();
+          SwitchRole();
     }
 
     const Search = (e) => {
       e.preventDefault();
     }
 
-    const LogOut = () => {
-      localStorage.clear();
-    }
-
-    const OpenDropdown = () => {
+    const OpenCloseDropdown = () => {
       var x = document.getElementById("dropdown-menu");
         if (x.style.display === "none") {
           x.style.display = "block";
@@ -55,7 +52,8 @@ export const Header = () => {
 
     return (<header id = "header">
       <Link to="/" className="main-logo">Sports Hub</Link>
-        <form id="header-search-bar">
+      {view=="User" ?
+        <form class="header-search-bar">
             <button
                 type= "submit"
                 id = "search-button"
@@ -68,7 +66,8 @@ export const Header = () => {
               name="search"
             />
         </form>
-
+      : <form class="header-search-bar"></form>}
+      {view=="User" ?
       <div id="header-share-block">
         <label>Share</label>
         <FacebookLogin
@@ -147,6 +146,7 @@ export const Header = () => {
           )}
           />
         </div>
+        : <div id="header-share-block"></div>}
 
         {isLogged ?
         <div id="header-user-block">
@@ -159,7 +159,7 @@ export const Header = () => {
                 user.user.name
              }</label>
              
-            <button class="drop-btn" onClick={OpenDropdown}>
+            <button class="drop-btn" onClick={OpenCloseDropdown}>
               <i class="arrow-down"></i>
             </button>
             <div id="dropdown-menu" style={{"display": "none"}}>
@@ -201,7 +201,12 @@ export const Header = () => {
               </Dropdown>
             </div>
             </div>
-        : null
+        :
+      <div class="auth-links">
+      <Link className="header-link" to="/register">Sign up</Link>
+      <Link className="header-link" to="/login">Log In</Link>
+      </div>
+
         }
     </header>
   );

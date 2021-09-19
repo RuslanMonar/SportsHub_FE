@@ -10,7 +10,7 @@
     border-bottom: 1px solid #EDEDED;
   }
   
-  #header-search-bar{
+  .header-search-bar{
     display: inline-flex;
     margin-left: 2%;
     margin-right: 2%;
@@ -52,7 +52,7 @@
       display: inline-flex;
       padding-left: 2%;
     
-      width:25%;
+      width:20%;
       align-content: center;
   }
   
@@ -70,8 +70,8 @@
   
   .facebookIconCircle, .googleSvg{
     align-self: center;
-    min-width: 25%;
-    width: 25%;
+    min-width: 15%;
+    width: 20%;
   }
   
   #header-user-block{
@@ -136,10 +136,10 @@
     -webkit-transform: rotate(45deg);
   }
   #dropdown-menu {
-    width: 70%;
+    width: 160px;
     height: 300%;
     position: absolute;
-    transform: translateX(50%) translateY(20%)
+    transform: translateX(50%) translateY(25%)
   }
 
   .dropdown{
@@ -165,7 +165,7 @@
     display: block;
     align-self: center;
   
-    margin: 10px 10px 10px 10px;
+    margin: 0px 0px 10px 0px;
     
     position: relative;
 
@@ -193,5 +193,30 @@
   .option-btn{
     font-size: 13px;
     text-decoration: none;
+  }
+
+  .auth-links{
+    display: inline-flex;
+    padding-left: 3%;
+  
+    width:30%;
+    align-content: center;
+    position: relative;
+  }
+
+  .auth-links .header-link{
+    height: 30%;
+    width: 20%;
+    align-self: center;
+    font-size: 14px;
+    text-align: center;
+    padding: 5px 10px 5px 10px;
+  }
+
+  @media only screen and (max-width: 992px) {
+    #dropdown-menu {
+      width: 140px;
+      transform: translateX(40%) translateY(25%)
+    }
   }
 

@@ -212,7 +212,6 @@
   transition-duration: 0.4s;
   text-align: left;
   border:none;
-  width: 100%;
 }
 .option-btn:focus{
   background-color: #fac0c0;
