@@ -6,7 +6,7 @@ import "../../../css/Admin/Sidebar.css"
 
 export const  LeftMenu = () =>  {
   return (
-    <div>
+    <div className="left-menu">
       <IconButton classNmae="lefMenuIcons" data-tip data-for="Surveys">
         <img
           src="./media/Surveys.svg"
