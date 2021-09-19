@@ -3,28 +3,8 @@ import Dropdown, {DropdownContent, DropdownTrigger} from 'react-simple-dropdown'
 import "../../../css/Admin/Users.css";
 import UsersService from "../../../Services/UsersService";
 
-export function useOnClickOutside(ref, handler) {
-    useEffect(
-      () => {
-        const listener = (event) => {
-          if (!ref.current || ref.current.contains(event.target)) {
-            return;
-          }
-          handler(event);
-        };
-        document.addEventListener("mousedown", listener);
-        document.addEventListener("touchstart", listener);
-        return () => {
-          document.removeEventListener("mousedown", listener);
-          document.removeEventListener("touchstart", listener);
-        };
-      },
-      [ref, handler]
-    );
-  }
-
 export const  SortUsers = ({setUsers}) => {
-    function myFunction1() {
+    function HideDropdown() {
         var x = document.getElementById("myDIV");
         if (x.style.display === "none") {
           x.style.display = "block";
@@ -33,7 +13,7 @@ export const  SortUsers = ({setUsers}) => {
         }
     }
 
-    function myFunction2(data) {
+    function SortedUsers(data) {
         if (data) {
             UsersService.GetSortedUsers(data).then((response) => {
                 setUsers(response.data.users);
@@ -56,7 +36,7 @@ export const  SortUsers = ({setUsers}) => {
     
     return(
         <div class="sort-box">
-            <button class="filter-btn" onClick={myFunction1}>
+            <button class="filter-btn" onClick={HideDropdown}>
                     <svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12.5917 0H0.554688L5.3695 5.25556V8.88889L7.77691 10V5.25556L12.5917 0Z" fill="#B2B2B2"/>
                     </svg>
@@ -69,25 +49,25 @@ export const  SortUsers = ({setUsers}) => {
                         </div>
                             <ul className="dropdown__quick-links dropdown__segment">
                                     <li className="dropdown__link">
-                                        <button onClick={() => {myFunction2("Active"); myFunction1(); changeColor("Active")}}                                            
+                                        <button onClick={() => {SortedUsers("Active"); HideDropdown(); changeColor("Active")}}                                            
                                                 className="option-btn" name="Active" >
                                             Active
                                         </button>    
                                     </li>
                                     <li className="dropdown__link">
-                                        <button onClick={() => {myFunction2("Blocked"); myFunction1(); changeColor("Blocked")}}  
+                                        <button onClick={() => {SortedUsers("Blocked"); HideDropdown(); changeColor("Blocked")}}  
                                                 className="option-btn" name="Blocked">
                                             Blocked
                                         </button>
                                     </li>
                                     <li className="dropdown__link">
-                                        <button onClick={() => {myFunction2("Online"); myFunction1(); changeColor("Online")}} 
+                                        <button onClick={() => {SortedUsers("Online"); HideDropdown(); changeColor("Online")}} 
                                                 className="option-btn" name="Online">
                                             Online
                                         </button>
                                     </li>
                                     <li className="dropdown__link">
-                                        <button onClick={() => {myFunction2("Offline"); myFunction1(); changeColor("Offline")}}
+                                        <button onClick={() => {SortedUsers("Offline"); HideDropdown(); changeColor("Offline")}}
                                                 className="option-btn" name="Offline">
                                             Offline
                                         </button>
