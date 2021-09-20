@@ -2,17 +2,6 @@
 
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-import { SearchUsers } from './../../Components/Admin/Users/SearchUers';
-import { Delete } from './../../Components/Admin/Users/DeleteUser';
-=======
-
->>>>>>> fix send request error 415
-
-
->>>>>>> Added styles for confirm alert to delete button
 
 export const MainPage = () => {
     var user = useSelector(state => state.AuthReducer)
@@ -23,18 +12,6 @@ export const MainPage = () => {
             <Link to="/login"> Login </Link>
             <br/>
             <Link to="/register"> Register </Link>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-            <SearchUsers/>
-=======
->>>>>>> Added alert window to list of users
-            <Delete/>
->>>>>>> Added styles for confirm alert to delete button
-=======
-
->>>>>>> fix send request error 415
         </div>
     );
 }

@@ -37,7 +37,7 @@ export const UsersList = () => {
           
         </div>
         {!loader ? 
-        [users.length>0 && users.map((user) => <UserItem key={user.id} {...user} />)]
+        [users.length>0 && users.map((user) => <UserItem key={user.id} {...user} users={users} setUsers={setUsers} />)]
         : 
         [<Loader width={"7px"} height={"40px"} textAlign={"center"} indentation={"50px"} />]}
       </div>

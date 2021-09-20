@@ -187,8 +187,6 @@
   border-bottom: 0.5px solid rgb(207, 207, 207) !important;
 
 }
-<<<<<<< HEAD
-<<<<<<< HEAD
 #myDIV{
   display: none;
   position: absolute;
@@ -303,12 +301,6 @@ div.dropdown__segment{
   display: flex;
   justify-content: space-evenly;
 }
-
-
-=======
-=======
-
->>>>>>> Finished mock-up of alert-window
 .alert{
   background-color:  white;
   font-family: Open Sans;
@@ -371,4 +363,3 @@ div.dropdown__segment{
   border:none;
   cursor: pointer;
 }
->>>>>>> Added styles for confirm alert to delete button
