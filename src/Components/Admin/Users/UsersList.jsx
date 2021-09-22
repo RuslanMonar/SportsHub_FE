@@ -11,10 +11,9 @@ export const UsersList = () => {
   const [loader, setLoader] = useState(true);
 
   return (
-    <div className="Central-page">
+
       <div className={"flex users-list-container"}>
         <SearchUsers setUsers={setUsers} setLoader={setLoader} />
-        
         <div className="flex users-list-item align-center list-header">
           <div className="flex user align-center  list-header-font">
             <span>Name</span>
@@ -31,10 +30,10 @@ export const UsersList = () => {
           
         </div>
         {!loader ? 
-        [users.length>0 && users.map((user) => <UserItem key={user.id} {...user} />)]
+        [users.length>0 && users.map((user) => <UserItem key={user.id} {...user} users={users} setUsers={setUsers} />)]
         : 
         [<Loader width={"7px"} height={"40px"} textAlign={"center"} indentation={"50px"} />]}
       </div>
-    </div>
+    
   );
 };
