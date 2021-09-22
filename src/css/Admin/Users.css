@@ -212,14 +212,9 @@
   border: none;
   width: 100%;
 }
-.option-btn:focus {
-  background-color: #fac0c0;
-  color: red;
-}
-
-.option-btn:hover {
-  background-color: #fac0c0;
-  color: red;
+.option-btn:hover{
+  background-color: #fac0c0 !important;
+  color:red !important;
 }
 .dropdown__content {
   margin-top: 5px;
