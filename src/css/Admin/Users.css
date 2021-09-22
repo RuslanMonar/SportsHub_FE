@@ -321,7 +321,7 @@ div.dropdown__segment {
   position: relative;
 }
 .trash-icon{
-  background: no-repeat top center url("../../TrashBin.png");
+  background: no-repeat top center url("../img/TrashBin.png");
   background-size: 81px 81px;
   transform: translateX(235%) translateY(-175%);
   position: absolute;
