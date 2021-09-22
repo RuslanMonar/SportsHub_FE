@@ -1,0 +1,71 @@
+.dropdowns-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 250px;
+  padding: 20px 0px 20px 0px;
+  box-shadow: 0 0 3px #ccc;
+}
+.dropdown-option {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  font-family: "Open Sans";
+  margin-bottom: 20px;
+}
+.dropdown-option > span {
+  font-size: 8px;
+  color: rgb(126, 126, 126);
+  font-weight: bold;
+  letter-spacing: 1.3px;
+  margin-bottom: 5px;
+}
+.dropdown-option > .Dropdown-root > .Dropdown-control {
+  justify-content: flex-start !important;
+}
+.dropdown-option > .Dropdown-root > .Dropdown-control > .Dropdown-placeholder {
+  margin-left: 0;
+}
+.dropdown-option > .Dropdown-root > .Dropdown-menu > .Dropdown-option {
+  font-size: 12px;
+  padding: 5px 0px;
+  padding-left: 15px;
+  font-weight: 500;
+  border: none;
+}
+.dropdown-option > .Dropdown-root > .Dropdown-menu > .Dropdown-option:hover {
+  background-color: #fee8e8;
+  color: #ca1e1e;
+}
+.dropdown-option > .Dropdown-root {
+  text-align: unset;
+}
+.teams-selector {
+  font-weight: bold;
+  width: 100%;
+}
+.DropZone {
+  width: 90%;
+  position: relative;
+}
+.dropzone-title {
+  color: red;
+}
+.teams-dropdown-button {
+  width: 90%;
+  padding: 5px 0px;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Open Sans";
+  color: #ca1e1e;
+  cursor: pointer;
+  font-weight: bold;
+}
+.teams-dropdown-button-red {
+  margin-top: 15px;
+  background-color: #ca1e1e;
+  color: white;
+}
