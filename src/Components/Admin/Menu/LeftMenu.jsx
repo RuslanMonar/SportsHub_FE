@@ -1,10 +1,9 @@
 import IconButton from "@material-ui/core/IconButton";
 import ReactTooltip from "react-tooltip";
-import "../../../css/Admin/Sidebar.css"
+import "../../../css/Admin/Sidebar.css";
+import { Link } from "react-router-dom";
 
-
-
-export const  LeftMenu = () =>  {
+export const LeftMenu = () => {
   return (
     <div className="left-menu">
       <IconButton classNmae="lefMenuIcons" data-tip data-for="Surveys">
@@ -98,15 +97,17 @@ export const  LeftMenu = () =>  {
         IA
       </ReactTooltip>
       <br />
-      <IconButton data-tip data-for="Teams">
-        <img
-          src="./media/teams.svg"
-          alt="Example1"
-          width="26"
-          height="26"
-          className="filterit"
-        />
-      </IconButton>
+      <Link to="/teams">
+        <IconButton data-tip data-for="Teams">
+          <img
+            src="./media/teams.svg"
+            alt="Example1"
+            width="26"
+            height="26"
+            className="filterit"
+          />
+        </IconButton>
+      </Link>
       <ReactTooltip id="Teams" place="right" effect="solid">
         Teams
       </ReactTooltip>
@@ -138,4 +139,4 @@ export const  LeftMenu = () =>  {
       </ReactTooltip>
     </div>
   );
-}
+};
