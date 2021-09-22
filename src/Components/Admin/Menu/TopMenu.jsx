@@ -95,7 +95,7 @@ export const TopMenu = () => {
     color: isDragging ? "#b10000" : "rgb(199, 199, 199)",
   });
   return (
-    <div>
+    <div class="top-menu">
       <h1> Users</h1>
       {/* <Slider className="SliderStyle" {...settings}> */}
       <DragDropContext onDragEnd={handleOnDragEnd}>

@@ -7,30 +7,32 @@ import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props
 import { GoogleLogin } from "react-google-login";
 import { Link, Redirect } from "react-router-dom";
 import AuthAction from "../../Services/AuthService";
-import { LogOut, SwitchRole } from "../../../src/ActionsController/UserController";
+import { LogOut, SwitchRole, SetRole } from "../../../src/ActionsController/UserController";
 
 export const Header = () => {
     const [isLogged, setIsLogged] = useState("");
     const [isAdmin, setIsAdmin] = useState("");  
-    const [isTempAdmin, setIsTempAdmin] = useState("");  
+    const [hasView, setHasView] = useState("");  
     var user = useSelector(state => state.AuthReducer);
     var view = useSelector(state => state.SwitchViewReducer)["hasView"]
-    console.log(view);
+
     useEffect(() => {
       user.isLoggedIn ? setIsLogged(true) : setIsLogged(false);
-      if(user.isLoggedIn)
+      if(user.isLoggedIn){
         AuthAction.GetUser().then(r => IsUserAdminSetting(r.isAdmin));
+        setHasView(view);
+      }
     }, [])
 
    
 
     const IsUserAdminSetting = (isAdmin) => {
         setIsAdmin(isAdmin);
-        setIsTempAdmin(localStorage.getItem("hasAdminView"));
+        SetRole();
     }
 
     const SwitchMode = () => {
-        isTempAdmin == "true" ? setIsTempAdmin("false") : setIsTempAdmin("true");
+      hasView == "Admin" ? setHasView("User") : setHasView("Admin");
         
         if(isLogged)
           SwitchRole();
