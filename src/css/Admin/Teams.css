@@ -6,6 +6,7 @@
   width: 250px;
   padding: 20px 0px 20px 0px;
   box-shadow: 0 0 3px #ccc;
+  margin-bottom: 70px;
 }
 .dropdown-option {
   display: flex;
@@ -70,6 +71,11 @@
   color: white;
 }
 
+.teams-central-content {
+  margin: 30px 80px 100px 80px;
+  width: 100%;
+  justify-content: space-evenly;
+}
 .teams-list-container {
   width: 50%;
   height: auto;
@@ -77,59 +83,99 @@
   font-size: 13px;
   flex-direction: column;
 }
-.list-header {
+.teams-list-header {
   background-color: #f2f2f2;
   height: 25px !important;
   padding: 10px 0px 10px 30px;
 }
-.list-header-font {
+
+.teams-list-header-font {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: bold;
   font-size: 12px;
-  font-weight: 600;
+  line-height: 16px;
   text-transform: uppercase;
-  color: #4b4b4b;
+  color: #434C5D;
 }
 .teams-list-item {
-  width: 70%;
-  height: 50px;
+  width: 96%;
+  height: 45px;
   border: 1.5px solid #dbdfe7;
   border-top: none;
+  padding: 10px 0px 10px 30px;
+}
+.team {
+  width: 50%;
+  font-weight: 600;
+  position: relative;
 }
 .flex {
   display: flex;
 }
-.header {
+.teams-header {
   width: 20%;
   justify-content: left;
 }
 .paginationBttns{
-  height: 40 px;
   list-style: none;
   display: flex;
-  
+  padding-inline-start: 0px;
+  color: #B2BBC5;
 }
 .paginationBttns a {
   margin: 8px;
   cursor: pointer;
-  color:dimgrey;
 }
 .paginationActive a{
-  color: black;
+  color: #4F5963;
 }
-.drpdown{
+.result-per-page-line{
+  margin-left: auto; 
+  margin-right: 30px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  color: #B2BBC5;
+}
 
-}
-.teamsperpage{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.Dropdown-root{
-  text-align: center;
-  min-width: 10%;
-  min-height: auto;
+.dropdown-per-page > .Dropdown-root{
+  min-width: 3%;
+  margin-right: 40px;
 }
 .Dropdown-menu{
   overflow: hidden;
+  position: absolute;
+  width: 100%;
 }
-
-
+.Dropdown-arrow{
+  border-style:solid;
+  border-color: #8C9FB4 transparent;
+  position: absolute;
+  top: 12px !important;
+  cursor: pointer;
+}
+.Dropdown-control{
+  padding: 5px 24px 5px 9px !important;
+  width: 100%;
+}
+.Dropdown-option{
+  padding: 5px 5px;
+}
+.teams-list-footer {
+  height: 25px !important;
+  padding: 10px 0px 10px 30px;
+}
+.teams-list-footer-font {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15px;
+  color: #434C5D;
+}
+.current-page-line{
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  color: #B2BBC5;
+}
