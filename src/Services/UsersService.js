@@ -10,10 +10,13 @@ const SearchUser = (name) => {
 const GetSortedUsers = (data) => {
     return api().post(`Users/GetSortedUsers?data=`+ data)
 }
-
 const ChangeStatus = (id) => {
   var data = {id}
   return api().put(`/Users/ChangeStatus`,data)
+}
+const SwitchRoles = (id) => {
+  var data = {id}
+  return api().put(`/Users/SwitchRoles`,data)
 }
 const DeleteUser = (id) => {
   id = { id };
@@ -29,7 +32,8 @@ export default {
   SearchUser,
   GetSortedUsers,
   ChangeStatus,
-  DeleteUser
+  DeleteUser,
+  SwitchRoles
 };
 
 

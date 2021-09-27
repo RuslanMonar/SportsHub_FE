@@ -311,7 +311,7 @@ div.dropdown__segment {
   font-size: 14px;
   text-align: center;
   width: 450px;
-  height: 200px;
+  height: 180px;
   box-shadow: 0 0 20px rgba(0,0,0,0.5);
   display: flex;
   padding-top: 40px;
@@ -326,6 +326,14 @@ div.dropdown__segment {
   transform: translateX(235%) translateY(-175%);
   position: absolute;
   width: 81px;
+  height: 81px;
+}
+.block-icon{
+  background: no-repeat top center url("../img/BlockUser.png");
+  background-size: 86px 81px;
+  transform: translateX(235%) translateY(-175%);
+  position: absolute;
+  width: 86px;
   height: 81px;
 }
 .dividing-line{
