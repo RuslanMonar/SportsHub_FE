@@ -3,7 +3,10 @@ import "../../../css/Admin/Teams.css";
 import Dropzone from "./DropZone";
 import { useState } from "react";
 
-const TeamsSlector = () => {
+
+
+const TeamsSlector = ({searchInput , setSearchInput}) => {
+
   const [file, setFile] = useState([]);
   const options = [
     {
@@ -27,14 +30,10 @@ const TeamsSlector = () => {
   };
 
   return (
-    <div className="dropdowns-container">
-      <div className="dropdown-option">
+    <div  className="dropdowns-container">
+      <div  className="dropdown-option">
         <span>SELECT LOCATION</span>
-        <Dropdown
-          className="teams-selector"
-          options={options}
-          placeholder="Select an option"
-        />
+        <input disabled value={searchInput} className="teams-selector" />       
       </div>
       <div className="dropdown-option">
         <span>SELECT CATEGORY</span>

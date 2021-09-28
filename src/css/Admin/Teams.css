@@ -69,3 +69,12 @@
   background-color: #ca1e1e;
   color: white;
 }
+.add-team-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.map-marker>svg{
+  width: 30px;
+  height: 40px;
+}
