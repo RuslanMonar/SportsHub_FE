@@ -16,22 +16,19 @@ export default function UserItem({
   users,
   setUsers
 }) {
+
+   
   const [isUserBlocked, setUserBlocked] = useState(isBlocked);
   var status = isUserBlocked ? "Blocked" : "Active";
-  const [isAdmin, setAdmin] = useState((role && role.length > 0) ? true : false);
+  const [isAdmin, setAdmin] = useState((role == "Admin") ? true : false);
 
   if (!image) {
     image = "img/users/defaultUserImage.png";
   }
-  /*if (role && role.length > 0) {
-    role = role[0];
-  } else {
-    role = "User";
-  }*/
 
   const [options, setOptions] = useState([
     {
-      value: isUserBlocked ? "Activate" : "Block",
+      value: isUserBlocked ? "Active" : "Blocked",
       label: isUserBlocked ? "Activate" : "Block",
       className: isUserBlocked ? "activateUser" : "blockUser",
     },
@@ -41,15 +38,15 @@ export default function UserItem({
       className: "deleteUser",
     },
     {
-      value: role === "User" ? "Make as Admin" : "Remove from Admin",
-      label: role === "User" ? "Make as Admin" : "Remove from Admin",
-      className: role === "User" ? "makeAsAdmin" : "remove-from-admin",
+      value: isAdmin ? "Remove from Admin" : "Make as Admin",
+      label: isAdmin ? "Remove from Admin" : "Make as Admin",
+      className: isAdmin ? "remove-from-admin" : "makeAsAdmin",
     },
   ]);
 
   const [cloneOptions, setCloneOptions] = useState(options);
   const [defaultOption, setDefaultOption] = useState(options[0]);
-
+  
   const showAction = (optionType) => {
     if (optionType.value === "Blocked") {
       alertBlockWindow();
@@ -62,6 +59,7 @@ export default function UserItem({
     else if (optionType.value === "Make as Admin" || optionType.value === "Remove from Admin") {
       UsersService.SwitchRoles(id).then(response => {
         setAdmin(!isAdmin);
+        setUsers(users.filter((x) => x.id != id));
       })
     }
 
@@ -75,10 +73,10 @@ export default function UserItem({
 
 
   const ShowClick = (focused, optionType) => {
-    if (focused &&optionType.value == "Blocked") {
+    if (focused && optionType.value === "Blocked") {
       alertBlockWindow();
     }
-    else if (focused && optionType.value == "Active"){
+    else if (focused && optionType.value === "Active"){
       UsersService.ChangeStatus(id).then(response => {
         setUserBlocked(!isUserBlocked);
       })
@@ -86,22 +84,14 @@ export default function UserItem({
     else if (focused &&(optionType.value === "Make as Admin" || optionType.value === "Remove from Admin")) {
       UsersService.SwitchRoles(id).then(response => {
         setAdmin(!isAdmin);
+        setUsers(users.filter((x) => x.id != id));
       })
+
     }
     else if(focused &&optionType.value === "Delete"){
       alertDeleteWindow();
     }
   };
-
-  useEffect(() => {  
-    const newOptions = [...options];
-
-    newOptions[2].value = isAdmin ? "Remove from Admin" : "Make as Admin";
-    newOptions[2].label = isAdmin ? "Remove from Admin" : "Make as Admin";
-    newOptions[2].className = isAdmin ? "remove-from-admin" : "makeAsAdmin";
-    setOptions(newOptions);
-    
-  }, [isAdmin]);
 
   useEffect(() => {
     const newOptions = [...cloneOptions];
@@ -113,19 +103,28 @@ export default function UserItem({
     if (isUserBlocked){
       setOptions([newOptions[0], newOptions[1]]);
     }
-    else{
+    else if (isAdmin == false){
       setOptions(newOptions);
     }
+    else{
+      newOptions[1].className = "blockUser";
 
-  }, [isUserBlocked]);
+      newOptions[2].value = isAdmin ? "Remove from Admin" : "Make as Admin";
+      newOptions[2].label = isAdmin ? "Remove from Admin" : "Make as Admin";
+      newOptions[2].className = isAdmin ? "remove-from-admin" : "makeAsAdmin";
+g
+      setOptions([newOptions[1], newOptions[2]])
+      setDefaultOption(newOptions[2])
+    }
+
+  }, [isUserBlocked, isAdmin]);
 
   var FilteredOptions = options.filter(
     (value) => defaultOption.value != value.value
   );
-
+  
   const refreshUsersList = (id) =>{
-    var deletedUser = users.filter((x) => x.id != id);
-    setUsers(deletedUser);
+    setUsers(users.filter((x) => x.id != id));
   }
   const alertDeleteWindow = () => {
     confirmAlert({
@@ -156,7 +155,7 @@ export default function UserItem({
       customUI: ({ onClose }) => {
           return (
             <div className='alert'>
-              <div className='block-icon'></div>
+              <div className="block-icon"></div>
               <b>Are you sure you want to block this user!</b>
               <div className='dividing-line'>If you block this user he won't be able </div>
               <div className='sure-line'>to access his Sports Hub account!</div>
