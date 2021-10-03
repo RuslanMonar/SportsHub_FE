@@ -1,6 +1,10 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import { useState } from 'react';
+
+
+
 export const MainPage = () => {
     var user = useSelector(state => state.AuthReducer)
     return(
@@ -10,6 +14,7 @@ export const MainPage = () => {
             <Link to="/login"> Login </Link>
             <br/>
             <Link to="/register"> Register </Link>
+        
         </div>
     );
 }

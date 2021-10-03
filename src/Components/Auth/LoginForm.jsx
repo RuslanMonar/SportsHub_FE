@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import "../../css/AuthForm.css";
+import { api } from '../../Config/Axios'
 
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
@@ -27,6 +28,31 @@ export const LoginForm = () => {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const { addToast } = useToasts();
+
+
+
+  const [selectedFile, setSelectedFile] = useState();
+const changeHandler = (event) => {
+    setSelectedFile(event.target.files[0]);
+};
+
+const handleSubmission = (e) => {
+  e.preventDefault();
+    var data = new FormData();
+    data.append("Name", "Sevilla FC");
+    data.append("Location", "Sevilla");
+    data.append("CategoryId", 3);
+    data.append("SubCategoryId", 5);
+    data.append("Image", selectedFile);
+    api().post('Teams/add', data)
+    .then((response) => {
+      console.log(response.data);   
+      return response;
+    });
+};
+
+
+
 
   const dispatch = useDispatch();
 
@@ -264,8 +290,15 @@ export const LoginForm = () => {
                 placeholder="6 + characters (letters and numbers)"
                 validations={[required]}
               />
+
             </div>
             <button className="form-input-btn">LOG IN</button>
+            <form encType="multipart/form-data" action="">
+                <input type="file" name="file" onChange={changeHandler} />
+                <div>
+                    <button onClick={handleSubmission}>Submit</button>
+                </div>
+            </form>
           </div>
           <CheckButton style={{ display: "none" }} ref={checkBtn} />
         </Form>

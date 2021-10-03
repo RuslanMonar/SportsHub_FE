@@ -2,22 +2,69 @@ import Dropdown from "react-dropdown";
 import "../../../css/Admin/Teams.css";
 import Dropzone from "./DropZone";
 import { useState } from "react";
+import { useEffect } from "react";
+import TeamsService from "../../../Services/Admin/TeamsService";
 
 
 
 const TeamsSlector = ({searchInput , setSearchInput}) => {
 
   const [file, setFile] = useState([]);
-  const options = [
-    {
-      value: "USA",
-      label: "USA",
-    },
-    {
-      value: "Loas Angeles",
-      label: "Loas Angeles",
-    },
-  ];
+
+
+  const [teamsData, setTeamsData] = useState([]);
+  const [categoryOptions, setCategoryOptions] = useState([]);
+  const [subcategoryOptions, setSubCategoryOptions] = useState([]);
+
+  const [categoryId, setCategoryId] = useState([]);
+  const [subCategoryId, setSubCategoryId] = useState([]);
+
+
+  TeamsService.GetCategories().then(data => {
+    setTeamsData(data);
+    setCategories();
+  });
+
+  const setCategories = () => {
+    var result = [];
+    var categories = teamsData.categories;
+    for(var ctg in categories){
+        result.push(categories [ctg]["name"]);
+    }
+    setCategoryOptions(result);
+  }
+
+  const handleCategoryChoose = (e) => {
+    var idx = 0;
+    var categories = teamsData.categories;
+    for(var ctg in categories){
+        if (categories [ctg]["name"] == e.label){
+          idx = categories [ctg]["id"];
+        };
+    }
+    var result = []
+    var subcategories = teamsData.subCategories;
+    for(var subctg in subcategories){
+      if(subcategories[subctg]["categoryId"] == idx){
+        result.push(subcategories[subctg]["name"]);
+      }
+    }
+    setCategoryId(idx);
+    setSubCategoryOptions(result);
+  }
+
+  const handleSubCategoryChoose = (e) => {
+    var idx = 0;
+    var subcategories = teamsData.subCategories;
+    for(var subctg in subcategories){
+        if (subcategories [subctg]["name"] == e.label){
+          idx = subcategories [subctg]["id"];
+        };
+    }
+    setSubCategoryId(idx);
+  }
+
+
 
   const handleDropZoneChange = (files) => {
     setFile(
@@ -27,6 +74,17 @@ const TeamsSlector = ({searchInput , setSearchInput}) => {
         })
       )
     );
+  };
+
+  const handleSubmission = (e) => {
+      e.preventDefault();
+      var data = new FormData();
+      data.append("Name", "Sevilla FC");
+      data.append("Location", "Sevilla");
+      data.append("CategoryId", category);
+      data.append("SubCategoryId", 5);
+      data.append("Image", file);
+      TeamsService.AddTeam(data);
   };
 
   return (
@@ -39,24 +97,18 @@ const TeamsSlector = ({searchInput , setSearchInput}) => {
         <span>SELECT CATEGORY</span>
         <Dropdown
           className="teams-selector"
-          options={options}
+          options={categoryOptions}
           placeholder="Select an option"
+          onChange={handleCategoryChoose}
         />
       </div>
       <div className="dropdown-option">
         <span>SELECT SUBCATEGORY</span>
         <Dropdown
           className="teams-selector"
-          options={options}
+          options={subcategoryOptions}
           placeholder="Select an option"
-        />
-      </div>
-      <div className="dropdown-option">
-        <span>TEAM</span>
-        <Dropdown
-          className="teams-selector"
-          options={options}
-          placeholder="Select an option"
+          onChange={handleSubCategoryChoose}
         />
       </div>
       
