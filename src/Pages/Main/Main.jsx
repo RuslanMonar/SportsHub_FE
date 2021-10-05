@@ -1,6 +1,5 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { ChangePasswordForm } from '../../Components/Admin/PersonalPage/ChangePassword';
 import { ToastProvider } from "react-toast-notifications";
 import { ErrorNotification } from "../../Components/Additional/ToastNotification";
 export const MainPage = () => {
@@ -13,7 +12,6 @@ export const MainPage = () => {
             <br/>
             <Link to="/register"> Register </Link>
             <ToastProvider components={{ Toast: ErrorNotification }}>
-            <ChangePasswordForm/>
             </ToastProvider>   
         </div>
     );
