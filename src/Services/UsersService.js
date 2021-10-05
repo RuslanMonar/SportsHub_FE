@@ -23,13 +23,28 @@ const DeleteUser = (id) => {
     data: id,
   });
 };
-
+const ChangePassword = (currentPassword, newPassword) => {
+  let data = {currentPassword, newPassword };
+  return api().post("Auth/changePassword", data)
+  .then((response) => {  
+    return response;
+  });
+};
+const UpdateInfo = (Name,email) => {
+  let data = {Name,email};
+  return api().post("User/Update", data)
+  .then((response) => {  
+    return response;
+  });
+};
 export default {
   GetAllUsers,
   SearchUser,
   GetSortedUsers,
   ChangeStatus,
-  DeleteUser
+  DeleteUser,
+  ChangePassword,
+  UpdateInfo
 };
 
 
