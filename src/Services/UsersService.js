@@ -30,8 +30,8 @@ const ChangePassword = (currentPassword, newPassword) => {
     return response;
   });
 };
-const UpdateInfo = (Name,email) => {
-  let data = {Name,email};
+const UpdateInfo = (Name,email,Image) => {
+  let data = {Name,email,Image};
   return api().post("User/Update", data)
   .then((response) => {  
     return response;

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ChangePasswordForm } from "./ChangePassword";
 import { PersonalForm } from "./UpdateInfo";
-import { UploadPhoto} from '../../../Components/Additional/UploadPhoto';
+
 
 export const PersonalPage = () => {
   const [PersonalInfoActive, setPersonalInfoActive] = useState(true);
@@ -44,7 +44,6 @@ export const PersonalPage = () => {
       </div>
       {PersonalInfoActive && !ChangePasswordActive && (
         <div>
-           <UploadPhoto/>
            <PersonalForm/>
           </div>
       )}

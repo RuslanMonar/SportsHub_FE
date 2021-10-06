@@ -7,17 +7,29 @@ import { isEmail } from "validator";
 import "../../../css/ChangePassword.css";
 import { Loader } from "../../Additional/Loader";
 import { useToasts } from "react-toast-notifications";
+import "../../../css/photo.css";
 
 
 export const PersonalForm = () => {
   const form = useRef();
   const checkBtn = useRef();
   const [Name, setName] = useState("");
+  const [Image, setImage] = useState( "./Ellipse.svg");
   const [email, setEmail] = useState("");
   const [successful, setSuccessful] = useState(false);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const { addToast } = useToasts();
+  function onChange(event) {
+    var file = event.target.files[0];
+    var reader = new FileReader();
+    reader.onload = function(event) {
+      setImage(event.target.result);
+    };
+  
+    reader.readAsDataURL(file);
+  }
+
 
   const vname = (value) => {
     if (value.length < 3 || value.length > 20) {
@@ -64,7 +76,7 @@ export const PersonalForm = () => {
     form.current.validateAll();
     if (checkBtn.current.context._errors.length === 0) {
       setLoading(true);
-      UsersService.UpdateInfo(Name,email)
+      UsersService.UpdateInfo(Name,email,Image)
         .then(() => {
           setTimeout(() => {
             setLoading(false);
@@ -99,6 +111,30 @@ export const PersonalForm = () => {
                     <span>{error + " !"}</span>
                   </div>
                 ) : null}
+                <div className="page">
+              <div className="container2">
+             <div className="img-holder">
+                  <img src={Image} alt="" id="img" className="img" />
+             </div>
+            <input
+            type="file"
+            accept="image/*"
+            name="image-upload"
+            id="input"
+            onChange={(e)=>onChange(e)}
+          />
+          <div className="label">
+            <label className="image-upload" htmlFor="input">
+            <img
+          src="./upload.svg"
+          alt="Example1"
+          width="40"
+          height="40"
+          />
+            </label>
+          </div>
+        </div>
+      </div>
                 <div className="form-inputs">
                   <label className="form-label" htmlFor="password">
                   FIRST NAME
@@ -130,6 +166,7 @@ export const PersonalForm = () => {
                    
                    </div>
                 </div>
+               
                 <button className="form-input-btn">UPDATE PROFILE</button>
               </div>
             <CheckButton style={{ display: "none" }} ref={checkBtn} />
