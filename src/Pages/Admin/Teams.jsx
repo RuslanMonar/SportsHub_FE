@@ -8,6 +8,7 @@ import { useState } from "react";
 export const Teams = () => {
 
     const [searchInput, setSearchInput] = useState("")
+    
 
   return (
     <div className="add-team-container">

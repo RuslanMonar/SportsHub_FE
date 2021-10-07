@@ -1,36 +1,36 @@
 import Dropdown from "react-dropdown";
 import "../../../css/Admin/Teams.css";
+import "../../../css/GlobalStyles/main.css";
 import Dropzone from "./DropZone";
 import { useState } from "react";
+import Input from "react-validation/build/input";
 import { useEffect } from "react";
 import TeamsService from "../../../Services/Admin/TeamsService";
+import Form from "react-validation/build/form";
 
 
 
 const TeamsSlector = ({searchInput , setSearchInput}) => {
 
   const [file, setFile] = useState([]);
+  const [successful, setSuccessful] = useState(false);
+  const [validateError, setValidateError] = useState(false);
 
-
-  const [teamsData, setTeamsData] = useState([]);
+  const [teamsData, setTeamsData] = useState();
   const [categoryOptions, setCategoryOptions] = useState([]);
   const [subcategoryOptions, setSubCategoryOptions] = useState([]);
 
   const [categoryId, setCategoryId] = useState([]);
   const [subCategoryId, setSubCategoryId] = useState([]);
+  const [teamName, setTeamName] = useState();
 
-
-  TeamsService.GetCategories().then(data => {
-    setTeamsData(data);
-    setCategories();
-  });
-
-  const setCategories = () => {
+  const setCategories = (data) => {
     var result = [];
-    var categories = teamsData.categories;
+    var categories = data.categories;
     for(var ctg in categories){
         result.push(categories [ctg]["name"]);
     }
+    setTeamsData(data);
     setCategoryOptions(result);
   }
 
@@ -66,29 +66,55 @@ const TeamsSlector = ({searchInput , setSearchInput}) => {
 
 
 
-  const handleDropZoneChange = (files) => {
-    setFile(
-      files.map((file) =>
-        Object.assign(file, {
-          preview: URL.createObjectURL(file),
-        })
-      )
-    );
+  const handleDropZoneChange = (event) => {
+    setFile(event.target.files[0]);
   };
+
+  const validateData = () => {
+    if (searchInput.includes("undefined") || file == null ||
+    !teamName){
+      return false;
+    }
+    return true;
+  }
 
   const handleSubmission = (e) => {
+    
       e.preventDefault();
-      var data = new FormData();
-      data.append("Name", "Sevilla FC");
-      data.append("Location", "Sevilla");
-      data.append("CategoryId", category);
-      data.append("SubCategoryId", 5);
-      data.append("Image", file);
-      TeamsService.AddTeam(data);
+      if (validateData()){
+        var data = new FormData();
+        data.append("Name", teamName);
+        data.append("Location", searchInput);
+        data.append("CategoryId", categoryId);
+        data.append("SubCategoryId", subCategoryId);
+        data.append("Image", file);
+        TeamsService.AddTeam(data)
+        .then(() => {
+          setTimeout(() => {
+            setSuccessful(true);
+          }, 2000);
+        })
+      } else{
+        setValidateError(true);
+        setTimeout(() => {
+          setValidateError(false);
+        }, 4000);
+      }
   };
 
+  const onChangeTeam = (e) => {
+    const teamname = e.target.value;
+    setTeamName(teamname);
+  };
+
+  if (teamsData == null){
+    TeamsService.GetCategories().then(data => {
+      setCategories(data);
+    });
+  }
+
   return (
-    <div  className="dropdowns-container">
+    <Form  className="dropdowns-container">
       <div  className="dropdown-option">
         <span>SELECT LOCATION</span>
         <input disabled value={searchInput} className="teams-selector" />       
@@ -111,17 +137,28 @@ const TeamsSlector = ({searchInput , setSearchInput}) => {
           onChange={handleSubCategoryChoose}
         />
       </div>
-      
-      <Dropzone onChange={handleDropZoneChange} />
-
+      <div className="dropdown-option">
+        <span>TEAM NAME</span>
+        <Input
+                  type="text"
+                  className="form-input"
+                  placeholder="Input an option"
+                  value={teamName}
+                  onChange={onChangeTeam}
+                  validations={[]}
+                />
+      </div>
+      <input name="teamLogo" type="file" onChange={handleDropZoneChange} />
       <div
-        onClick={() => console.log(file)}
+        onClick={handleSubmission}
         className="teams-dropdown-button teams-dropdown-button-red"
       >
         Add to list
       </div>
       <div className="teams-dropdown-button">Cancel</div>
-    </div>
+      {successful ? <div>Successfully added team!</div>: null}
+      
+    </Form>
   );
 };
 

@@ -31,9 +31,25 @@ export const Map = ({ searchInput, setSearchInput }) => {
     )
       .then((response) => response.json())
       .then((responseJson) => {
-        console.log(responseJson);
+        saveMarkerLocation(responseJson);
       });
   };
+
+  const saveMarkerLocation = (responseJson) => {
+    if(responseJson.results[0]){
+      const locationJson = responseJson.results[0].components;
+      if (locationJson.country == "United States"){
+        setSearchInput(locationJson.state);
+      } 
+      else if(locationJson.city != null)
+      {
+        setSearchInput(locationJson.city + ", " + locationJson.country);
+      } else
+      {
+        setSearchInput(locationJson.state + ", " + locationJson.country);
+      }
+    }
+  }
 
   const handleViewportChange = useCallback(
     (newViewport) => setViewport(newViewport),

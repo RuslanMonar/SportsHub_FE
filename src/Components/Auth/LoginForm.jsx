@@ -30,30 +30,6 @@ export const LoginForm = () => {
   const { addToast } = useToasts();
 
 
-
-  const [selectedFile, setSelectedFile] = useState();
-const changeHandler = (event) => {
-    setSelectedFile(event.target.files[0]);
-};
-
-const handleSubmission = (e) => {
-  e.preventDefault();
-    var data = new FormData();
-    data.append("Name", "Sevilla FC");
-    data.append("Location", "Sevilla");
-    data.append("CategoryId", 3);
-    data.append("SubCategoryId", 5);
-    data.append("Image", selectedFile);
-    api().post('Teams/add', data)
-    .then((response) => {
-      console.log(response.data);   
-      return response;
-    });
-};
-
-
-
-
   const dispatch = useDispatch();
 
   const required = (value) => {
@@ -293,12 +269,6 @@ const handleSubmission = (e) => {
 
             </div>
             <button className="form-input-btn">LOG IN</button>
-            <form encType="multipart/form-data" action="">
-                <input type="file" name="file" onChange={changeHandler} />
-                <div>
-                    <button onClick={handleSubmission}>Submit</button>
-                </div>
-            </form>
           </div>
           <CheckButton style={{ display: "none" }} ref={checkBtn} />
         </Form>
