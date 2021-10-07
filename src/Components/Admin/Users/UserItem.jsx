@@ -3,6 +3,8 @@ import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import "../../../css/Admin/Users.css";
 import UsersService from "../../../Services/UsersService";
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 export default function UserItem({
   id,
@@ -11,10 +13,11 @@ export default function UserItem({
   image,
   isBlocked,
   role,
+  users,
+  setUsers
 }) {
   const [isUserBlocked, setUserBlocked] = useState(isBlocked);
   var status = isUserBlocked ? "Blocked" : "Active";
-
   if (!image) {
     image = "img/users/defaultUserImage.png";
   }
@@ -46,6 +49,9 @@ export default function UserItem({
   // const [status, setStatus] = useState(nowStatus);
 
   const showAction = (e) => {
+    if(e.value ==="Delete"){
+      alertWindow();
+    }
     var result = options.findIndex((x) => x.value === e.value);
     setDefaultOption(options[result]);
   };
@@ -56,7 +62,9 @@ export default function UserItem({
       UsersService.ChangeStatus(id).then(response => {
         setUserBlocked(!isUserBlocked);
       })
-      
+    }
+    else if(focused &&optionType.value == "Delete"){
+      alertWindow();
     }
   };
   useEffect(() => {
@@ -75,6 +83,34 @@ export default function UserItem({
   var FilteredOptions = options.filter(
     (value) => defaultOption.value != value.value
   );
+
+  const refreshUsersList = (id) =>{
+    var deletedUser = users.filter((x) => x.id != id);
+    setUsers(deletedUser);
+  }
+  const alertWindow = () => {
+    confirmAlert({
+      customUI: ({ onClose }) => {
+          return (
+            <div className='alert'>
+              <div className='trash-icon'></div>
+              <b>You are about to delete this user!</b>
+              <div className='dividing-line'>This user will be deleted from Sports Hub</div>
+              <div className='sure-line'>Are you sure? </div>
+              <div className='alert-btnblock'>
+                  <button className='alert-cancelbtn' onClick={() => {onClose()}}>Cancel</button>
+                  <button className='alert-deletebtn'
+                      onClick={() => {
+                        UsersService.DeleteUser(id).then(() => {refreshUsersList(id); onClose()});
+                      }}>
+                      Delete
+                  </button>
+              </div>            
+            </div>
+          );
+        }
+    });
+  };
 
   return (
     <div className="flex users-list-item align-center">

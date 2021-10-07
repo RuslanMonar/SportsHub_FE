@@ -211,14 +211,9 @@
   text-align: left;
   border:none;
 }
-.option-btn:focus {
-  background-color: #fac0c0;
-  color: red;
-}
-
-.option-btn:hover {
-  background-color: #fac0c0;
-  color: red;
+.option-btn:hover{
+  background-color: #fac0c0 !important;
+  color:red !important;
 }
 .dropdown__content {
   margin-top: 5px;
@@ -307,6 +302,67 @@ div.dropdown__segment {
   display: flex;
   justify-content: space-evenly;
 }
+.alert{
+  background-color:  white;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+  width: 450px;
+  height: 200px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  display: flex;
+  padding-top: 40px;
+  align-content: center;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+.trash-icon{
+  background: no-repeat top center url("../img/TrashBin.png");
+  background-size: 81px 81px;
+  transform: translateX(235%) translateY(-175%);
+  position: absolute;
+  width: 81px;
+  height: 81px;
+}
+.dividing-line{
+  margin-top: 10px;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  text-align: center;
+}
+.sure-line{
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  text-align: center;
+}
+.alert-btnblock{
+  border-top:  #ededed 1px solid;
+  text-align: right;
+  padding-top: 15px;
+  margin-top: 30px ;
+  padding-right: 32px;
+}
+.alert-cancelbtn{
+  background-color: white;
+  padding: 8px 28px;
+  color: #db0413;
+  border:none;
+  cursor: pointer;
+}
+.alert-deletebtn{
+  background-color:  #D72130;
+  padding: 8px 28px;
+  color: white;
+  border:none;
+  cursor: pointer;
+}
 .userInfo-container {
   width: 335px;
   min-height: 400px;
@@ -317,8 +373,8 @@ div.dropdown__segment {
   position: sticky;
   top: 90px;
   right: 0;
-  
 }
+  
 .userInfo-buttons {
   width: 100%;
   justify-content: space-around;
