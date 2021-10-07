@@ -122,7 +122,7 @@ export default function Dropzone({ onChange }) {
       onMouseLeave={() => setImageActive(true)}
     >
       <div {...getRootProps({ style })}>
-        <input {...getInputProps()} />
+        <input {...getInputProps()}/>
         <svg
           width="39"
           height="39"
