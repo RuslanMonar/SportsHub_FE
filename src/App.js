@@ -5,7 +5,7 @@ import { AuthPage } from "./Pages/Auth/Auth";
 import { MainPage } from "./Pages/Main/Main";
 import { Teams } from './Pages/Admin/Teams';
 import TeamsFilter from "./Components/Admin/Teams/TeamFilter";
-import ContactUs from "./Components/Navigation/Contactus";
+import {Contact} from "./Pages/Main/ContactUs";
 
 
 
@@ -22,8 +22,8 @@ function App() {
         <Route path="/resetPasswordAnswer" exact component={AuthPage} />
         <Route path="/recoveryPassword" exact component={AuthPage} />
         <Route path="/teams" exact component={Teams} />
-        <Route path="/contactUs" exact component={ContactUs} />
         <Route path="/teamFilter" exact component={TeamsFilter} />
+        <Route path="/contactUsss" exact component = {Contact} />
         
         
       </Switch>

@@ -15,6 +15,15 @@ const ChangeStatus = (id) => {
   var data = {id}
   return api().put(`/Users/ChangeStatus`,data)
 }
+
+const ContactUs = (FirstName,email,phone,message) => {
+  let data = {FirstName,email,phone,message};
+  return api().post("User/ContactUs", data)
+  .then((response) => {  
+    return response;
+  });
+};
+
 const DeleteUser = (id) => {
   id = { id };
   return api().request({
@@ -29,7 +38,8 @@ export default {
   SearchUser,
   GetSortedUsers,
   ChangeStatus,
-  DeleteUser
+  DeleteUser,
+  ContactUs
 };
 
 
