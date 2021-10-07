@@ -149,6 +149,7 @@ const TeamsSlector = ({searchInput , setSearchInput}) => {
                 />
       </div>
       <input name="teamLogo" type="file" onChange={handleDropZoneChange} />
+      <Dropzone/>
       <div
         onClick={handleSubmission}
         className="teams-dropdown-button teams-dropdown-button-red"
