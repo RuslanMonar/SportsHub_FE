@@ -1,0 +1,42 @@
+  
+  .page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 45px;
+  }
+  .container2 {
+    width: 300px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+  .img-holder {
+    margin: auto;
+    width: 150px;
+    height: 150px;
+    border-radius: 5px;
+    margin-top: 1rem;
+  }
+  .img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 95px;
+  }
+  #input[type="file"] {
+    display: none;
+  }
+  .label {
+    width: 122%;
+    margin-top: -4.6rem;
+    display: flex;
+    justify-content: center;
+  }
+  .image-upload {
+    margin: auto;
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+  }
+  

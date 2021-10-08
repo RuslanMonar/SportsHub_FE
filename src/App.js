@@ -4,6 +4,7 @@ import Users from "./Pages/Admin/Users";
 import { AuthPage } from "./Pages/Auth/Auth";
 import { MainPage } from "./Pages/Main/Main";
 import { Teams } from './Pages/Admin/Teams';
+import Personal from "./Pages/Admin/Personal";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/resetPassword" exact component={AuthPage} />
         <Route path="/recoveryPassword" exact component={AuthPage} />
         <Route path="/teams" exact component={Teams} />
+        <Route path="/personal" exact component={Personal} />
       </Switch>
     </BrowserRouter>
   );
