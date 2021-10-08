@@ -167,7 +167,7 @@ export const PersonalForm = () => {
                    </div>
                 </div>
                
-                <button className="form-input-btn">UPDATE PROFILE</button>
+                <button className="form-input-btn2">UPDATE PROFILE</button>
               </div>
             <CheckButton style={{ display: "none" }} ref={checkBtn} />
         </Form>

@@ -177,7 +177,7 @@ export const ChangePasswordForm = () => {
                   <i onClick={togglePasswordVisiblity}>{eye}</i>
                   </div>
                 </div>
-                <button className="form-input-btn">CHANGE PASSWORD</button>
+                <button className="form-input-btn2">CHANGE PASSWORD</button>
               </div>
    
             <CheckButton style={{ display: "none" }} ref={checkBtn} />
