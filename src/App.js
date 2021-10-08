@@ -15,7 +15,6 @@ function App() {
         <Route path="/register" exact component={AuthPage} />
         <Route path="/users" exact component={Users} />
         <Route path="/resetPassword" exact component={AuthPage} />
-        <Route path="/resetPasswordAnswer" exact component={AuthPage} />
         <Route path="/recoveryPassword" exact component={AuthPage} />
         <Route path="/teams" exact component={Teams} />
         <Route path="/personal" exact component={Personal} />

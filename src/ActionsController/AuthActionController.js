@@ -81,11 +81,12 @@ const ErrorBuilder = (error) => {
   return { message, code };
 };
 
+
+
 export default {
   SignUp,
   SignIn,
   FbAuth,
   GoogleAuth,
-
-  ResetPassword,
+  ResetPassword
 };

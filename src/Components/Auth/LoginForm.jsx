@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import "../../css/AuthForm.css";
+import { api } from '../../Config/Axios'
 
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
@@ -27,6 +28,7 @@ export const LoginForm = () => {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const { addToast } = useToasts();
+
 
   const dispatch = useDispatch();
 
@@ -264,6 +266,7 @@ export const LoginForm = () => {
                 placeholder="6 + characters (letters and numbers)"
                 validations={[required]}
               />
+
             </div>
             <button className="form-input-btn">LOG IN</button>
           </div>
