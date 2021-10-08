@@ -103,8 +103,8 @@ export  const ContactUsForm = () => {
   };
     return (
       <div>
-        <Link className="header-link" to="/">{"<"} Back to the main page</Link>
-        <div className={"forms-container"}>
+        <Link className="header-link2" to="/">{"<"} Back to the main page</Link>
+        <div className={"forms-container3"}>
           <div className="top_title ">
                     <h2 className="title">How can we help you?</h2>
                 </div>
@@ -120,7 +120,7 @@ export  const ContactUsForm = () => {
             <div className="flex-container">
               <div className ="left_column">
                 <div className="form-inputs">
-                  <label className="form-label" htmlFor="password">
+                  <label className="form-label2" htmlFor="password">
                   YOUR NAME
                   </label>
                   <Input
@@ -134,7 +134,7 @@ export  const ContactUsForm = () => {
                   />
                 </div>
                 <div className="form-inputs">
-                  <label className="form-label" htmlFor="password">
+                  <label className="form-label2" htmlFor="password">
                   EMAIL
                   </label>
                   <div className="pwd-container">
@@ -150,7 +150,7 @@ export  const ContactUsForm = () => {
                   </div>
                 </div>
                 <div className="form-inputs">
-                  <label className="form-label" htmlFor="password">
+                  <label className="form-label2" htmlFor="password">
                   PHONE NUMBER
                   </label>
                   <div className="pwd-container">
@@ -171,7 +171,7 @@ export  const ContactUsForm = () => {
                 </div>
               <div className = "right_column">
                 <div className="form-inputs">
-                  <label className="form-label" htmlFor="password">
+                  <label className="form-label2" htmlFor="password">
                   WHAT WE NEED TO KNOW
                   </label>
                   <div className="pwd-container">
@@ -192,7 +192,7 @@ export  const ContactUsForm = () => {
                 </div>
                 
               </div>
-              <button className="form-input-btn">Send message</button>
+              <button className="form-input-btn3">Send message</button>
             <CheckButton style={{ display: "none" }} ref={checkBtn} />
         </Form>
           ) : (
