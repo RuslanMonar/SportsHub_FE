@@ -302,7 +302,7 @@ div.dropdown__segment {
   display: flex;
   justify-content: space-evenly;
 }
-.alert{
+/* .alert{
   background-color:  white;
   font-family: Open Sans;
   font-style: normal;
@@ -318,7 +318,7 @@ div.dropdown__segment {
   flex-direction: column;
   justify-content: center;
   position: relative;
-}
+} */
 .trash-icon{
   background: no-repeat top center url("../img/TrashBin.png");
   background-size: 81px 81px;

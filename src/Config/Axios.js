@@ -6,6 +6,8 @@ import { API_URL } from "./GlobalVariables";
 export function api() {
   var user = localStorage.getItem("user");
 
+
+
   const api = axios.create({
 
     baseURL: API_URL,
