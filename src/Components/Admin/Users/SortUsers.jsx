@@ -3,7 +3,7 @@ import Dropdown, {DropdownContent, DropdownTrigger} from 'react-simple-dropdown'
 import "../../../css/Admin/Users.css";
 import UsersService from "../../../Services/UsersService";
 
-export const  SortUsers = ({setUsers}) => {
+export const  SortUsers = ({setUsers, show}) => {
     function HideDropdown() {
         var x = document.getElementById("myDIV");
         if (x.style.display === "none") {
@@ -33,7 +33,7 @@ export const  SortUsers = ({setUsers}) => {
         coll[0].style["background-color"] = "#fac0c0";
         coll[0].style["color"] = "red";
     }
-    
+    if(show){
     return(
         <div class="sort-box">
             <button class="filter-btn" onClick={HideDropdown}>
@@ -78,4 +78,10 @@ export const  SortUsers = ({setUsers}) => {
             </div>
         </div>
     )
+    }
+    else{
+        return(
+            <div/>
+        );
+    }
 }
