@@ -71,6 +71,7 @@ export const LeftMenu = () => {
         Social Network
       </ReactTooltip>
       <br />
+      <Link to="/users">
       <IconButton data-tip data-for="Users">
         <img
           src="./media/MyUsers.svg"
@@ -80,6 +81,7 @@ export const LeftMenu = () => {
           className="filterit"
         />
       </IconButton>
+      </Link>
       <ReactTooltip id="Users" place="right" effect="solid">
         Users
       </ReactTooltip>

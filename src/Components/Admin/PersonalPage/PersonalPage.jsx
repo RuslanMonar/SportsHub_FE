@@ -26,7 +26,7 @@ export const PersonalPage = () => {
         <div
           className={
             "flex justify-center align-center " +
-            (PersonalInfoActive ? "userInfo-active-button" : "")
+            (PersonalInfoActive ? "userInfo-active-button2" : "")
           }
           onClick={() => SwitchToPersonalInfo()}
         >
@@ -35,7 +35,7 @@ export const PersonalPage = () => {
         <div
           className={
             "flex justify-center align-center " +
-            (ChangePasswordActive ? "userInfo-active-button" : "")
+            (ChangePasswordActive ? "userInfo-active-button2" : "")
           }
           onClick={() => SwitchToChangePassword()}
         >

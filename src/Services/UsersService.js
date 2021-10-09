@@ -46,6 +46,9 @@ const UpdateInfo = (Name,email,Image) => {
     return response;
   });
 };
+const GetUserImage = () => {
+  return api().get("User/GetUserImage");
+};
 export default {
   GetAllUsers,
   SearchUser,
@@ -55,7 +58,8 @@ export default {
   ContactUs,
 
   ChangePassword,
-  UpdateInfo
+  UpdateInfo,
+  GetUserImage
 
 };
 

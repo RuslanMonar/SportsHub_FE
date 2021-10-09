@@ -8,6 +8,7 @@ export default function Personal() {
   return (
     <div>
     <Header></Header>
+    <h1>My Profile</h1>
       <TopMenu />
       <div className="flex central-content">
         <LeftMenu />
