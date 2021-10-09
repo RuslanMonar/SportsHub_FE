@@ -209,8 +209,7 @@
   display: block;
   transition-duration: 0.4s;
   text-align: left;
-  border: none;
-  width: 100%;
+  border:none;
 }
 .option-btn:hover{
   background-color: #fac0c0 !important;
@@ -303,7 +302,7 @@ div.dropdown__segment {
   display: flex;
   justify-content: space-evenly;
 }
-.alert{
+/* .alert{
   background-color:  white;
   font-family: Open Sans;
   font-style: normal;
@@ -319,7 +318,7 @@ div.dropdown__segment {
   flex-direction: column;
   justify-content: center;
   position: relative;
-}
+} */
 .trash-icon{
   background: no-repeat top center url("../img/TrashBin.png");
   background-size: 81px 81px;
@@ -380,9 +379,10 @@ div.dropdown__segment {
   font-family: "Open Sans";
   margin-top: 50px;
   position: sticky;
-  top: 0;
-  right: 0; 
+  top: 90px;
+  right: 0;
 }
+  
 .userInfo-buttons {
   width: 100%;
   justify-content: space-around;
