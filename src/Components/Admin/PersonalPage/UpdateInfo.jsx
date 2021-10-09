@@ -8,11 +8,9 @@ import "../../../css/ChangePassword.css";
 import { Loader } from "../../Additional/Loader";
 import { useToasts } from "react-toast-notifications";
 import "../../../css/photo.css";
-import { useSelector } from "react-redux";
-import AuthAction from "../../../Services/AuthService";
+
 
 export const PersonalForm = () => {
-  var user = useSelector((state) => state.AuthReducer);
   const form = useRef();
   const checkBtn = useRef();
   const [Name, setName] = useState("");
@@ -21,7 +19,6 @@ export const PersonalForm = () => {
   const [successful, setSuccessful] = useState(false);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
-  console.log(user);
   const { addToast } = useToasts();
 
   useEffect(() => {
