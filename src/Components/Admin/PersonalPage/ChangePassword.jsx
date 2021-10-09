@@ -7,7 +7,6 @@ import UsersService from "../../../Services/UsersService";
 import { Loader } from "../../Additional/Loader";
 import { useToasts } from "react-toast-notifications";
 const eye = <img src='./Eye.svg' alt="Example1" width="19" height="10" className="filterit"/>;
-const eye2 = <img src='./Eye.svg' alt="Example1" width="19" height="10" className="filterit"/>;
 
 export const ChangePasswordForm = () => {
   const form = useRef();
@@ -15,21 +14,16 @@ export const ChangePasswordForm = () => {
   const checkBtn = useRef();
   const [password, setPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [successful, setSuccessful] = useState(false);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [passwordShown, setPasswordShown] = useState(false);
-  const [passwordShown2, setPasswordShown2] = useState(false);
   const { addToast } = useToasts();
 
   const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true);
   };
 
-  const togglePasswordVisiblity2 = () => {
-    setPasswordShown2(passwordShown2 ? false : true);
-  };
 
   const onChangePassword = (e) => {
     const password = e.target.value;
@@ -42,10 +36,6 @@ export const ChangePasswordForm = () => {
     setNewPassword(newPassword);
   };
 
-  const onChangeConfirmPassword = (e) => {
-    const tempConfirmPassword = e.target.value;
-    setConfirmPassword(tempConfirmPassword);
-  };
   
   const required = (value) => {
     if (!value) {
@@ -57,17 +47,6 @@ export const ChangePasswordForm = () => {
     }
   };
 
-  const validationConfirmationPassword = (value) => {
-    const newPasswordChange=newPasswordInput.current.props.value.split(" ")[0];
-    const newConfirmPassword=value.split(" ")[0];
-    if (newPasswordChange!==newConfirmPassword) {
-      return (
-        <div className="alert alert-danger" role="alert">
-          Passwords do not match
-        </div>
-      );
-    }
-  };
 
   
   const vpassword = (value) => {
