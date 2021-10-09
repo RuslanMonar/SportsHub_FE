@@ -96,7 +96,6 @@ export const TopMenu = () => {
   });
   return (
     <div class="top-menu">
-      <h1> Users</h1>
       {/* <Slider className="SliderStyle" {...settings}> */}
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable direction="horizontal" droppableId="characters">

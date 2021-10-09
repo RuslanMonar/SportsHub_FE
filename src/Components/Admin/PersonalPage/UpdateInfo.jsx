@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react"
+import React, { useState, useRef, useEffect } from "react";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
@@ -8,28 +8,40 @@ import "../../../css/ChangePassword.css";
 import { Loader } from "../../Additional/Loader";
 import { useToasts } from "react-toast-notifications";
 import "../../../css/photo.css";
-
+import { useSelector } from "react-redux";
+import AuthAction from "../../../Services/AuthService";
 
 export const PersonalForm = () => {
+  var user = useSelector((state) => state.AuthReducer);
   const form = useRef();
   const checkBtn = useRef();
   const [Name, setName] = useState("");
-  const [Image, setImage] = useState( "./Ellipse.svg");
+  const [Image, setImage] = useState("");
   const [email, setEmail] = useState("");
   const [successful, setSuccessful] = useState(false);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
+  console.log(user);
   const { addToast } = useToasts();
+
+  useEffect(() => {
+    UsersService.GetUserImage().then((response) => {
+      if (response.data.image != undefined) {
+        setImage(response.data.image);
+      } else {
+        setImage("./Ellipse.svg");
+      }
+    });
+  }, []);
+
   function onChange(event) {
     var file = event.target.files[0];
     var reader = new FileReader();
-    reader.onload = function(event) {
+    reader.onload = function (event) {
       setImage(event.target.result);
     };
-  
     reader.readAsDataURL(file);
   }
-
 
   const vname = (value) => {
     if (value.length < 3 || value.length > 20) {
@@ -49,7 +61,7 @@ export const PersonalForm = () => {
       );
     }
   };
-  
+
   const onChangeName = (e) => {
     const _FirstName = e.target.value;
     setName(_FirstName);
@@ -59,8 +71,6 @@ export const PersonalForm = () => {
     const email = e.target.value;
     setEmail(email);
   };
-
-  
 
   const required = (value) => {
     if (!value) {
@@ -76,13 +86,16 @@ export const PersonalForm = () => {
     form.current.validateAll();
     if (checkBtn.current.context._errors.length === 0) {
       setLoading(true);
-      UsersService.UpdateInfo(Name,email,Image)
+      UsersService.UpdateInfo(Name, email, Image)
         .then(() => {
           setTimeout(() => {
             setLoading(false);
             setSuccessful(true);
             addToast(
-              { error: "Success", message: "Your data is successfully updated!" },
+              {
+                error: "Success",
+                message: "Your data is successfully updated!",
+              },
               {
                 appearance: "success",
                 autoDismiss: true,
@@ -98,63 +111,63 @@ export const PersonalForm = () => {
           setSuccessful(false);
         });
     }
-    
   };
-    return (
-        <div className={"forms-containerU"}>
-          {!loading ? (
-            <Form className={"ChangePasswordForm"} onSubmit={UpdateInfo} ref={form}>
-              <div className="form-content-right">
-                {error ? (
-                  <div className={"fail"}>
-                    <span className={"close-icon"}></span>
-                    <span>{error + " !"}</span>
-                  </div>
-                ) : null}
-                <div className="page">
+  return (
+    <div className={"forms-containerU"}>
+      {!loading ? (
+        <Form className={"ChangePasswordForm"} onSubmit={UpdateInfo} ref={form}>
+          <div className="form-content-right">
+            {error ? (
+              <div className={"fail"}>
+                <span className={"close-icon"}></span>
+                <span>{error + " !"}</span>
+              </div>
+            ) : null}
+            <div className="page">
               <div className="container2">
-             <div className="img-holder">
+                <div className="img-holder">
                   <img src={Image} alt="" id="img" className="img" />
-             </div>
-            <input
-            type="file"
-            accept="image/*"
-            name="image-upload"
-            id="input"
-            onChange={(e)=>onChange(e)}
-          />
-          <div className="label">
-            <label className="image-upload" htmlFor="input">
-            <img
-          src="./upload.svg"
-          alt="Example1"
-          width="40"
-          height="40"
-          />
-            </label>
-          </div>
-        </div>
-      </div>
-                <div className="form-inputs">
-                  <label className="form-label" htmlFor="password">
-                  FIRST NAME
-                  </label>
-                  <Input
-                    type="text"
-                    className="form-input"
-                    placeholder="Ivan Baloh"
-                    name="Name"
-                    value={Name}
-                    onChange={onChangeName}
-                    validations={[required, vname]}
-                  />
                 </div>
-                <div className="form-inputs">
-                  <label className="form-label" htmlFor="password">
-                  EMAIL
+                <input
+                  type="file"
+                  accept="image/*"
+                  name="image-upload"
+                  id="input"
+                  onChange={(e) => onChange(e)}
+                />
+                <div className="label">
+                  <label className="image-upload" htmlFor="input">
+                    <img
+                      src="./upload.svg"
+                      alt="Example1"
+                      width="40"
+                      height="40"
+                    />
                   </label>
-                  <div className="pwd-container">
-                  <Input
+                </div>
+              </div>
+            </div>
+
+            <div className="form-inputs">
+              <label className="form-label" htmlFor="password">
+                FIRST NAME
+              </label>
+              <Input
+                type="text"
+                className="form-input"
+                placeholder="Ivan Baloh"
+                name="Name"
+                value={Name}
+                onChange={onChangeName}
+                validations={[required, vname]}
+              />
+            </div>
+            <div className="form-inputs">
+              <label className="form-label" htmlFor="password">
+                EMAIL
+              </label>
+              <div className="pwd-container">
+                <Input
                   type="text"
                   name="email"
                   className="form-input"
@@ -163,18 +176,17 @@ export const PersonalForm = () => {
                   onChange={onChangeEmail}
                   validations={[required, validEmail]}
                 />
-                   
-                   </div>
-                </div>
-               
-                <button className="form-input-btn2">UPDATE PROFILE</button>
               </div>
-            <CheckButton style={{ display: "none" }} ref={checkBtn} />
+            </div>
+
+            <button className="form-input-btn2">UPDATE PROFILE</button>
+          </div>
+          <CheckButton style={{ display: "none" }} ref={checkBtn} />
         </Form>
-          ) : (
-            <Loader />
-          )}
-          {/* {successful && <Redirect to="/" />} */}
-        </div>
-    );
+      ) : (
+        <Loader />
+      )}
+      {/* {successful && <Redirect to="/" />} */}
+    </div>
+  );
 };

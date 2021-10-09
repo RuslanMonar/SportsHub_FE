@@ -8,11 +8,13 @@ import { GoogleLogin } from "react-google-login";
 import { Link, Redirect } from "react-router-dom";
 import AuthAction from "../../Services/AuthService";
 import { LogOut, SwitchRole, SetRole } from "../../../src/ActionsController/UserController";
+import UsersService from "../../Services/UsersService";
 
 export const Header = () => {
     const [isLogged, setIsLogged] = useState("");
     const [isAdmin, setIsAdmin] = useState("");  
     const [hasView, setHasView] = useState("");  
+    const [Image, setImage] = useState("");
     var user = useSelector(state => state.AuthReducer);
     var view = useSelector(state => state.SwitchViewReducer)["hasView"]
 
@@ -25,7 +27,17 @@ export const Header = () => {
     }, [])
 
    
-
+    UsersService.GetUserImage().then((response) => {
+      if(response.data.image!=undefined)
+      {
+        setImage(response.data.image);
+      }
+      else
+      {
+        setImage("./Ellipse.svg");
+      }
+    });
+  
     const IsUserAdminSetting = (isAdmin) => {
         setIsAdmin(isAdmin);
         SetRole();
@@ -157,6 +169,10 @@ export const Header = () => {
                 id = "switch-button"
                 onClick = {SwitchMode}
             /> : null}
+            <div className="imageContainer">
+            <img src={Image} alt="" className={"user-image"} />
+            </div>
+           
             <label id="user-label">{
                 user.user.name
              }</label>
@@ -177,14 +193,14 @@ export const Header = () => {
                         }</label>
                         <ul className="dropdown__quick-links dropdown__segment">
                                 <li className="dropdown__link">
-                                    <Link to="/profile"                                           
+                                    <Link to="/personal"                                           
                                                 class="option-btn" 
                                             >
                                         Personal
                                     </Link>    
                                 </li>
                                 <li className="dropdown__link">
-                                    <Link to="/changePassword"  
+                                    <Link to="/personal"  
                                             class="option-btn"
                                             >
                                         Change Password
