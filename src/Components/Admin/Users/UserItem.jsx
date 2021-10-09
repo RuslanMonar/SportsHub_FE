@@ -112,7 +112,6 @@ export default function UserItem({
       newOptions[2].value = isAdmin ? "Remove from Admin" : "Make as Admin";
       newOptions[2].label = isAdmin ? "Remove from Admin" : "Make as Admin";
       newOptions[2].className = isAdmin ? "remove-from-admin" : "makeAsAdmin";
-g
       setOptions([newOptions[1], newOptions[2]])
       setDefaultOption(newOptions[2])
     }
