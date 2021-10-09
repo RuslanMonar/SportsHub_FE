@@ -10,11 +10,16 @@ const SearchUser = (name) => {
 const GetSortedUsers = (data) => {
     return api().post(`Users/GetSortedUsers?data=`+ data)
 }
-
 const ChangeStatus = (id) => {
   var data = {id}
   return api().put(`/Users/ChangeStatus`,data)
 }
+
+const SwitchRoles = (id) => {
+  var data = {id}
+  return api().put(`/Users/SwitchRoles`,data)
+}
+
 
 const ContactUs = (FirstName,email,phone,message) => {
   let data = {FirstName,email,phone,message};
@@ -55,12 +60,11 @@ export default {
   GetSortedUsers,
   ChangeStatus,
   DeleteUser,
+  SwitchRoles,
   ContactUs,
-
   ChangePassword,
   UpdateInfo,
   GetUserImage
-
 };
 
 

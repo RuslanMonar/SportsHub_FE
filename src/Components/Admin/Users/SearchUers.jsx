@@ -3,18 +3,25 @@ import { useState, useEffect } from "react";
 
 import UsersService from "../../../Services/UsersService";
 
-export const SearchUsers = ({ setLoader, setUsers }) => {
-
+export const SearchUsers = ({ setLoader, setUsers, setPerson}) => {
   const [name, setName] = useState("");
 
   //Таймер 1 секунда після якого спрацьовує автоматичне надсилання ім'я
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       if (name) {
-
         setLoader(true);
         UsersService.SearchUser(name).then((response) => {
-          setUsers(response.data.users);
+          /*console.log("name")
+          if (setPerson){
+            console.log("name_ad1")*/
+            setUsers(response.data.users);
+          /*}
+          else{
+            console.log("name_ad2")
+            console.log(response.data.users)
+            setUsers(response.data.users.filter((x) => x.role == "Admin"));
+          }*/
           setTimeout(() => {
             setLoader(false);
           }, 500);
@@ -22,16 +29,20 @@ export const SearchUsers = ({ setLoader, setUsers }) => {
       } else {
         setLoader(true);
         UsersService.GetAllUsers().then((response) => {
-          setUsers(response.data.users);
+          if(setPerson){
+            setUsers(response.data.users.filter((x) => x.role != "Admin"));
+          }
+          else{
+            setUsers(response.data.users.filter((x) => x.role == "Admin"));
+          }
           setTimeout(() => {
             setLoader(false);
           }, 500);
         });
-
       }
     }, 1000);
     return () => clearTimeout(delayDebounceFn);
-  }, [name]);
+  }, [name, setPerson]);
 
   return (
     <div className={"search-container "}>

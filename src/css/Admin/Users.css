@@ -310,7 +310,7 @@ div.dropdown__segment {
   font-size: 14px;
   text-align: center;
   width: 450px;
-  height: 200px;
+  height: 180px;
   box-shadow: 0 0 20px rgba(0,0,0,0.5);
   display: flex;
   padding-top: 40px;
@@ -325,6 +325,14 @@ div.dropdown__segment {
   transform: translateX(235%) translateY(-175%);
   position: absolute;
   width: 81px;
+  height: 81px;
+}
+.block-icon{
+  background: no-repeat top center url("../img/BlockUser.png");
+  background-size: 87px 81px;
+  transform: translateX(235%) translateY(-175%);
+  position: absolute;
+  width: 86px;
   height: 81px;
 }
 .dividing-line{
@@ -481,3 +489,51 @@ div.dropdown__segment {
   height: 34px;
   border-radius: 50%;
 }
+
+.users-admins-buttons{
+  position: relative;
+  background-color: Transparent;
+  border:none;
+  width: 120px;
+  height: 11px;
+  top:50%;
+  /*margin-right: 10px;  */
+}
+.users-admin-text{
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 11px;
+  text-align: left;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  cursor: pointer; 
+
+  color: #7F8899;
+}
+
+.users-admin-text:focus, .users-admin-text:hover{
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 11px;
+  cursor: pointer; 
+  text-align: left;
+  
+  text-decoration:underline;
+  text-decoration-thickness: 2px;
+
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+
+  color:#D72130;
+}
+
+.user-admin-search{
+  display: flex;
+  flex-direction: row;
+}
+
+
