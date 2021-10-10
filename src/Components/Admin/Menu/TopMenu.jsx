@@ -15,7 +15,7 @@ function SamplePrevArrow(props) {
   
 
 
-export const TopMenu = () => {
+export const TopMenu = ({header}) => {
   const settings = {
     speed: 500,
     slidesToShow: 1,
