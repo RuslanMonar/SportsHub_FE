@@ -1,13 +1,15 @@
 import "../../../css/Admin/Teams.css";
+import TeamService from "../../../Services/TeamService";
+import TeamItem from "./TeamItem";
 import { Loader } from "../../Additional/Loader"
 import Dropdown from "react-dropdown";
 import { useState } from "react";
 import ReactPaginate from 'react-paginate';
 
 export const TeamsList = () => {
-    const [loader, setLoader] = useState(true);
-    let teams = [], max = 200;
-    for(var i=1; teams.push(i++) < max;);
+    const [teams, setTeams] = useState([]);
+    TeamService.GetAllTeams().then((response) => {
+        setTeams(response.data.teams);});
     const [pageNumber, setPageNumber] = useState(0)
     const options = [10, 25, 50];
     const [teamsPerPage, setTeamsPerPage] = useState(options[0]);
@@ -19,20 +21,15 @@ export const TeamsList = () => {
         setPageNumber(0)
     }
     const pageVisited = pageNumber * teamsPerPage;
-
     const allTeams = teams
         .slice(pageVisited, pageVisited + teamsPerPage)
         .map((team) => {
             return(
-                <div className={"teams-list-item align-center"}>
-                    <div className={"flex team align-center"}>
-                        <h1> {team} </h1>
-                    </div>
-                </div>
+                <TeamItem key={team.id} {...team}/>
             );
         })
-
-    const [pageCount, setPageCount] = useState(Math.ceil(teams.length / teamsPerPage))
+    var pagesCount = Math.ceil(teams.length / teamsPerPage);
+    const [pageCount, setPageCount] = useState(2);
     const changePage = ({selected}) => {
         setPageNumber(selected)
     }
@@ -49,58 +46,75 @@ export const TeamsList = () => {
         }
         else if(teams.length < options[0]){
             return(
-                <> <div className="flex team-list-container">
-                        <div className="flex teams-list-item align-center teams-list-header">
-                            <div className="teams-header flex teams-list-header-font">
-                                <span>TEAMS</span>
-                            </div>
-                            <div className="teams-header flex teams-list-header-font">
-                                <span>LOCATION</span>
-                            </div>
-                            <div className="teams-header flex teams-list-header-font">
-                                <span>ADDED AT</span>
-                            </div>
-                            <div className="teams-header flex teams-list-header-font">
-                                <span>CATEGORY</span>
-                            </div>
-                            <div className="teams-header flex teams-list-header-font">
-                                <span>SUBCATEGORY</span>
-                            </div>
-                            <div className="teams-header flex teams-list-header-font">
-                                <span></span>
-                            </div>
+                <>
+                    <div className="flex teams-list-item align-center teams-list-header">
+                        <div className="teams-header flex teams-list-header-font">
+                            <span>Teams</span>
+                            <button className="filter-button">
+                                <svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12.5917 0H0.554688L5.3695 5.25556V8.88889L7.77691 10V5.25556L12.5917 0Z" fill="#B2B2B2"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div className="teams-header flex teams-list-header-font">
+                            <span>Location</span>
+                            <button className="filter-button">
+                                <svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12.5917 0H0.554688L5.3695 5.25556V8.88889L7.77691 10V5.25556L12.5917 0Z" fill="#B2B2B2"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div className="teams-header flex teams-list-header-font">
+                            <span>Added At</span>
+                        </div>
+                        <div className="teams-header flex teams-list-header-font">
+                            <span>Category</span>
+                        </div>
+                        <div className="teams-header flex teams-list-header-font">
+                            <span>SubCategory</span>
+                        </div>
+                        <div className="teams-header flex teams-list-header-font">
+                            <span></span>
                         </div>
                     </div>
                     <div>
-                    {allTeams}
-                    </div> </>
+                        {allTeams}
+                    </div>
+                 </>
             );
         }
         return (
-            <><div className="flex team-list-container">
-                <div className="flex teams-list-item align-center teams-list-header">
+                <><div className="flex teams-list-item align-center teams-list-header">
                     <div className="teams-header flex teams-list-header-font">
-                        <span>TEAMS</span>
+                        <span>Teams</span>
+                        <button className="filter-button">
+                            <svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12.5917 0H0.554688L5.3695 5.25556V8.88889L7.77691 10V5.25556L12.5917 0Z" fill="#B2B2B2"/>
+                            </svg>
+                        </button>
                     </div>
                     <div className="teams-header flex teams-list-header-font">
-                        <span>LOCATION</span>
+                        <span>Location</span>
+                        <button className="filter-button">
+                            <svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12.5917 0H0.554688L5.3695 5.25556V8.88889L7.77691 10V5.25556L12.5917 0Z" fill="#B2B2B2"/>
+                            </svg>
+                        </button>
                     </div>
                     <div className="teams-header flex teams-list-header-font">
-                        <span>ADDED AT</span>
+                        <span>Added At</span>
                     </div>
                     <div className="teams-header flex teams-list-header-font">
-                        <span>CATEGORY</span>
+                        <span>Category</span>
                     </div>
                     <div className="teams-header flex teams-list-header-font">
-                        <span>SUBCATEGORY</span>
+                        <span>SubCategory</span>
                     </div>
                     <div className="teams-header flex teams-list-header-font">
                         <span></span>
                     </div>
                 </div>
-            </div>
-            {allTeams}
-            <div className="flex team-list-container">
+                {allTeams}
                 <div className="flex teams-list-item align-center teams-list-footer teams-list-footer-font">
                     <ReactPaginate
                         previousLabel={"<"}
@@ -128,7 +142,7 @@ export const TeamsList = () => {
                         />
                     </div>
                 </div>
-            </div></>
+                </>
         );
     }
     return(

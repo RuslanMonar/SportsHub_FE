@@ -303,7 +303,7 @@ div.dropdown__segment {
   display: flex;
   justify-content: space-evenly;
 }
-.alert{
+.alert-pop{
   background-color:  white;
   font-family: Open Sans;
   font-style: normal;

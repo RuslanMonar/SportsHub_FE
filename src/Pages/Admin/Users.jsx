@@ -3,10 +3,11 @@ import { TopMenu } from "./../../Components/Admin/Menu/TopMenu";
 import { LeftMenu } from "../../Components/Admin/Menu/LeftMenu";
 import { UserInfo } from "./../../Components/Admin/Users/UserInfo";
 
+
 export default function Users() {
   return (
     <div>
-      <TopMenu />
+      <TopMenu header={"Users"}/>
       <div className="flex central-content">
         <LeftMenu />
         <div className="admin-central-content">

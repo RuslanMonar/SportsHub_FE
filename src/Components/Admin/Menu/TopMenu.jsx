@@ -15,7 +15,7 @@ function SamplePrevArrow(props) {
   
 
 
-export const TopMenu = () => {
+export const TopMenu = ({header}) => {
   const settings = {
     speed: 500,
     slidesToShow: 1,
@@ -96,7 +96,7 @@ export const TopMenu = () => {
   });
   return (
     <div>
-      <h1> Users</h1>
+      <h1> {header} </h1>
       {/* <Slider className="SliderStyle" {...settings}> */}
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable direction="horizontal" droppableId="characters">

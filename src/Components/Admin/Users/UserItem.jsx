@@ -92,7 +92,7 @@ export default function UserItem({
     confirmAlert({
       customUI: ({ onClose }) => {
           return (
-            <div className='alert'>
+            <div className='alert-pop'>
               <div className='trash-icon'></div>
               <b>You are about to delete this user!</b>
               <div className='dividing-line'>This user will be deleted from Sports Hub</div>
