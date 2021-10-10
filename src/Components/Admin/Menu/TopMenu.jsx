@@ -95,8 +95,7 @@ export const TopMenu = ({header}) => {
     color: isDragging ? "#b10000" : "rgb(199, 199, 199)",
   });
   return (
-    <div>
-      <h1> {header} </h1>
+    <div class="top-menu">
       {/* <Slider className="SliderStyle" {...settings}> */}
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable direction="horizontal" droppableId="characters">

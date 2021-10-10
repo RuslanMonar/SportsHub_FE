@@ -1,5 +1,11 @@
 import { api } from './../Config/Axios';
 
+const GetUser = () => {
+  return api().get("User/get").then
+  ((response) => {
+    return response.data;
+  })
+}
 
 const SignUp = (firstName, lastName, email, password) => {
   let data = { firstName, lastName, email, password };
@@ -65,5 +71,6 @@ export default {
   FbAuth,
   GoogleAuth,
   SendForgotPasswordEmail,
-  ResetPassword
+  ResetPassword,
+  GetUser
 };

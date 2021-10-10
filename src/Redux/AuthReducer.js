@@ -4,11 +4,14 @@ export const SAVE_USER_SUCCESS = "SAVE_USER_SUCCESS";
 export const LOGOUT = "LOGOUT";
 
 var user = JSON.parse(localStorage.getItem("user"));
-var initialState = { isLoggedIn: false, user: null };
+var initialState = { isLoggedIn: false, user: null};
+
+
 
 if (user) {
   user = jwt_decode(user);
-  user = { name: user.unique_name, id: user.nameid, email: user.email };
+  user = { name: user.unique_name, id: user.nameid, email: user.email, image:user.image };
+  
   initialState = { isLoggedIn: true, user };
 }
 

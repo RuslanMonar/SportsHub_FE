@@ -70,7 +70,6 @@
   background-color: #ca1e1e;
   color: white;
 }
-
 .teams-central-content {
   margin: 30px -135px 100px 80px;
   width: 100%;
@@ -239,4 +238,13 @@
   font-weight: normal;
   font-size: 15px;
   color: #B2BBC5;
+}
+.add-team-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.map-marker>svg{
+  width: 30px;
+  height: 40px;
 }
